@@ -41,8 +41,9 @@ public class LeaderLatchTest {
 				client.start();
 				example.start();
 			}
+			
 			//选取会花费时间，等待2s
-			TimeUnit.SECONDS.sleep(20);
+			TimeUnit.SECONDS.sleep(2);
 			
 			LeaderLatch currentLeader = null;
 			for(int i=0;i<CLIENT_QTY;i++){
