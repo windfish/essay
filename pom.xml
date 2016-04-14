@@ -106,6 +106,12 @@
 		<version>2.4.4</version>
 	</dependency>
 	
+	<dependency>
+		<groupId>org.quartz-scheduler</groupId>
+		<artifactId>quartz</artifactId>
+		<version>2.2.1</version>
+	</dependency>
+	
   </dependencies>
   
 </project>
