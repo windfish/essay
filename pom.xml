@@ -122,7 +122,10 @@
 		<artifactId>hadoop-hdfs</artifactId>
 		<version>2.6.4</version>
 	</dependency>
-	<!-- 指定maven加载的tools.jar的路径 -->
+	<!-- 
+		错误信息：Missing artifact jdk.tools:jdk.tools:jar:1.7
+		解决方案：需指定maven加载的tools.jar的路径
+	 -->
 	<dependency>
 	    <groupId>jdk.tools</groupId>
 	    <artifactId>jdk.tools</artifactId>
