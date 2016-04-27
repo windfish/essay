@@ -3,6 +3,9 @@ package com.demon.memcached;
 import com.danga.MemCached.MemCachedClient;
 import com.danga.MemCached.SockIOPool;
 
+/**
+ * Java 访问memcached
+ */
 public class MemcachedTest {
 	private static MemCachedClient client = new MemCachedClient();
 	
