@@ -1,0 +1,53 @@
+//店铺表  店铺id、店名、地址、电话、微信
+create table t_shop (
+  shop_id int not null auto_increment primary key,
+  name varchar(100),
+  addr varchar(1000),
+  phone varchar(20),
+  wechat varchar(100)
+);
+
+//库存表  库存id、名称、颜色、尺码、类别、库存量、进价、计划售价、折扣价，默认9折、商铺id、状态，正常、待换货
+create table t_stock (
+  stock_id int(10) not null auto_increment primary key,
+  name varchar(500),
+  color varchar(100),
+  size varchar(10),
+  type varchar(10),
+  number int(10),
+  purchase_price decimal(10,2),
+  hope_price decimal(10,2),
+  discount_price decimal(10,2),
+  shop_id int(10),
+  status varchar(5)
+);
+
+//交易信息表  交易id、交易时间、售价、快递费、快递单号、买方id、状态，已预定、已付款、已发货、已完成、信用代付
+create table t_deal (
+  deal_id int(100) not null auto_increment primary key,
+  time date,
+  price decimal(10,2),
+  express_charge decimal(10,2),
+  express_no varchar(20),
+  stock_id int(10),
+  buyer_id int(10),
+  status varchar(10)
+);
+
+//买方信息表  买方id、名称、地址、电话、微信号
+create table t_buyer (
+  buyer_id int(10) not null auto_increment primary key,
+  name varchar(100),
+  addr varchar(1000),
+  phone varchar(20),
+  wechat varchar(100)
+);
+
+//衣服类别表  类别id、类别名称
+create table t_type (
+  type_id int(10) not null auto_increment primary key,
+  name varchar(100)
+);
+
+
+

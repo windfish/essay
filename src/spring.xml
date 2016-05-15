@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<!-- 设定DataSource -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/clothes"/>
+		<property name="username" value="root" />
+		<property name="password" value="880825" />
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- MyBatis SqlSessionFactory配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- configLocation属性执行MyBatis的核心配置文件 -->
+		<property name="configLocation" value="classpath:mybatis.xml" />
+		<!-- 所有配置的mapper文件，此时Configuration.xml不需要再配置mapper，否则会报错 -->
+		<property name="mapperLocations" value="classpath*:com/demon/clothes/**/*.xml" />
+		<!-- 可配置MyBatis插件 -->
+		<!-- <property name="plugins" ref="" /> -->
+	</bean>
+	
+	<bean id="stockMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<!-- 注入sqlSessionFactory实例 -->
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+		<!-- 映射器接口，用于实现此接口并生成映射器对象 -->
+		<property name="mapperInterface" value="com.demon.clothes.inter.IStockOperation" />
+	</bean>
+	
+</beans>
