@@ -51,11 +51,13 @@
 					shopId: shop
 			});
 		}
-		alert(JSON.stringify(datas));
+		
 		$.ajax('stock/addStock', {
 			type: 'POST',
 			contentType : 'application/x-www-form-urlencoded',
-		    data: "123123"//JSON.stringify(datas)
+		    data: {
+		    	stocks: JSON.stringify(datas)
+		    }
 		}).done(function (data) {
 		    alert('成功'+data);
 		}).fail(function (xhr, status) {

@@ -36,19 +36,19 @@
 	</resultMap>
 	
 	<insert id="addStock" parameterType="Stock" keyProperty="stockId" useGeneratedKeys="true">
-		insert into stock(name,color,size,type,number,purchase_price,hope_price,discount_price,shop_id,status)
+		insert into t_stock(name,color,size,type,number,purchase_price,hope_price,discount_price,shop_id,status)
 		values(#{name},#{color},#{size},#{type},#{number},#{purchasePrice},#{hopePrice},#{discountPrice},#{shopId},#{status});
 	</insert>
 	
 	<select id="queryStocks" resultMap="stockList">
-		select * from stock where 1 = 1
+		select * from t_stock where 1 = 1
 		<if test="name != null"> and name like concat('%',#{name},'%')</if>
 	</select>
 	
 	<select id="queryStockDeals" resultMap="stockDealList" parameterType="java.util.Map">
 		select d.deal_id, d.time, d.price, d.express_charge, d.express_no, d.status,
 			   s.stock_id, s.name, s.color, s.size, s.type, s.number, s.purchase_price
-		  from deal d, stock s
+		  from t_deal d, t_stock s
 		 where d.stock_id = s.stock_id
 		 <if test="name != null"> and s.name like concat ('%',#{name},'%')</if>
 		 <if test="time != null"> and d.time = #{time}</if>
