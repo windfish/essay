@@ -3,5 +3,54 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.demon.clothes.inter.IStockOperation">
-
+	<resultMap id="stockList" type="Stock">
+		<id property="stockId" column="stock_id"/>
+		<result property="name" column="name"/>
+		<result property="color" column="color"/>
+		<result property="size" column="size"/>
+		<result property="type" column="type"/>
+		<result property="number" column="number"/>
+		<result property="purchasePrice" column="purchase_price"/>
+		<result property="hopePrice" column="hope_price"/>
+		<result property="discountPrice" column="discount_price"/>
+		<result property="shopId" column="shop_id"/>
+		<result property="status" column="status"/>
+	</resultMap>
+	
+	<resultMap id="stockDealList" type="Deal">
+		<id property="dealId" column="deal_id"/>
+		<result property="time" column="time"/>
+		<result property="price" column="price"/>
+		<result property="express_charge" column="express_charge"/>
+		<result property="express_no" column="express_no"/>
+		<result property="status" column="status"/>
+		<association property="Stock" javaType="Stock">
+			<id property="stockId" column="stock_id"/>
+			<result property="name" column="name"/>
+			<result property="color" column="color"/>
+			<result property="size" column="size"/>
+			<result property="type" column="type"/>
+			<result property="number" column="number"/>
+			<result property="purchasePrice" column="purchase_price"/>
+		</association>
+	</resultMap>
+	
+	<insert id="addStock" parameterType="Stock" keyProperty="stockId" useGeneratedKeys="true">
+		insert into stock(name,color,size,type,number,purchase_price,hope_price,discount_price,shop_id,status)
+		values(#{name},#{color},#{size},#{type},#{number},#{purchasePrice},#{hopePrice},#{discountPrice},#{shopId},#{status});
+	</insert>
+	
+	<select id="queryStocks" resultMap="stockList">
+		select * from stock where 1 = 1
+		<if test="name != null"> and name like concat('%',#{name},'%')</if>
+	</select>
+	
+	<select id="queryStockDeals" resultMap="stockDealList" parameterType="java.util.Map">
+		select d.deal_id, d.time, d.price, d.express_charge, d.express_no, d.status,
+			   s.stock_id, s.name, s.color, s.size, s.type, s.number, s.purchase_price
+		  from deal d, stock s
+		 where d.stock_id = s.stock_id
+		 <if test="name != null"> and s.name like concat ('%',#{name},'%')</if>
+		 <if test="time != null"> and d.time = #{time}</if>
+	</select>
 </mapper>

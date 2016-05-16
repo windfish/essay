@@ -6,5 +6,6 @@
 	<!-- 定义别名 -->
 	<typeAliases>
 		<typeAlias alias="Stock" type="com.demon.clothes.model.Stock"/>
+		<typeAlias alias="Deal" type="com.demon.clothes.model.Deal"/>
 	</typeAliases>
 </configuration>

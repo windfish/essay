@@ -7,7 +7,7 @@ create table t_shop (
   wechat varchar(100)
 );
 
-//库存表  库存id、名称、颜色、尺码、类别、库存量、进价、计划售价、折扣价，默认9折、商铺id、状态，正常、待换货
+//库存商品表  商品id、名称、颜色、尺码、类别、库存量、进价、计划售价、折扣价，默认9折、商铺id、状态，正常、待换货
 create table t_stock (
   stock_id int(10) not null auto_increment primary key,
   name varchar(500),
