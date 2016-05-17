@@ -14,7 +14,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/clothes"/>
 		<property name="username" value="root" />
-		<property name="password" value="880825" />
+		<property name="password" value="pass1234" />
 	</bean>
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -32,11 +32,10 @@
 		<!-- <property name="plugins" ref="" /> -->
 	</bean>
 	
-	<bean id="stockMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<bean id="mapper" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 注入sqlSessionFactory实例 -->
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-		<!-- 映射器接口，用于实现此接口并生成映射器对象 -->
-		<property name="mapperInterface" value="com.demon.clothes.inter.IStockOperation" />
+		<property name="basePackage" value="com.demon.clothes.inter" />
 	</bean>
 	
 </beans>

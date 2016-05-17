@@ -35,13 +35,33 @@
 		</association>
 	</resultMap>
 	
+	<resultMap id="stockDtoList" type="com.demon.clothes.dto.StockDto">
+		<id property="stockId" column="stock_id"/>
+		<result property="name" column="name"/>
+		<result property="color" column="color"/>
+		<result property="size" column="size"/>
+		<result property="type" column="type"/>
+		<result property="type_name" column="type_name"/>
+		<result property="number" column="number"/>
+		<result property="purchasePrice" column="purchase_price"/>
+		<result property="hopePrice" column="hope_price"/>
+		<result property="discountPrice" column="discount_price"/>
+		<result property="shopId" column="shop_id"/>
+		<result property="shop_name" column="shop_name"/>
+		<result property="status" column="status"/>
+	</resultMap>
+	
 	<insert id="addStock" parameterType="Stock" keyProperty="stockId" useGeneratedKeys="true">
 		insert into t_stock(name,color,size,type,number,purchase_price,hope_price,discount_price,shop_id,status)
-		values(#{name},#{color},#{size},#{type},#{number},#{purchasePrice},#{hopePrice},#{discountPrice},#{shopId},#{status});
+		values(#{name},#{color},#{size},#{type},#{number},#{purchasePrice},#{hopePrice},#{discountPrice},#{shopId},#{status})
 	</insert>
 	
-	<select id="queryStocks" resultMap="stockList">
-		select * from t_stock where 1 = 1
+	<select id="queryStocks" resultMap="stockDtoList">
+		select stock_id, name, color, size, type, (select name from t_type t where t.type_id=s.type) type_name,
+		       number, purchase_price, hope_price, discount_price, shop_id, 
+		       (select name from t_shop p where p.shop_id=s.shop_id) shop_name, status
+		  from t_stock s
+		 where 1 = 1
 		<if test="name != null"> and name like concat('%',#{name},'%')</if>
 	</select>
 	

@@ -7,5 +7,7 @@
 	<typeAliases>
 		<typeAlias alias="Stock" type="com.demon.clothes.model.Stock"/>
 		<typeAlias alias="Deal" type="com.demon.clothes.model.Deal"/>
+		<typeAlias alias="Type" type="com.demon.clothes.model.Type"/>
+		<typeAlias alias="Shop" type="com.demon.clothes.model.Shop"/>
 	</typeAliases>
 </configuration>

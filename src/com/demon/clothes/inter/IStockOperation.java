@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.demon.clothes.dto.StockDealDto;
+import com.demon.clothes.dto.StockDto;
 import com.demon.clothes.model.Stock;
 
 public interface IStockOperation {
@@ -14,7 +15,7 @@ public interface IStockOperation {
 	/**
 	 * 查询库存商品
 	 */
-	public List<Stock> queryStocks(Stock stock);
+	public List<StockDto> queryStocks(Stock stock);
 	/**
 	 * 查询库存商品交易信息
 	 */
