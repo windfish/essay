@@ -1,11 +1,9 @@
 package com.demon.clothes.controller;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.demon.clothes.dto.StockDto;
-import com.demon.clothes.inter.IShopOperation;
 import com.demon.clothes.inter.IStockOperation;
-import com.demon.clothes.inter.ITypeOperation;
 import com.demon.clothes.model.Stock;
-import com.demon.clothes.model.Type;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonMappingException;

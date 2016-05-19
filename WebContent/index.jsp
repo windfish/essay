@@ -10,8 +10,7 @@
 
 	var index = 1; //标识
 	
-	//新增商品
-	function addStock(){
+	$(document).ready(function(){
 		$.ajax({
 			url: 'type/queryTypes',
 			type: 'POST'
@@ -41,6 +40,13 @@
 		}).fail(function (xhr, status) {
 			alert('失败: ' + xhr.status + ', 原因: ' + status);
 		});
+		
+	});
+	
+	//新增商品
+	function addStock(){
+		$('#type').val('');
+		$('#shop').val('');
 		
 		addSizeArea();
 		$('#addStockArea').attr('style','display:inline;');
@@ -218,13 +224,14 @@
 			alert('失败: ' + xhr.status + ', 原因: ' + status);
 		});
 	}
-	
+	//查询商品库存信息
 	function queryStock(){
 		$.ajax({
 			url: 'stock/queryStocks',
 			type: 'POST'
 		}).done(function (data) {
-			var table = document.getElementById('stockList');
+			var table_tbody = document.getElementById('stockList_tbody');
+			table_tbody.innerHTML = "";
 	    	for(var i=0;i<data.length;i++){
 	    		var tr = document.createElement('tr');
 	    		var name = document.createElement('td');
@@ -264,13 +271,10 @@
 	    		tr.appendChild(shop_name);
 	    		
 	    		var func = document.createElement('td');
-	    		func.innerHTML = '<input type="button" value="出售" id="sell"'+i+'>';
-	    		document.getElementById('sell'+i).onClick = function (){
-	    			sellStock(data[i]);
-	    		};
+	    		func.innerHTML = '<a href="#" onclick="sellStock(\''+data[i].stockId+'\',\''+data[i].name+'\',\''+data[i].purchasePrice+'\')">出售</a>';
 	    		tr.appendChild(func);
 	    		
-	    		table.appendChild(tr);
+	    		table_tbody.appendChild(tr);
 	    	}
 		}).fail(function (xhr, status) {
 			alert('失败: ' + xhr.status + ', 原因: ' + status);
@@ -278,9 +282,50 @@
 		
 		$('#stockListArea').attr('style','display:inline;');
 	}
-	
-	function sellStock(stock){
-		alert(stock);
+	//商品出售
+	function sellStock(stockId, name, purchasePrice){
+		$('#buyer_stock_id').val(stockId);
+		$('#buyer_stock_name').val(name);
+		$('#buyer_stock_purchase_price').val(purchasePrice);
+		
+		$('#buyer').val('');
+		$('#status').val('');
+		
+		$('#price').val('');
+		$('#express_no').val('');
+		$('#express_charge').val('');
+		$('#buyer_name').val('');
+		$('#buyer_addr').val('');
+		$('#buyer_phone').val('');
+		
+		$('#sellStockArea').attr('style','display:inline;');
+	}
+	function closeSellStockArea(){
+		$('#sellStockArea').attr('style','display:none;');
+	}
+	function saveSell(){
+		var data = {
+				stockId: $('#buyer_stock_id').val(),
+				price: $('#price').val(),
+				expressNo: $('#express_no').val(),
+				expressCharge: $('#express_charge').val(),
+				status: $('#status').val(),
+				buyerId: $('#buyer').val(),
+				name: $('#buyer_name').val(),
+				addr: $('#buyer_addr').val(),
+				phone: $('#buyer_phone').val()
+		};
+		$.ajax({
+			url: 'deal/addDeal',
+			type: 'POST',
+			data: {
+				data: JSON.stringify(data)
+			}
+		}).done(function (data) {
+			alert('成功');
+		}).fail(function (xhr, status) {
+			alert('失败: ' + xhr.status + ', 原因: ' + status);
+		});
 	}
 	
 </script>
@@ -311,6 +356,7 @@
     <fieldset>
     <table id="stockList" border="1" style="cellspacing:0;cellpadding:5;">
     	<caption>商品库存信息</caption>
+    	<thead>
     	<tr align="center">
     		<td>商品名称</td>
     		<td>颜色</td>
@@ -323,12 +369,52 @@
     		<td>店铺</td>
     		<td>操作</td>
     	</tr>
+    	</thead>
+    	<tbody id="stockList_tbody"></tbody>
     </table>
+    </fieldset>
+  </div>
+  <div id="sellStockArea" style="display: none;">
+    <fieldset>
+      <legend>出售商品</legend>
+      <table>
+      	<tr>
+      		<td>商品名称:<input id="buyer_stock_name"></td>
+      		<td>商品进价:<input id="buyer_stock_purchase_price"></td>
+      		<td><input type="hidden" id="buyer_stock_id"></td>
+      	</tr>
+      	<tr>
+      		<td>售价:<input id="price"></td>
+      		<td>快递单号:<input id="express_no"></td>
+      		<td>快递费:<input id="express_charge"></td>
+      	</tr>
+      	<tr>
+      		<td>买家:<select id="buyer" style="width: 70%;"><option value="">请选择</option></select></td>
+      		<td>订单状态:<select id="status" style="width: 70%;">
+      			<option value="已预定" selected="selected">已预定</option>
+      			<option value="已付款">已付款</option>
+      			<option value="已发货">已发货</option>
+      			<option value="已完成">已完成</option>
+      			<option value="信用代付">信用代付</option>
+      		</select></td>
+      		<td></td>
+      	</tr>
+      	<tr id="buyerTr">
+      		<td>买家姓名:<input id="buyer_name"></td>
+      		<td>买家地址:<input id="buyer_addr"></td>
+      		<td>买家电话:<input id="buyer_phone"></td>
+      	</tr>
+      </table>
+      <div>
+      	<input type="button" onclick="saveSell();" value="确定">
+    	<input type="button" onclick="closeSellStockArea();" value="取消">
+      </div>
     </fieldset>
   </div>
   <div id="dealListArea" style="display: none;">
     <table id="dealList" border="1" style="cellspacing:0;cellpadding:5;">
     	<caption>商品交易信息</caption>
+    	<thead>
     	<tr align="center">
     		<td>商品名称</td>
     		<td>颜色</td>
@@ -342,6 +428,8 @@
     		<td>交易时间</td>
     		<td>交易状态</td>
     	</tr>
+    	</thead>
+    	<tbody id="dealList_tbody"></tbody>
     </table>
   </div>
   <div id="addStockArea" style="display: none;">

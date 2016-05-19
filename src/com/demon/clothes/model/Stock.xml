@@ -73,4 +73,8 @@
 		 <if test="name != null"> and s.name like concat ('%',#{name},'%')</if>
 		 <if test="time != null"> and d.time = #{time}</if>
 	</select>
+	
+	<update id="sellStock" parameterType="java.lang.Integer">
+		update t_stock set number=number-1 where stock_id=#{stockId}
+	</update>
 </mapper>

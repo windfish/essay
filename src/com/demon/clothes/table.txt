@@ -50,4 +50,6 @@ create table t_type (
 );
 
 
+ create user 'manager' identified by 'password';
+ grant all on clothes.* to manager;
 

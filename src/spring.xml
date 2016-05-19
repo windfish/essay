@@ -9,10 +9,17 @@
 				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
-	<!-- 设定DataSource -->
+	<!-- 扫描除了controller 以外的bean -->
+	<context:component-scan base-package="com.demon.clothes">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+	<!-- 设定DataSource
+		 mysql 高版本需设置是否使用SSL连接，否则会报警告，&等特殊字符需要转义，否则xml中报错
+	 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/clothes"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/clothes?characterEncoding=utf8&amp;useSSL=true"/>
 		<property name="username" value="root" />
 		<property name="password" value="pass1234" />
 	</bean>
@@ -20,6 +27,8 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<!-- MyBatis SqlSessionFactory配置 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

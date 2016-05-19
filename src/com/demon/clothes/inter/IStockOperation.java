@@ -20,4 +20,6 @@ public interface IStockOperation {
 	 * 查询库存商品交易信息
 	 */
 	public List<StockDealDto> queryStockDeals(Map<String, Object> map);
+	
+	public void sellStock(int stockId);
 }

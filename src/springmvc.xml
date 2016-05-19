@@ -11,7 +11,14 @@
       http://www.springframework.org/schema/mvc  
       http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
-	<context:component-scan base-package="com.demon.clothes"></context:component-scan>
+	<!-- 
+		springMVC 只扫描controller，其他的包在spring 中扫描。如果扫描了service，那么事务就不会起作用
+		因为servlet-context.xml与service-context.xml不是同时加载，
+		如果不进行这样的设置，那么，spring就会将所有带@Service注解的类都扫描到容器中，
+		等到加载service-context.xml的时候，会因为容器已经存在Service类，使得cglib将不对Service进行代理，
+		直接导致的结果就是在service-context中的事务配置不起作用，发生异常时，无法对数据进行回滚。
+	 -->
+	<context:component-scan base-package="com.demon.clothes.controller"></context:component-scan>
 	<mvc:annotation-driven conversion-service="conversionService"/>
 	
 	<!-- 视图解析器 -->
