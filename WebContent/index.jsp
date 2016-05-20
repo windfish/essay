@@ -49,6 +49,7 @@
 			alert('失败: ' + xhr.status + ', 原因: ' + status);
 		});
 		
+		//TODO  买方信息初始化到下拉列表
 		
 	}
 	
@@ -447,6 +448,12 @@
 			}
 			
 			$('#dealListArea').attr('style','display:inline');
+			
+			closeAddStockArea();
+	    	closeAddTypeArea();
+	    	closeAddShopArea();
+	    	closeSellStockArea();
+	    	closeBHArea();
 			
 		}).fail(function (xhr, status) {
 			alert('失败: ' + xhr.status + ', 原因: ' + status);

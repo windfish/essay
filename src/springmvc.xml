@@ -19,7 +19,7 @@
 		直接导致的结果就是在service-context中的事务配置不起作用，发生异常时，无法对数据进行回滚。
 	 -->
 	<context:component-scan base-package="com.demon.clothes.controller"></context:component-scan>
-	<mvc:annotation-driven conversion-service="conversionService"/>
+	<mvc:annotation-driven/>
 	
 	<!-- 视图解析器 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -29,16 +29,5 @@
 	
 	<!-- <mvc:resources location="/static/**" mapping="/WEB-INF/static/"/> -->
 	<mvc:default-servlet-handler/>
-	
-	<!-- 配置ConversionService -->
-	<!-- 使用FormattingConversionServiceFactoryBean 自定义类型转换器，则可以使用SpringMVC 数据格式化功能 -->
-	<!-- <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean"> -->
-	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-		<property name="converters">
-			<set>
-				<ref bean="stockListConverter"/>
-			</set>
-		</property>
-	</bean>
 	
 </beans>
