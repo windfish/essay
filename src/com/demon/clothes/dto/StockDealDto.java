@@ -20,8 +20,10 @@ public class StockDealDto implements Serializable {
 	private String color;
 	private String size;
 	private String type;
+	private String typeName;
 	private int number;
 	private BigDecimal purchasePrice;
+	private BigDecimal profit;
 	
 	public int getDealId() {
 		return dealId;
@@ -101,8 +103,17 @@ public class StockDealDto implements Serializable {
 	public void setPurchasePrice(BigDecimal purchasePrice) {
 		this.purchasePrice = purchasePrice;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getTypeName() {
+		return typeName;
+	}
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+	public BigDecimal getProfit() {
+		return profit;
+	}
+	public void setProfit(BigDecimal profit) {
+		this.profit = profit;
 	}
 	
 	@Override
@@ -111,8 +122,9 @@ public class StockDealDto implements Serializable {
 				+ price + ", expressCharge=" + expressCharge + ", expressNo="
 				+ expressNo + ", status=" + status + ", stockId=" + stockId
 				+ ", name=" + name + ", color=" + color + ", size=" + size
-				+ ", type=" + type + ", number=" + number + ", purchasePrice="
-				+ purchasePrice + "]";
+				+ ", type=" + type + ", typeName=" + typeName + ", number="
+				+ number + ", purchasePrice=" + purchasePrice + ", profit="
+				+ profit + "]";
 	}
 	
 }

@@ -51,6 +51,24 @@
 		<result property="status" column="status"/>
 	</resultMap>
 	
+	<resultMap id="stockDealDtoList" type="com.demon.clothes.dto.StockDealDto">
+		<id property="dealId" column="deal_id"/>
+		<result property="time" column="time"/>
+		<result property="price" column="price"/>
+		<result property="expressCharge" column="express_charge"/>
+		<result property="expressNo" column="express_no"/>
+		<result property="status" column="status"/>
+		<result property="stockId" column="stock_id"/>
+		<result property="name" column="name"/>
+		<result property="color" column="color"/>
+		<result property="size" column="size"/>
+		<result property="type" column="type"/>
+		<result property="typeName" column="type_name"/>
+		<result property="number" column="number"/>
+		<result property="purchasePrice" column="purchase_price"/>
+		<result property="profit" column="profit"/>
+	</resultMap>
+	
 	<insert id="addStock" parameterType="Stock" keyProperty="stockId" useGeneratedKeys="true">
 		insert into t_stock(name,color,size,type,number,purchase_price,hope_price,discount_price,shop_id,status)
 		values(#{name},#{color},#{size},#{type},#{number},#{purchasePrice},#{hopePrice},#{discountPrice},#{shopId},#{status})
@@ -65,9 +83,10 @@
 		<if test="name != null"> and name like concat('%',#{name},'%')</if>
 	</select>
 	
-	<select id="queryStockDeals" resultMap="stockDealList" parameterType="java.util.Map">
+	<select id="queryStockDeals" resultMap="stockDealDtoList" parameterType="java.util.Map">
 		select d.deal_id, d.time, d.price, d.express_charge, d.express_no, d.status,
-			   s.stock_id, s.name, s.color, s.size, s.type, s.number, s.purchase_price
+			   s.stock_id, s.name, s.color, s.size, s.type, (select name from t_type t where s.type=t.type_id) type_name,
+			   s.number, s.purchase_price, (d.price - s.purchase_price - d.express_charge) profit
 		  from t_deal d, t_stock s
 		 where d.stock_id = s.stock_id
 		 <if test="name != null"> and s.name like concat ('%',#{name},'%')</if>
@@ -76,5 +95,9 @@
 	
 	<update id="sellStock" parameterType="java.lang.Integer">
 		update t_stock set number=number-1 where stock_id=#{stockId}
+	</update>
+	
+	<update id="bhStock" parameterType="Stock">
+		update t_stock set number=${number} where stock_id=#{stockId}
 	</update>
 </mapper>

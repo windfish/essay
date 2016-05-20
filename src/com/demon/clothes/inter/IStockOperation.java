@@ -22,4 +22,6 @@ public interface IStockOperation {
 	public List<StockDealDto> queryStockDeals(Map<String, Object> map);
 	
 	public void sellStock(int stockId);
+	
+	public void bhStock(Stock stock);
 }
