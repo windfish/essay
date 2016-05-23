@@ -98,6 +98,6 @@
 	</update>
 	
 	<update id="bhStock" parameterType="Stock">
-		update t_stock set number=${number} where stock_id=#{stockId}
+		update t_stock set number=number+${number} where stock_id=#{stockId}
 	</update>
 </mapper>

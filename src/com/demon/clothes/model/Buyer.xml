@@ -4,9 +4,22 @@
 
 <mapper namespace="com.demon.clothes.inter.IBuyerOperation">
 
+	<resultMap type="Buyer" id="buyerList">
+		<id property="buyerId" column="buyer_id"/>
+		<result property="name" column="name"/>
+		<result property="addr" column="addr"/>
+		<result property="phone" column="phone"/>
+		<result property="wechat" column="wechat"/>
+	</resultMap>
+
 	<insert id="addBuyer" parameterType="Buyer" keyProperty="buyerId" useGeneratedKeys="true">
 		insert into t_buyer(name, addr, phone, wechat)
 		value(#{name},#{addr},#{phone},#{wechat})
 	</insert>
+	
+	<select id="queryBuyers" resultMap="buyerList">
+		select buyer_id, name, addr, phone, wechat
+		  from t_buyer
+	</select>
 	
 </mapper>

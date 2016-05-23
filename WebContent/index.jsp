@@ -50,7 +50,21 @@
 		});
 		
 		//TODO  买方信息初始化到下拉列表
-		
+		$.ajax({
+			url: 'deal/queryBuyers',
+			type: 'POST'
+		}).done(function(data){
+			var buyerObj = document.getElementById('buyer');
+			buyerObj.innerHTML = '<option value="">请选择</option>'
+			for(var i=0;i<data.length;i++){
+				var opt = document.createElement('option');
+				opt.value = data[i].buyerId;
+				opt.text = data[i].name;
+				buyerObj.appendChild(opt);
+			}
+		}).fail(function (xhr, status) {
+			alert('失败: ' + xhr.status + ', 原因: ' + status);
+		});
 	}
 	
 	//新增商品
