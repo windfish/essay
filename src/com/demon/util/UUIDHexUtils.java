@@ -5,9 +5,7 @@ import java.net.InetAddress;
 
 
 /**
- * Created by IntelliJ IDEA. Title:HEX类型主键生成器生成类 User: YeRenBin
- * Mail:Org114@163.com Tel:86-028-81255754 Date: 2006-3-15 Time: 22:56:30 To
- * change this template use File | Settings | File Templates.
+ * HEX类型主键生成器生成类
  */
 public class UUIDHexUtils
 {
