@@ -1,0 +1,160 @@
+Main : Status of Thread0 : NEW
+Main : Status of Thread1 : NEW
+Main : Status of Thread2 : NEW
+Main : Status of Thread3 : NEW
+Main : Status of Thread4 : NEW
+Main : Status of Thread5 : NEW
+Main : Status of Thread6 : NEW
+Main : Status of Thread7 : NEW
+Main : Status of Thread8 : NEW
+Main : Status of Thread9 : NEW
+Main : Id 9 - Thread0
+Main : Priority: 10
+Main : Old Status: NEW
+Main : New Status: RUNNABLE
+Main : *************************
+Main : Id 10 - Thread1
+Main : Priority: 1
+Main : Old Status: NEW
+Main : New Status: BLOCKED
+Main : *************************
+Main : Id 11 - Thread2
+Main : Priority: 10
+Main : Old Status: NEW
+Main : New Status: BLOCKED
+Main : *************************
+Main : Id 12 - Thread3
+Main : Priority: 1
+Main : Old Status: NEW
+Main : New Status: BLOCKED
+Main : *************************
+Main : Id 13 - Thread4
+Main : Priority: 10
+Main : Old Status: NEW
+Main : New Status: BLOCKED
+Main : *************************
+Main : Id 14 - Thread5
+Main : Priority: 1
+Main : Old Status: NEW
+Main : New Status: BLOCKED
+Main : *************************
+Main : Id 15 - Thread6
+Main : Priority: 10
+Main : Old Status: NEW
+Main : New Status: BLOCKED
+Main : *************************
+Main : Id 16 - Thread7
+Main : Priority: 1
+Main : Old Status: NEW
+Main : New Status: BLOCKED
+Main : *************************
+Main : Id 17 - Thread8
+Main : Priority: 10
+Main : Old Status: NEW
+Main : New Status: BLOCKED
+Main : *************************
+Main : Id 18 - Thread9
+Main : Priority: 1
+Main : Old Status: NEW
+Main : New Status: BLOCKED
+Main : *************************
+Main : Id 9 - Thread0
+Main : Priority: 10
+Main : Old Status: RUNNABLE
+Main : New Status: TERMINATED
+Main : *************************
+Main : Id 10 - Thread1
+Main : Priority: 1
+Main : Old Status: BLOCKED
+Main : New Status: RUNNABLE
+Main : *************************
+Main : Id 11 - Thread2
+Main : Priority: 10
+Main : Old Status: BLOCKED
+Main : New Status: TERMINATED
+Main : *************************
+Main : Id 10 - Thread1
+Main : Priority: 1
+Main : Old Status: RUNNABLE
+Main : New Status: TERMINATED
+Main : *************************
+Main : Id 12 - Thread3
+Main : Priority: 1
+Main : Old Status: BLOCKED
+Main : New Status: RUNNABLE
+Main : *************************
+Main : Id 12 - Thread3
+Main : Priority: 1
+Main : Old Status: RUNNABLE
+Main : New Status: TERMINATED
+Main : *************************
+Main : Id 16 - Thread7
+Main : Priority: 1
+Main : Old Status: BLOCKED
+Main : New Status: RUNNABLE
+Main : *************************
+Main : Id 15 - Thread6
+Main : Priority: 10
+Main : Old Status: BLOCKED
+Main : New Status: RUNNABLE
+Main : *************************
+Main : Id 15 - Thread6
+Main : Priority: 10
+Main : Old Status: RUNNABLE
+Main : New Status: TERMINATED
+Main : *************************
+Main : Id 18 - Thread9
+Main : Priority: 1
+Main : Old Status: BLOCKED
+Main : New Status: RUNNABLE
+Main : *************************
+Main : Id 18 - Thread9
+Main : Priority: 1
+Main : Old Status: RUNNABLE
+Main : New Status: TERMINATED
+Main : *************************
+Main : Id 14 - Thread5
+Main : Priority: 1
+Main : Old Status: BLOCKED
+Main : New Status: RUNNABLE
+Main : *************************
+Main : Id 14 - Thread5
+Main : Priority: 1
+Main : Old Status: RUNNABLE
+Main : New Status: TERMINATED
+Main : *************************
+Main : Id 16 - Thread7
+Main : Priority: 1
+Main : Old Status: BLOCKED
+Main : New Status: BLOCKED
+Main : *************************
+Main : Id 13 - Thread4
+Main : Priority: 10
+Main : Old Status: BLOCKED
+Main : New Status: BLOCKED
+Main : *************************
+Main : Id 17 - Thread8
+Main : Priority: 10
+Main : Old Status: BLOCKED
+Main : New Status: RUNNABLE
+Main : *************************
+Main : Id 17 - Thread8
+Main : Priority: 10
+Main : Old Status: RUNNABLE
+Main : New Status: TERMINATED
+Main : *************************
+Main : Id 13 - Thread4
+Main : Priority: 10
+Main : Old Status: BLOCKED
+Main : New Status: RUNNABLE
+Main : *************************
+Main : Id 16 - Thread7
+Main : Priority: 1
+Main : Old Status: BLOCKED
+Main : New Status: RUNNABLE
+Main : *************************
+Main : Id 16 - Thread7
+Main : Priority: 1
+Main : Old Status: RUNNABLE
+Main : New Status: TERMINATED
+Main : *************************
