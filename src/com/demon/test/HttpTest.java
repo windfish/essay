@@ -26,6 +26,7 @@ public class HttpTest {
 			total += (split.length-1);
 		}
 		System.out.println("#我的代码可以约主播# “UCanUup”出现了"+total+"次");
+		//#我的代码可以约主播# “UCanUup”出现了728次
 	}
 
 }
