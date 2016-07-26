@@ -8,7 +8,9 @@
  * Test_4_6  运行多个任务并处理所有结果  ExecutorService.invokeAll()
  * Test_4_7  延迟执行任务  ScheduledThreadPoolExecutor.schedule()
  * Test_4_8  周期性的执行任务  ScheduledThreadPoolExecutor.scheduleAtFixedRate()
- * Test_4_9  执行器中取消任务  
+ * Test_4_9  执行器中取消任务  Future.cancel()
+ * Test_4_10 执行器中控制任务的完成  FutureTask.done()
+ * Test_4_11 执行器中分离任务的启动和结果的处理  
  * </pre>
  */
 package com.demon.concurrency.chapter4;
