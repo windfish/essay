@@ -40,13 +40,23 @@ public class Test_7_7 {
 
 }
 
+/**
+ * 继承 ForkJoinWorkerThread 类，可以在Fork/Join 框架中使用
+ * @author fish
+ * @version 2016年8月22日 上午11:05:55
+ */
 class MyWorkerThread extends ForkJoinWorkerThread {
+	//计数器，统计一个工作线程执行了多少任务
 	private ThreadLocal<Integer> taskCounter = new ThreadLocal<Integer>();
 	
 	protected MyWorkerThread(ForkJoinPool pool) {
 		super(pool);
 	}
 	
+	/**
+	 * 工作线程开始执行时，会被自动调用。
+	 * 初始化计数器
+	 */
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -54,12 +64,19 @@ class MyWorkerThread extends ForkJoinWorkerThread {
 		taskCounter.set(0);
 	}
 	
+	/**
+	 * 工作线程完成执行时，会被自动调用。
+	 * 输出计数器的值到控制台
+	 */
 	@Override
 	protected void onTermination(Throwable exception) {
 		System.out.println("MyWorkerThread "+getId()+": "+taskCounter.get());
 		super.onTermination(exception);
 	}
 	
+	/**
+	 * 用来增加计数器的值
+	 */
 	public void addTask(){
 		int counter = taskCounter.get().intValue();
 		counter++;
@@ -68,8 +85,16 @@ class MyWorkerThread extends ForkJoinWorkerThread {
 	
 }
 
+/**
+ * 实现 ForkJoinWorkerThreadFactory 接口，可以在ForkJoinPool 中使用自定义的线程工厂
+ * @author fish
+ * @version 2016年8月22日 上午11:09:05
+ */
 class MyWorkerThreadFactory implements ForkJoinWorkerThreadFactory {
 
+	/**
+	 * 创建一个新的线程对象
+	 */
 	@Override
 	public ForkJoinWorkerThread newThread(ForkJoinPool pool) {
 		return new MyWorkerThread(pool);
