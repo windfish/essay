@@ -36,7 +36,8 @@ abstract class MyWorkerTask extends ForkJoinTask<Void> {
 	}
 
 	/**
-	 * ForkJoinTask 类的抽象方法，当任务不返回任何结果时，这个方法必须返回null
+	 * ForkJoinTask 类的抽象方法，用来获取任务的结果。
+	 * 当任务不返回任何结果时，这个方法必须返回null
 	 */
 	@Override
 	public Void getRawResult() {
@@ -44,7 +45,8 @@ abstract class MyWorkerTask extends ForkJoinTask<Void> {
 	}
 
 	/**
-	 * ForkJoinTask 类的抽象方法，当任务不返回任何结果时，设置方法体为空
+	 * ForkJoinTask 类的抽象方法，用来设置任务的结果。
+	 * 当任务不返回任何结果时，设置方法体为空
 	 */
 	@Override
 	protected void setRawResult(Void value) {
@@ -52,7 +54,8 @@ abstract class MyWorkerTask extends ForkJoinTask<Void> {
 	}
 
 	/**
-	 * 类的主方法
+	 * 类的主方法，实现任务的逻辑。
+	 * 委托给抽象方法compute()实现，跟RecursiveAction 和 RecursiveTask 类一样
 	 */
 	@Override
 	protected boolean exec() {

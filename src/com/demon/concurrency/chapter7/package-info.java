@@ -8,6 +8,8 @@
  * Test_7_6  定制运行在定时线程池中的任务
  * Test_7_7  通过 ThreadFactory 接口为 Fork/Join 框架生成定制线程
  * Test_7_8  定制运行在Fork/Join 框架中的任务
+ * Test_7_9  实现定制Lock 类
+ * Test_7_10 实现基于优先级的传输队列
  * </pre>
  * @author fish
  * @version 2016年8月12日 下午4:42:53
