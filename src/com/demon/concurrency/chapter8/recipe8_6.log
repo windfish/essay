@@ -1,0 +1,28 @@
+[FINER] - Wed Aug 24 16:46:51 CST 2016 : Core.main() : ENTRY
+[INFO] - Wed Aug 24 16:46:51 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Launching thread: 0
+[INFO] - Wed Aug 24 16:46:51 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Created thread: Thread-1
+[INFO] - Wed Aug 24 16:46:51 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Launching thread: 1
+[FINER] - Wed Aug 24 16:46:51 CST 2016 : Thread-1.run() : ENTRY
+[INFO] - Wed Aug 24 16:46:51 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Created thread: Thread-2
+[INFO] - Wed Aug 24 16:46:51 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Launching thread: 2
+[FINER] - Wed Aug 24 16:46:51 CST 2016 : Thread-2.run() : ENTRY
+[INFO] - Wed Aug 24 16:46:51 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Created thread: Thread-3
+[INFO] - Wed Aug 24 16:46:51 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Launching thread: 3
+[FINER] - Wed Aug 24 16:46:51 CST 2016 : Thread-3.run() : ENTRY
+[INFO] - Wed Aug 24 16:46:51 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Created thread: Thread-4
+[INFO] - Wed Aug 24 16:46:51 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Launching thread: 4
+[FINER] - Wed Aug 24 16:46:51 CST 2016 : Thread-4.run() : ENTRY
+[INFO] - Wed Aug 24 16:46:51 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Created thread: Thread-5
+[INFO] - Wed Aug 24 16:46:51 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : All thread Created. Waiting for its finalization.
+[FINER] - Wed Aug 24 16:46:51 CST 2016 : Thread-5.run() : ENTRY
+[FINER] - Wed Aug 24 16:46:53 CST 2016 : Thread-1.run() : RETURN
+[INFO] - Wed Aug 24 16:46:53 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Thread has finish its execution
+[FINER] - Wed Aug 24 16:46:53 CST 2016 : Thread-2.run() : RETURN
+[INFO] - Wed Aug 24 16:46:53 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Thread has finish its execution
+[FINER] - Wed Aug 24 16:46:53 CST 2016 : Thread-3.run() : RETURN
+[INFO] - Wed Aug 24 16:46:53 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Thread has finish its execution
+[FINER] - Wed Aug 24 16:46:53 CST 2016 : Thread-4.run() : RETURN
+[INFO] - Wed Aug 24 16:46:53 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Thread has finish its execution
+[FINER] - Wed Aug 24 16:46:53 CST 2016 : Thread-5.run() : RETURN
+[INFO] - Wed Aug 24 16:46:53 CST 2016 : com.demon.concurrency.chapter8.Test_8_6.main : Thread has finish its execution
+[FINER] - Wed Aug 24 16:46:53 CST 2016 : Core.main() : RETURN

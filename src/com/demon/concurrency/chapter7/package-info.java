@@ -10,6 +10,7 @@
  * Test_7_8  定制运行在Fork/Join 框架中的任务
  * Test_7_9  实现定制Lock 类
  * Test_7_10 实现基于优先级的传输队列
+ * Test_7_11 实现原子对象
  * </pre>
  * @author fish
  * @version 2016年8月12日 下午4:42:53
