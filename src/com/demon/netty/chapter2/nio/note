@@ -1,0 +1,30 @@
+1、缓冲区 Buffer
+Buffer是一个对象，包含一些要写入或要读出的数据。
+在NIO库中，所以数据都是用缓冲区处理的，在读取数据时，直接读到缓冲区中；在写入数据时，也是写入到缓冲区中
+最常用的缓冲区是ByteBuffer，每一种Java基本类型（处理Boolean）都对应有一种缓冲区
+
+2、通道 Channel
+Channel是一个通道，可以通过它读写数据。通道与流不同之处在于通道是双向的，而且通道可以用于读、写或者同时读写。Channel是全双工的
+Channel可以分为两大类：用于网络读写的SelectableChannel和用于文件操作的FileChannel
+
+3、多路复用器 Selector
+Selector提供选择已经就绪的任务的能力：
+	Selector会不断轮询注册在其上的Channel，如果某个Channel上有新的TCP连接接入、读和写事件，这个Channel就处于就绪状态，然后通过SelectionKey获取Channel集合，后续进行IO操作
+一个多路复用器可以轮询多个Channel，由于JDK使用了epoll()代替传统的select实现，所以没有最大连接句柄1024/2048的限制。
+
+
+NIO服务端流程：
+打开 ServerSocketChannel --> 绑定监听地址 InetSocketAddress --> 创建Selector，启动线程 --> 将ServerSocketChannel 注册到Selector，监听 --> 
+Selector 轮询就绪的Key --> handlerAccept()处理新的客户端接入 --> 设置新建客户端连接的Secket 参数 --> 向Selector 注册监听读操作SelectionKey.OP_READ --> 
+handleRead()异步读请求消息到ByteBuffer --> decode 请求消息 --> 异步写ByteBuffer 到SocketChannel
+
+NIO客户端流程：
+打开 SocketChannel --> 设置SocketChannel 为非阻塞模式，同时设置TCP参数 --> 异步连接服务端 --> 判断连接结果，如果连接成功，执行步骤10，否则执行步骤5 --> 
+(5)向Reactor线程的多路复用器注册OP_CONNECT事件 --> 创建Selector，启动线程 --> Selector 轮询就绪的Key --> handerConnect() --> 判断连接是否完成，完成执行步骤10 --> 
+(10)向多路复用器注册读事件OP_READ --> handleRead()异步读请求消息到ByteBuffer --> decode请求消息 --> 异步写ByteBuffer到SocketChannel
+
+
+NIO的优点：
+(1)客户端发起的连接操作是异步的，可以通过在多路复用器注册OP_CONNECT 等待后续结果，不需要像之前的客户端那样被同步阻塞
+(2)SocketChannel的读写操作都是异步的，如果没有可读写的的数据，不会同步等待，直接返回，这样IO通信线程就能处理其他的链路
+(3)线程模型的优化：JDK的Selector通过epoll实现，没有连接句柄数的限制，意味着一个Selector线程可以处理成千上万的客户端连接，而且性能不会随客户端增加而线性下降

@@ -1,7 +1,5 @@
 package com.demon.java8;
 
-import org.junit.Test;
-
 /**
  * FunctionalInterface 注解修饰的接口为函数接口，只允许有一个接口方法（未实现的）
  * 但可以有默认方法（default修饰），也可以有静态方法（static修饰）
