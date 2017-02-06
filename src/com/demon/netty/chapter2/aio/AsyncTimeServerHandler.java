@@ -43,6 +43,7 @@ public class AsyncTimeServerHandler implements Runnable {
 	}
 	
 	public void doAccept(){
+		// 接收客户端的连接，由于是异步操作，传递一个CompletionHandler实例来接收accept操作成功的通知消息
 		asyncSocketChannel.accept(this, new AcceptCompletionHandler());
 	}
 
