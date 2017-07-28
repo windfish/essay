@@ -1,0 +1,22 @@
+编解码技术
+
+基于 Java提供的对象输入/输出流 ObjectInputStream 和 ObjectOutputStream，可以直接把 Java对象作为可存储的字节数组写入文件，也可以传输到网络上
+对程序员来说，基于 JDK默认的序列化机制可以避免操作底层的字节数组，从而提升开发效率
+
+Java序列化的目的主要有两个：网络传输、对象持久化
+
+Java 对象编解码技术：
+当进行远程跨进程服务调用时，需要把被传输的 Java对象编码为字节数组或 ByteBuffer对象。
+而当远程服务读取到 ByteBuffer对象或字节数组时，需要将其解码为发送时的 Java对象。
+
+
+Java 序列化的缺点：
+1、无法跨语言
+2、序列化后的码流太大
+3、序列化性能太低
+
+
+序列化工具：
+Google Protobuf
+Facebook Thrift
+JBoss Marshalling
