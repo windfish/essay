@@ -1,5 +1,5 @@
 /**
- * Netty权威指南  page 157
+ * Netty权威指南  page 182
  * 
  * 基础篇  走进Java NIO
  * 第一章  Java I/O 演进之路
@@ -10,5 +10,6 @@
  * 第六章 编解码技术
  * 第七章 Java 序列化
  * 第八章 Google Protobuf 编解码
+ * 第十章 HTTP 协议开发应用
  */
 package com.demon.netty;
