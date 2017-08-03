@@ -1,0 +1,11 @@
+syntax = "proto3";
+package netty;
+option java_package = "com.demon.netty.chapter8";
+option java_outer_classname = "SubscribeReqProto";
+
+message SubscribeReq{
+  int32 subReqID = 1;
+  string userName = 2;
+  string productName = 3;
+  string address = 4;
+}

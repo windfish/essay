@@ -1,5 +1,5 @@
 /**
- * Netty权威指南  page 144
+ * Netty权威指南  page 157
  * 
  * 基础篇  走进Java NIO
  * 第一章  Java I/O 演进之路
@@ -9,5 +9,6 @@
  * 第五章 分隔符和定长解码器的应用
  * 第六章 编解码技术
  * 第七章 Java 序列化
+ * 第八章 Google Protobuf 编解码
  */
 package com.demon.netty;

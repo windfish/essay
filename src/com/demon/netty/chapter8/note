@@ -1,0 +1,4 @@
+proto.exe 工具主要根据 .proto文件生成代码
+
+命令：
+proto.exe --java_out=.\out .\SubscribeReq.proto
