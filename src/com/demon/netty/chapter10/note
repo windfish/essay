@@ -1,0 +1,39 @@
+HTTP 是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统
+
+HTTP 协议的主要特点：
+1、支持 Client/Server 模式
+2、简单：客户向服务器请求服务时，只需指定服务 URL，携带必要的请求参数或者消息体
+3、灵活：HTTP 允许传输任意类型的数据对象，传输的内容类型由 HTTP消息头中的 Content-Type加以标记
+4、无状态：HTTP 协议是无状态协议，无状态是指协议对于事务处理没有记忆能力。
+缺少状态意味着如果后续处理需要之前的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。
+另一方面，在服务器不需要先前信息时它的应答就较快，负载较轻。
+
+
+HTTP URL（URL 是一种特殊类型的 URI，包含了用于查找某个资源的足够的信息）格式：http://host[":"port][abs_path]
+http 表示要通过 HTTP协议来定位网络资源；host表示合法的 Internet主机域名或者 IP地址；
+port指定一个端口号，为空则使用默认端口80；abs_path指定请求资源的URI，如果URL中没有abs_path，那么当它作为请求URI时，必须以“/”的形式给出，浏览器会自动帮我们完成
+
+
+HTTP 请求由三部分组成：HTTP请求行、HTTP消息头、HTTP请求正文
+
+请求行以一个方法符开头，以空格分开，后面跟着请求的 URI和协议的版本，格式为：Method Request-URI HTTP-Version CRLF
+Method 表示请求方法，Request-URI是一个统一资源标识符，HTTP-Version 标识请求的 HTTP协议版本，CRLF 表示回车和换行（除了结尾的CRLF外，不允许出现单独的CR或LF字符）
+
+请求方法有很多：
+1、GET：请求获取 Request-URI所标识的资源
+2、POST：在 Request-URI所标识的资源后附加新的提交数据
+3、HEAD：请求获取由 Request-URI所标识的资源的响应信息报头
+4、PUT：请求服务器存储一个资源，并用 Request-URI作为其标识
+5、DELETE：请求服务器删除 Request-URI所标识的资源
+6、TRACE：请求服务器回送收到的请求消息，主要用于测试或诊断
+7、CONNECT：保留将来使用
+8、OPTIONS：请求查询服务器的性能，或者查询与资源相关的选项和需求
+
+
+HTTP 响应消息（HttpResponse）由三部分组成：状态行、消息报文、响应正文
+
+状态行的格式：HTTP-Version Status-Code Reason-Phase CRLF
+HTTP-Version 标识请求的 HTTP协议版本，Status-Code 表示服务器返回的响应状态代码
+
+
+
