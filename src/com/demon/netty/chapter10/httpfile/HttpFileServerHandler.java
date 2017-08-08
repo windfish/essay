@@ -199,6 +199,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
         buf.append("</ul></body></html>\r\n");
         ByteBuf buffer = Unpooled.copiedBuffer(buf, CharsetUtil.UTF_8);
         resp.content().writeBytes(buffer);
+        System.out.println(resp);
         buffer.release();
         ctx.writeAndFlush(resp).addListener(ChannelFutureListener.CLOSE);
     }
