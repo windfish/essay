@@ -46,6 +46,9 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
     
     @Override
     protected void messageReceived(ChannelHandlerContext ctx, FullHttpRequest req) throws Exception {
+        System.out.println(req);
+        
+        
         // 解码失败，直接返回 HTTP 400错误
         if(!req.getDecoderResult().isSuccess()){
             sendError(ctx, HttpResponseStatus.BAD_REQUEST);
