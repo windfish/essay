@@ -63,6 +63,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
             sendError(ctx, HttpResponseStatus.FORBIDDEN);
             return;
         }
+        System.out.println(path);
         File file = new File(path);
         // 如果文件不存在或者是隐藏文件，则返回 HTTP 404错误
         if(file.isHidden() || !file.exists()){
@@ -162,7 +163,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
                 || INSECURE_URI.matcher(uri).matches()){
             return null;
         }
-        return System.getProperty("user.dir") + File.separator + uri;
+        return System.getProperty("user.dir") + (uri.startsWith(File.separator) ? uri : File.separator + uri);
     }
     
     private static final Pattern ALLOWED_FILE_NAME = Pattern.compile("[A-Za-z0-9][-_A-Za-z0-9\\.]*");

@@ -20,7 +20,7 @@ import io.netty.handler.stream.ChunkedWriteHandler;
  */
 public class HttpFileServer {
 
-    private static final String DEFAULT_URL = "/src/com/demon/netty/";
+    private static final String DEFAULT_URL = "/src/com/demon/util/";
     
     public void run(final int port, final String url) throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -57,7 +57,7 @@ public class HttpFileServer {
     }
     
     public static void main(String[] args) throws Exception {
-        new HttpFileServer().run(8080, DEFAULT_URL);
+        new HttpFileServer().run(8000, DEFAULT_URL);
     }
     
 }
