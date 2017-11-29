@@ -1,5 +1,5 @@
 /**
- * Netty权威指南  page 203
+ * Netty权威指南  page 246
  * 
  * 基础篇  走进Java NIO
  * 第一章  Java I/O 演进之路
