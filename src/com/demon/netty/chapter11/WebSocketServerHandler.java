@@ -56,6 +56,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
     
     private void handlerHttpRequest(ChannelHandlerContext ctx, FullHttpRequest req) throws Exception {
         // 如果HTTP 解码失败，返回HTTP 异常
+    	// 对握手请求消息进行判断，如果消息头中没有包含Upgrade字段或者它的值不是websocket，则返回HTTP 400响应
         if(!req.getDecoderResult().isSuccess()
                 || (!"websocket".equals(req.headers().get("Upgrade")))){
             sendHttpResponse(ctx, req, new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST));
