@@ -11,5 +11,6 @@
  * 第七章 Java 序列化
  * 第八章 Google Protobuf 编解码
  * 第十章 HTTP 协议开发应用
+ * 第十一章 WebSocket 协议开发
  */
 package com.demon.netty;
