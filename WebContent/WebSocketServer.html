@@ -11,11 +11,11 @@
 		window.WebSocket = window.MozWebSocket;
 	}
 	if(window.WebSocket){
-		socket = new WebSocket("ws://localhost:8080/websocket");
+		socket = new WebSocket("ws://localhost:8080/");
 		socket.onmessage = function(event) {
 			var ta = document.getElementById('responseText');
-			ta.value = "";
-			ta.value = event.data;
+			
+			ta.value = ta.value + "\n" + event.data;
 		}
 		socket.onopen = function(event) {
 			var ta = document.getElementById('responseText');

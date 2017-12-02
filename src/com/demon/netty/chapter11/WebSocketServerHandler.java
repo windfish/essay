@@ -63,7 +63,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
             return;
         }
         // 构造握手响应返回，本机测试
-        WebSocketServerHandshakerFactory wsFactory = new WebSocketServerHandshakerFactory("ws://localhost:8080/websocket", null, false);
+        WebSocketServerHandshakerFactory wsFactory = new WebSocketServerHandshakerFactory("ws://localhost:8080/", null, false);
         handshaker = wsFactory.newHandshaker(req);
         if(handshaker == null){
             WebSocketServerHandshakerFactory.sendUnsupportedWebSocketVersionResponse(ctx.channel());
@@ -114,6 +114,24 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         cause.printStackTrace();
         ctx.close();
+    }
+    
+    /**
+     * 客户端连接时的事件
+     */
+    @Override
+    public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
+    	WebSocketClientManager.getInstance().addClient(ctx.channel());
+    	System.out.println("handlerAdded client size: "+WebSocketClientManager.getInstance().size());
+    }
+    
+    /**
+     * 客户端断开时的事件
+     */
+    @Override
+    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+    	WebSocketClientManager.getInstance().removeClient(ctx.channel());
+    	System.out.println("handlerRemoved client size: "+WebSocketClientManager.getInstance().size());
     }
 
 }

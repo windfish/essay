@@ -1,5 +1,11 @@
 package com.demon.netty.chapter11;
 
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -10,6 +16,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.stream.ChunkedWriteHandler;
 
 /**
@@ -20,6 +27,8 @@ import io.netty.handler.stream.ChunkedWriteHandler;
  */
 public class WebSocketServer {
 
+	private static ExecutorService executor = Executors.newSingleThreadExecutor();
+	
     public void run(int port) throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -53,6 +62,24 @@ public class WebSocketServer {
     }
     
     public static void main(String[] args) throws Exception {
+    	// 往连接的客户端发消息
+    	executor.submit(new Runnable() {
+			@Override
+			public void run() {
+				while(true){
+					List<Channel> clients = WebSocketClientManager.getInstance().allClients();
+					for(Channel c: clients){
+						c.writeAndFlush(new TextWebSocketFrame("服务器消息：现在时刻"+new Date()));
+						System.out.println(c + " send");
+					}
+					try {
+						TimeUnit.SECONDS.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
         new WebSocketServer().run(8080);
     }
     
