@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Netty WebSocket 聊天室</title>
+</head>
+<body>
+<script type="text/javascript">
+	var socket;
+	var _playerId = 0;
+	
+	function login(playerId){
+		if(!window.WebSocket){
+	        window.WebSocket = window.MozWebSocket;
+	    }
+	    if(window.WebSocket){
+	        socket = new WebSocket("ws://localhost:8888/");
+	        socket.onmessage = function(event) {
+	            var ta = document.getElementById('responseText');
+	            ta.value = ta.value + "\n" + event.data;
+	        }
+	        socket.onopen = function(event) {
+	            var ta = document.getElementById('responseText');
+	            ta.value = "打开WebSocket 服务正常，浏览器支持WebSocket";
+	            
+	            if(socket.readyState == WebSocket.OPEN){
+	            	_playerId = playerId;
+	            	var obj = new Object();
+	            	obj.cmd = 1;
+	            	obj.playerId = playerId;
+	            	obj.data = "";
+	                socket.send(JSON.stringify(obj));
+	            }
+	        }
+	        socket.onclose = function(event) {
+	            var ta = document.getElementById('responseText');
+	            ta.value = "";
+	            ta.value = "WebSocket 关闭";
+	        }
+	    }else{
+	        alert("浏览器不支持WebSocket");
+	    }
+	}
+	
+	function send(message) {
+		if(!window.WebSocket){
+			return;
+		}
+		if(socket.readyState == WebSocket.OPEN){
+			var obj = new Object();
+            obj.cmd = 10;
+            obj.playerId = _playerId;
+            obj.data = message;
+            socket.send(JSON.stringify(obj));
+		}else{
+			alert("WebSocket 没有连接");
+		}
+	}
+</script>
+<form onsubmit="return false;">
+    <input type="text" name="playerId" value="123" />
+    <input type="button" value="登录" onclick="login(this.form.playerId.value)">
+    <br>
+	<input type="text" name="msg" value="Netty 最佳实践" />
+	<br><br>
+	<input type="button" value="发送WebSocket请求消息" onclick="send(this.form.msg.value)">
+	<hr color="blue">
+	<h3>服务端返回的应答消息</h3>
+	<textarea id="responseText" style="width: 500px;height: 300px;" ></textarea>
+</form>
+</body>
+</html>
