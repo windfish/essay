@@ -71,6 +71,41 @@ public class HttpClientWarper {
 		}
 		return result.toString();
 	}
+	
+	public static String sendGet2(String url, String charset) {
+		StringBuffer result = new StringBuffer();
+		BufferedReader in = null;
+		try {
+			URL realUrl = new URL(url);
+			// 打开和URL之间的连接
+			URLConnection connection = realUrl.openConnection();
+			connection.setConnectTimeout(3000);
+			connection.setReadTimeout(5000);
+			// 设置通用的请求属性
+			connection.setRequestProperty("accept", "*/*");
+			connection.setRequestProperty("connection", "Keep-Alive");
+			connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+			// 建立实际的连接
+			connection.connect();
+			// 定义 BufferedReader输入流来读取URL的响应
+			in = new BufferedReader(new InputStreamReader(connection.getInputStream(), charset));
+			String line;
+			while ((line = in.readLine()) != null) {
+				result.append(line + "\n");
+			}
+		} catch (Exception e) {
+			logger.warn("request url exception, url:" + url, e);
+		} finally {
+			try {
+				if (in != null) {
+					in.close();
+				}
+			} catch (Exception e2) {
+				logger.error("close inputstream exception:", e2);
+			}
+		}
+		return result.toString();
+	}
 
 	/**
 	 * POST请求，字符串形式数据

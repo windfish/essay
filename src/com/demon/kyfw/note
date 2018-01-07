@@ -1,0 +1,5 @@
+12306
+
+登录页面：https://kyfw.12306.cn/otn/login/init
+获取验证码：https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&rand=sjrand&0.985970709938556
+

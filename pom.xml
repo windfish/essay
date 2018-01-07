@@ -39,41 +39,46 @@
   </build>
   
   <dependencies>
+    <!-- log begin -->
   	<dependency>
 		<groupId>commons-logging</groupId>
 		<artifactId>commons-logging</artifactId>
 		<version>1.1.1</version>
 	</dependency>
+	<dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.16</version>
+    </dependency>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.6.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.6.1</version>
+    </dependency>
+	<!-- log end -->
 	
+	<!-- junit begin -->
 	<dependency>
 		<groupId>junit</groupId>
 		<artifactId>junit</artifactId>
 		<version>4.10</version>
 	</dependency>
+	<!-- junit end -->
 	
-	<dependency>
-		<groupId>log4j</groupId>
-		<artifactId>log4j</artifactId>
-		<version>1.2.16</version>
-	</dependency>
-	
-	<dependency>
-		<groupId>org.slf4j</groupId>
-		<artifactId>slf4j-api</artifactId>
-		<version>1.6.1</version>
-	</dependency>
-	<dependency>
-		<groupId>org.slf4j</groupId>
-		<artifactId>slf4j-log4j12</artifactId>
-		<version>1.6.1</version>
-	</dependency>
-	
+	<!-- zookeeper begin -->
 	<dependency>
 		<groupId>org.apache.zookeeper</groupId>
 		<artifactId>zookeeper</artifactId>
 		<version>3.4.6</version>
 	</dependency>
+	<!-- zookeeper end -->
 	
+	<!-- curator begin -->
 	<dependency>
 		<groupId>org.apache.curator</groupId>
 		<artifactId>curator-framework</artifactId>
@@ -94,24 +99,17 @@
 		<artifactId>curator-x-discovery</artifactId>
 		<version>2.7.1</version>
 	</dependency>
+	<!-- curator end -->
 	
-	<dependency>
-		<groupId>com.fasterxml.jackson.core</groupId>
-		<artifactId>jackson-core</artifactId>
-		<version>2.4.4</version>
-	</dependency>
-	<dependency>
-		<groupId>com.fasterxml.jackson.core</groupId>
-		<artifactId>jackson-databind</artifactId>
-		<version>2.4.4</version>
-	</dependency>
-	
+	<!-- quartz begin -->
 	<dependency>
 		<groupId>org.quartz-scheduler</groupId>
 		<artifactId>quartz</artifactId>
 		<version>2.2.1</version>
 	</dependency>
+	<!-- quartz end -->
 	
+	<!-- hadoop begin -->
 	<dependency>
 		<groupId>org.apache.hadoop</groupId>
 		<artifactId>hadoop-common</artifactId>
@@ -122,6 +120,8 @@
 		<artifactId>hadoop-hdfs</artifactId>
 		<version>2.6.4</version>
 	</dependency>
+	<!-- hadoop end -->
+	
 	<!-- 
 		错误信息：Missing artifact jdk.tools:jdk.tools:jar:1.7
 		解决方案：需指定maven加载的tools.jar的路径
@@ -162,17 +162,23 @@
 	   <version>2.6.6</version>
 	</dependency>
 	
+	<!-- jedis begin -->
 	<dependency>
 		<groupId>redis.clients</groupId>
 		<artifactId>jedis</artifactId>
 		<version>2.8.0</version>
 	</dependency>
+	<!-- jedis end -->
 	
+	<!-- mysql begin -->
 	<dependency>
 	    <groupId>mysql</groupId>
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>5.1.38</version>
 	</dependency>
+	<!-- mysql end -->
+	
+	<!-- spring begin -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-core</artifactId>
@@ -213,6 +219,9 @@
 	    <artifactId>spring-jdbc</artifactId>
 	    <version>3.2.4.RELEASE</version>
 	</dependency>
+	<!-- spring end -->
+	
+	<!-- mybatis begin -->
 	<dependency>
 	    <groupId>org.mybatis</groupId>
 	    <artifactId>mybatis</artifactId>
@@ -223,11 +232,17 @@
 	    <artifactId>mybatis-spring</artifactId>
 	    <version>1.2.2</version>
 	</dependency>
+	<!-- mybatis end -->
+	
+	<!-- dbcp begin -->
 	<dependency>
 	    <groupId>commons-dbcp</groupId>
 	    <artifactId>commons-dbcp</artifactId>
 	    <version>1.2.2</version>
 	</dependency>
+	<!-- dbcp end -->
+	
+	<!-- jstl begin -->
 	<dependency>
 	    <groupId>jstl</groupId>
 	    <artifactId>jstl</artifactId>
@@ -238,11 +253,17 @@
 	    <artifactId>standard</artifactId>
 	    <version>1.1.2</version>
 	</dependency>
+	<!-- jstl end -->
+	
+	<!-- gson begin -->
 	<dependency>
 	    <groupId>com.google.code.gson</groupId>
 	    <artifactId>gson</artifactId>
 	    <version>2.6.2</version>
 	</dependency>
+	<!-- gson end -->
+	
+	<!-- jackson begin -->
 	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
 	    <artifactId>jackson-core</artifactId>
@@ -258,6 +279,8 @@
 	    <artifactId>jackson-annotations</artifactId>
 	    <version>2.7.3</version>
 	</dependency>
+	<!-- jackson end -->
+	
 	<dependency>
 	    <groupId>commons-beanutils</groupId>
 	    <artifactId>commons-beanutils</artifactId>
@@ -282,6 +305,7 @@
 	    <version>3.0.0</version>
 	</dependency>
 	
+	<!-- fastjson begin -->
 	<dependency>
         <groupId>com.alibaba</groupId>
         <artifactId>fastjson</artifactId>
@@ -292,6 +316,15 @@
         <artifactId>jackson-mapper-asl</artifactId>
         <version>1.9.4</version>
     </dependency>
+    <!-- fastjson end -->
+    
+    <!-- aip 百度文字识别 begin -->
+    <dependency>
+	    <groupId>com.baidu.aip</groupId>
+	    <artifactId>java-sdk</artifactId>
+	    <version>4.0.0</version>
+	</dependency>
+	<!-- aip 百度文字识别 end -->
 	
   </dependencies>
   
