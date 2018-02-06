@@ -40,7 +40,8 @@ public class SteamTest {
     public static void main(String[] args) throws Exception {
 //        testRegex();
 //        testInventory();
-        testGetrsakey();
+//        testGetrsakey();
+        System.out.println(System.currentTimeMillis());
     }
     
     private static void testGetrsakey() throws Exception{
