@@ -51,7 +51,7 @@ public class NettyClient {
             ChannelFuture f = b.connect(new InetSocketAddress(host, port), new InetSocketAddress(NettyConstant.LOCAL_HOST, NettyConstant.LOCAL_PORT)).sync();
             f.channel().closeFuture().sync();
         }finally {
-            group.shutdownGracefully();
+//            group.shutdownGracefully();
             // 释放完资源后，再次发起重连操作
             executor.submit(new Runnable() {
                 @Override
@@ -64,7 +64,7 @@ public class NettyClient {
                             e.printStackTrace();
                         }
                     }catch (InterruptedException e){
-                        e.printStackTrace();;
+                        e.printStackTrace();
                     }
                 }
             });

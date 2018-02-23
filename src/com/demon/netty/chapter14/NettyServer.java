@@ -12,6 +12,8 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 服务端
  * @author xuliang
@@ -43,6 +45,9 @@ public class NettyServer {
             ChannelFuture f = b.bind(NettyConstant.REMOTE_HOST, NettyConstant.REMOTE_PORT).sync();
             System.out.println("Server start OK: " + NettyConstant.REMOTE_HOST + " : " + NettyConstant.REMOTE_PORT);
             f.channel().closeFuture().sync();
+            // 模拟服务器宕机，客户端重连
+//            TimeUnit.SECONDS.sleep(30);
+//            f.channel().closeFuture();
         }finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
