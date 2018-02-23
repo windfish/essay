@@ -11,6 +11,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 
 import java.net.InetSocketAddress;
+import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -23,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class NettyClient {
     private ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
     EventLoopGroup group = new NioEventLoopGroup();
+    Random r = new Random();
 
     public void connect(String host, int port) throws Exception {
         try{
@@ -48,8 +50,12 @@ public class NettyClient {
                              */
                         }
                     });
-            ChannelFuture f = b.connect(new InetSocketAddress(host, port), new InetSocketAddress(NettyConstant.LOCAL_HOST, NettyConstant.LOCAL_PORT)).sync();
+            ChannelFuture f = b.connect(new InetSocketAddress(host, port), new InetSocketAddress(NettyConstant.LOCAL_HOST, NettyConstant.LOCAL_PORTS[r.nextInt(5)])).sync();
             f.channel().closeFuture().sync();
+
+            // 模拟客户端宕机
+//            TimeUnit.SECONDS.sleep(10);
+//            f.channel().closeFuture();
         }finally {
 //            group.shutdownGracefully();
             // 释放完资源后，再次发起重连操作
