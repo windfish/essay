@@ -6,6 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
@@ -16,10 +17,10 @@ import java.util.Map;
  */
 public final class NettyMessageEncoder extends MessageToMessageEncoder<NettyMessage> {
 
-    MarshallingEncoder marshallingEncoder;
+    NettyMarshallingEncoder marshallingEncoder;
 
     public NettyMessageEncoder() throws IOException {
-        this.marshallingEncoder = new MarshallingEncoder();
+        this.marshallingEncoder = MarshallingCodeCFactory.buildCustomMarshallingEncoder();
     }
 
     @Override
@@ -27,6 +28,8 @@ public final class NettyMessageEncoder extends MessageToMessageEncoder<NettyMess
         if(msg == null || msg.getHeader() == null){
             throw new Exception("The encode message is null");
         }
+//        System.out.println("message encode begin: " + msg);
+
         ByteBuf sendBuf = Unpooled.buffer();
         sendBuf.writeInt(msg.getHeader().getCrcCode());
         sendBuf.writeInt(msg.getHeader().getLength());
@@ -44,17 +47,22 @@ public final class NettyMessageEncoder extends MessageToMessageEncoder<NettyMess
             sendBuf.writeInt(keyArray.length);
             sendBuf.writeBytes(keyArray);
             value = param.getValue();
-            marshallingEncoder.encode(value, sendBuf);
+            marshallingEncoder.encode(ctx, value, sendBuf);
         }
         key = null;
         keyArray = null;
         value = null;
         if(msg.getBody() != null){
-            marshallingEncoder.encode(msg.getBody(), sendBuf);
-        }else{
-            sendBuf.writeInt(0);
-            sendBuf.setInt(4, sendBuf.readableBytes());
+            marshallingEncoder.encode(ctx, msg.getBody(), sendBuf);
         }
+
+//        sendBuf.writeInt(0);
+        // 在第4个字节出写入Buffer的长度
+        int readableBytes = sendBuf.readableBytes();
+        sendBuf.setInt(4, readableBytes);
+
+        // 把Message添加到List传递到下一个Handler
+        out.add(sendBuf);
     }
 
 }

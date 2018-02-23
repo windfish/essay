@@ -1,0 +1,22 @@
+第十四章的遇到的坑：
+
+参考：http://blog.csdn.net/iter_zc/article/details/39317311
+MarshallingEncoder这个类是Netty提供了JBoss Marshalling的一个适配类，它的encode方法是protected,不是public，并且其中用到的ChannelBufferByteOutput类是包类可见，外部无法引用的。
+Netty之所以这么设计，是因为这个工具类不能直接被外部使用，只是给它内部的ChannelHandler使用的。外部要用的话必须继承它。但是书中的代码直接使用了。。。不知道如何编译通过的。
+
+NettyMessageEncoder里面计算Message长度的代码也有不问题，NettyMessageDecoder没有设置lengthAdjustment， 不可能运行成功的，不知道书中的结果截图如何获得的。
+
+
+
+jboss-marshalling-serial 的scope 为test，导致Marshalling.getProvidedMarshallerFactory("serial") 不能获取 Provide 工厂，造成编码器和解码器不能创建
+<dependency>
+    <groupId>org.jboss.marshalling</groupId>
+    <artifactId>jboss-marshalling-serial</artifactId>
+    <version>1.3.0.CR9</version>
+    <scope>test</scope>
+</dependency>
+
+
+
+注：使用 Netty 自带的 MarshallingEncoder 和 MarshallingDecoder 类，就不需要自己计算包的长度等信息，只需要将 NettyMessage 实现序列化接口 Serializable 即可
+

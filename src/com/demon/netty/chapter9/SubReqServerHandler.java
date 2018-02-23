@@ -2,7 +2,6 @@ package com.demon.netty.chapter9;
 
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.SimpleChannelInboundHandler;
 
 /**
  * 
@@ -10,22 +9,22 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * @since 2017年8月3日 下午4:51:36
  *
  */
-public class SubReqServerHandler extends SimpleChannelInboundHandler<SubscribeReq> {
-    @Override
-    protected void messageReceived(ChannelHandlerContext ctx, SubscribeReq msg) throws Exception {
-        System.out.println("Server accept client req: ["+msg.toString()+"]");
-        ctx.writeAndFlush(resp(msg.getSubReqID()));
-    }
+public class SubReqServerHandler extends ChannelHandlerAdapter {
 
-    /*@Override
+    @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
+//        System.out.println("--------------------"+msg);
         SubscribeReq req = (SubscribeReq) msg;
-//        System.out.println(req.getUsername()+" | "+req.getSubReqID());
-//        if("test".equalsIgnoreCase(req.getUsername())){
+        if("test".equalsIgnoreCase(req.getUsername())){
             System.out.println("Server accept client req: ["+req.toString()+"]");
             ctx.writeAndFlush(resp(req.getSubReqID()));
-//        }
-    }*/
+        }
+    }
+
+    @Override
+    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("read complete");
+    }
 
     private SubscribeResp resp(int subReqID){
         SubscribeResp resp = new SubscribeResp();

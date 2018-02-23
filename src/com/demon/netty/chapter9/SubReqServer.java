@@ -36,6 +36,7 @@ public class SubReqServer {
                         }
                     });
             ChannelFuture f = b.bind(port).sync();
+            System.out.println("服务已启动");
             f.channel().closeFuture().sync();
 
         }finally {

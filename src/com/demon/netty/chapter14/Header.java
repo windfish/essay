@@ -1,5 +1,6 @@
 package com.demon.netty.chapter14;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +10,7 @@ import java.util.Map;
  * @author xuliang
  * @since 2018/2/12 11:25
  */
-public final class Header {
+public final class Header implements Serializable {
     private int crcCode = 0xabef0101;
     private int length;     // 消息长度
     private long sessionID; // 会话ID

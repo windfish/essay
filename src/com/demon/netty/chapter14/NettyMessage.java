@@ -1,12 +1,14 @@
 package com.demon.netty.chapter14;
 
+import java.io.Serializable;
+
 /**
  * 消息定义
  *
  * @author xuliang
  * @since 2018/2/12 11:21
  */
-public final class NettyMessage {
+public final class NettyMessage implements Serializable {
     private Header header;  // 消息头
     private Object body;    // 消息体
 
@@ -30,7 +32,7 @@ public final class NettyMessage {
     public String toString() {
         return "NettyMessage{" +
                 "header=" + header +
+                ", body=" + body +
                 '}';
     }
-
 }
