@@ -349,7 +349,6 @@
           <groupId>org.jboss.marshalling</groupId>
           <artifactId>jboss-marshalling-serial</artifactId>
           <version>1.3.0.CR9</version>
-          <scope>test</scope>
       </dependency>
 	  <!-- jboss-marshalling end -->
 
