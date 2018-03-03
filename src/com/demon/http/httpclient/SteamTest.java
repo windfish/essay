@@ -21,6 +21,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +40,7 @@ public class SteamTest {
 
     public static void main(String[] args) throws Exception {
 //        testRegex();
-//        testInventory();
+        testInventory();
 //        testGetrsakey();
         System.out.println(System.currentTimeMillis());
     }
@@ -82,11 +83,16 @@ public class SteamTest {
 //        HttpGet httpGet = new HttpGet("http://47.254.29.54:8004/steamcommunity.com/profiles/76561198389582507/inventory/json/570/2/?trading=1");
 //        System.out.println(httpGet.getURI());
 //        httpGet.setConfig(requestConfig);
-        HttpPost httpPost = new HttpPost("https://steamcommunity.com/profiles/76561198389582507/inventory/json/570/2/?trading=1");
+        HttpPost httpPost = new HttpPost("http://47.254.29.54:8004/steamcommunity.com/profiles/76561198389582507/inventory/json/570/2/?trading=1");
+        httpPost.setConfig(requestConfig);
         
         Set<String> set = new TreeSet<>();
         
-        CloseableHttpClient client = HttpClients.createDefault();
+        PoolingHttpClientConnectionManager pcm = new PoolingHttpClientConnectionManager();
+        pcm.setMaxTotal(20);
+        
+//        CloseableHttpClient client = HttpClients.createDefault();
+        CloseableHttpClient client = HttpClients.custom().setConnectionManager(pcm).build();
         CloseableHttpResponse response = client.execute(httpPost);
         System.out.println(response);
         if(response != null){
