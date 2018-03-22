@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -40,9 +41,30 @@ public class SteamTest {
 
     public static void main(String[] args) throws Exception {
 //        testRegex();
-        testInventory();
+//        testInventory();
 //        testGetrsakey();
-        System.out.println(System.currentTimeMillis());
+        testHttpClient();
+//        test();
+//        System.out.println(System.currentTimeMillis());
+    }
+    
+    public static void test(){
+        String str = "<div id=\"error_page_bg\">"
+                    +"    <div class=\"error_page_content\">"
+                    +"                        <h3>哦，不！</h3>"
+                    +"            <h2>抱歉，发生了某种错误：</h2>"
+                    +"                    <div id=\"error_msg\">"
+                    +"            458696368 的库存隐私设置已被设为“私密”，因此无法接受交易报价。           </div>"
+                    +"    </div>"
+                    +"</div>";
+        String regex = "<div id=\"error_msg\">(?<errorMsg>.*?)</div>";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(str);
+        String errorMsg = "";
+        if (matcher.find()) {
+            errorMsg = matcher.group("errorMsg");
+        }
+        System.out.println(errorMsg.trim());
     }
     
     private static void testGetrsakey() throws Exception{
@@ -154,7 +176,8 @@ public class SteamTest {
         // 76561198433042770
         // http://steamcommunity.com/steamcommunity.com/inventory/76561198433042770
         // https://steamcommunity.com/profiles/76561198433042770/inventory/
-        HttpGet httpGet = new HttpGet("http://47.254.29.54:8004/steamcommunity.com/tradeoffer/new/?partner=249010092&token=zYpFS9nN");
+        // http://47.254.29.54:8004/steamcommunity.com/tradeoffer/new/?partner=249010092&token=zYpFS9nN
+        HttpGet httpGet = new HttpGet("https://steamcommunity.com/tradeoffer/new/?partner=487571205&token=4xzWSZL7");
         System.out.println(httpGet.getURI());
         httpGet.setConfig(requestConfig);
         
