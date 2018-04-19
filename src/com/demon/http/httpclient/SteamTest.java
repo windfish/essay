@@ -177,7 +177,7 @@ public class SteamTest {
         // http://steamcommunity.com/steamcommunity.com/inventory/76561198433042770
         // https://steamcommunity.com/profiles/76561198433042770/inventory/
         // http://47.254.29.54:8004/steamcommunity.com/tradeoffer/new/?partner=249010092&token=zYpFS9nN
-        HttpGet httpGet = new HttpGet("https://steamcommunity.com/tradeoffer/new/?partner=487571205&token=4xzWSZL7");
+        HttpGet httpGet = new HttpGet("https://api.playbattlegrounds.com/shards/pc-as/players/tszs01");
         System.out.println(httpGet.getURI());
         httpGet.setConfig(requestConfig);
         
