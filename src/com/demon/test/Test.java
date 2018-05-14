@@ -1,11 +1,26 @@
 package com.demon.test;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 public class Test {
 
 	public static void main(String[] args) {
-	    System.out.println(decodeUnicode("\\u53d1\\u9001\\u4ea4\\u6613\\u62a5\\u4ef7\\u65f6\\u53d1\\u751f\\u4e86\\u4e00\\u4e2a\\u9519\\u8bef\\u3002\\u8bf7\\u7a0d\\u540e\\u518d\\u8bd5\\u3002"));
+	    // 动态json转换
+	    String s = "{\"servers\": {\"s150\": {\"name\": \"双线150服\"},\"s6002\": {\"name\": \"虎牙2区\"},\"s6001\": {\"name\": \"虎牙1区\"}},\"name\": \"弹弹堂3\"}";
+	    JSONObject parseObject = JSON.parseObject(s);
+	    System.out.println(JSON.toJSONString(parseObject));
+	    String serversStr = parseObject.getString("servers");
+	    JSONObject servers = JSON.parseObject(serversStr);
+	    Set<String> keys = servers.keySet();
+	    for(String key: keys){
+	        System.out.println(key + "-----" + servers.getString(key));
+	    }
+	    
+//	    System.out.println(decodeUnicode("\\u53d1\\u9001\\u4ea4\\u6613\\u62a5\\u4ef7\\u65f6\\u53d1\\u751f\\u4e86\\u4e00\\u4e2a\\u9519\\u8bef\\u3002\\u8bf7\\u7a0d\\u540e\\u518d\\u8bd5\\u3002"));
 //	    System.out.println(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
 //	    System.out.println(1521806247);
 	    
