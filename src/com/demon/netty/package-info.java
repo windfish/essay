@@ -1,5 +1,5 @@
 /**
- * Netty权威指南  page 269
+ * Netty权威指南  page 308
  * 
  * 基础篇  走进Java NIO
  * 第一章  Java I/O 演进之路
@@ -15,5 +15,6 @@
  * 第十二章 UDP 协议开发
  * 第十三章 文件传输
  * 第十四章 私有协议栈开发
+ * 第十五章 ByteBuf 和相关辅助类
  */
 package com.demon.netty;

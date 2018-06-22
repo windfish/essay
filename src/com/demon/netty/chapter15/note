@@ -1,0 +1,8 @@
+java 的七种基本类型（Boolean 除外）都有自己的缓冲区实现，对于 NIO 编程，主要使用java.nio.ByteBuffer
+
+ByteBuffer 主要缺点：
+（1）ByteBuffer 长度固定，一旦分配完成，容量不能动态扩展和收缩，当需要编码 POJO 对象大于 ByteBuffer 容量时，会发生索引越界异常
+（2）ByteBuffer 只有一个标识位置的指针 position，读写时需要手工调用 flip() 和 rewind() 等
+（3）ByteBuffer 的 API 功能有限，一些高级和实用的特性它不支持，需要使用者自己编程实现
+
+Netty 提供了自己的 ByteBuffer 实现：ByteBuf

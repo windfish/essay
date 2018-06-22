@@ -1,5 +1,6 @@
 package com.demon.test;
 
+import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -9,6 +10,9 @@ import com.alibaba.fastjson.JSONObject;
 public class Test {
 
 	public static void main(String[] args) {
+	    System.out.println(new Date(1528795694000L));
+	    System.out.println(new Date(1528796229000L));
+	    
 	    // 动态json转换
 	    String s = "{\"servers\": {\"s150\": {\"name\": \"双线150服\"},\"s6002\": {\"name\": \"虎牙2区\"},\"s6001\": {\"name\": \"虎牙1区\"}},\"name\": \"弹弹堂3\"}";
 	    JSONObject parseObject = JSON.parseObject(s);
