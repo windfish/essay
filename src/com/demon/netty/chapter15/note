@@ -6,3 +6,59 @@ ByteBuffer 主要缺点：
 （3）ByteBuffer 的 API 功能有限，一些高级和实用的特性它不支持，需要使用者自己编程实现
 
 Netty 提供了自己的 ByteBuffer 实现：ByteBuf
+    ByteBuf 通过两个位置指针来协助缓冲区读写才做，读操作使用 readerIndex，写操作使用 writerIndex
+    readerIndex 和 writerIndex 的取值一开始都是0，随着数据的写入，writerIndex 会增加，读取数据会使 readerIndex增加，但是不会超过 writerIndex。
+    在读取之后，0 - readerIndex 之间的数据会被视为 discard（丢弃）的，调用 discardReadBytes 方法，可以释放这部分空间，作用类似于 ByteBuffer的 compact方法
+    readerIndex 和 writerIndex 之间的数据是可读取的，等价于 ByteBuffer position和 limit之间的数据
+    由于写操作不修改 readerIndex，读操作不修改 writerIndex，因此读写之间不再需要调整位置指针，这极大的简化了缓冲区的读写操作
+
+ByteBuf 对 write 方法进行了封装，如果可用缓冲区不足，ByteBuf 会自动进行动态扩展，对于上层来说，不需要关注底层的校验和扩展细节
+
+基本 API：
+discardReadBytes 操作：
+    缓冲区的分配和释放是个耗时的操作，而且缓冲区的动态扩张需要进行字节数组的复制，因此，需要尽量提升缓冲区的重用率
+    discardReadBytes 操作，会将已经读取过的消息空间释放，达到重用这部分空间的效果。需注意的是，调用此方法会发生字节数组的内存复制，频繁调用将会导致性能下降。
+
+Readable bytes 和 Writable bytes
+    可读空间段是数据实际存储的区域，以 read 或者 skip 开头的操作将会从 readerIndex 开始读取或跳过指定的数据，操作完成之后 readerIndex 增加了读取或跳过的字节数长度。
+    如果读取的字节数长度大于实际可读的字节数，则抛出 IndexOutOfBoundsException
+    当新分配、包装或复制一个新的 ByteBuf 对象时，它的 readerIndex 为0
+
+    可写空间段是尚未被使用可以填充的空闲空间，任何以 write 开头的操作都会从 writerIndex 开始向空闲空间写入字节，操作完成之后 writerIndex 增加了写入的字节数长度
+    如果写入的字节数长度大于可写的字节数，则抛出 IndexOutOfBoundsException
+    新分配一个 ByteBuf 对象时，它的 readerIndex 为0。通过包装或复制的方式创建一个新的 ByteBuf 时，它的 writerIndex 是 ByteBuf 的容量
+
+Clear 操作
+    该操作不会清空缓冲区内容本身，主要用来操作位置指针，readerIndex 和writerIndex ，将它们还原为初始分配值
+
+Mark 和 Reset
+    markReaderIndex：将当前的 readerIndex 备份到 markedReaderIndex 中
+    resetReaderIndex：将当前的 readerIndex 设置为 markedReaderIndex
+    markWriterIndex：将当前的 writerIndex 备份到 markedWriterIndex 中
+    resetWriterIndex：将当前的 writerIndex 设置为 markedWriterIndex 中
+
+转换为标准的 ByteBuffer
+    （1）ByteBuffer nioBuffer()：将当前 ByteBuf 可读的缓冲区转换为 ByteBuffer
+    （2）ByteBuffer nioBuffer(int index, int length)：将当前 ByteBuf 从 index 开始长度为 length 的缓冲区转换为 ByteBuffer
+    两者共享同一个缓冲区内容引用，对 ByteBuffer 的读写操作不会修改原 ByteBuf 的读写索引；返回的 ByteBuffer 无法感知原 ByteBuf 的动态扩展操作
+
+从内存分配角度看，ByteBuf 分为两类：
+1、堆内存（HeapByteBuf）字节缓冲区：
+    特点是内存的分配和回收速度快，可以被 JVM 自动回收；
+    缺点是如果进行 Socket 的 I/O 读写，需要额外做一次内存复制，将堆内存对应的缓冲区复制到内核 Channel 中，性能会有一定程度的下降
+2、直接内存（DirectByteBuf）字节缓冲区：
+    非堆内存，在堆外进行内存分配，相比于堆内存，它的分配和回收速度回慢一点，但是将它写入或从 Socket Channel 中读取时，速度比堆内存快
+
+※ ByteBuf 的最佳实践是，在 I/O 通信线程的读写缓冲区使用 DirectByteBuf，后端业务消息的编解码模块使用 HeapByteBuf，这样组合可以达到性能最优
+
+从内存回收角度看，ByteBuf 也分为两类：基于对象池的 ByteBuf 和普通的 ByteBuf
+两者主要区别是基于对象池的 ByteBuf 可以重用 ByteBuf 对象，它自己维护一个内存池，可以循环利用创建的 ByteBuf，提升内存使用效率，减少由于高负载导致的频繁 GC
+
+
+ByteBuf 动态扩展的策略：采用先倍增后步进的方式
+    当内存比较小的时候，采用倍增的方式不会带来太多的内存浪费，例如：64 字节 --> 128 字节。
+    当内存达到一定的阈值时，再倍增可能会带来额外的内存浪费，例如：10M，倍增后变为20M，但可能只需要12M，则会浪费8M
+    这个阈值是个经验值，可能会不同，ByteBuf 取值为 4 M
+
+
+
