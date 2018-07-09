@@ -24,7 +24,7 @@ public class ImageOcr {
 	public void getImg() throws Exception{
 		String data = HttpClientWarper.sendGet2(imageUrl, "UTF-8");
 		System.out.println(data);
-		File imageFile = new File("E:\\code1.jpg");  
+		File imageFile = new File("D:\\code1.jpg");
         //创建输出流  
         FileOutputStream outStream = new FileOutputStream(imageFile);  
         //写入数据  
@@ -48,7 +48,7 @@ public class ImageOcr {
         byte[] data = readInputStream(inStream);  
         System.out.println(new String(data));
         //new一个文件对象用来保存图片，默认保存当前工程根目录  
-        File imageFile = new File("E:\\code.jpg");  
+        File imageFile = new File("D:\\code.jpg");
         //创建输出流  
         FileOutputStream outStream = new FileOutputStream(imageFile);  
         //写入数据  

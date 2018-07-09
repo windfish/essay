@@ -60,5 +60,18 @@ ByteBuf 动态扩展的策略：采用先倍增后步进的方式
     当内存达到一定的阈值时，再倍增可能会带来额外的内存浪费，例如：10M，倍增后变为20M，但可能只需要12M，则会浪费8M
     这个阈值是个经验值，可能会不同，ByteBuf 取值为 4 M
 
+ByteBuf 辅助类：
+1、ByteBufHolder：
+    它是 ByteBuf 的容器，包含一个 ByteBuf 对象，还提供了一些其他的实用方法
+    使用场景：HTTP 协议的请求消息和应答消息都可以携带消息体，这个消息体在 NIO 中就是 ByteBuffer对象，在 Netty 中就是 Bytebuf对象。由于不同的协议可以包含不同的协议字段和功能，因此，需要对 ByteBuf 进行包装和抽象，不同的子类可以有不同的实现
+2、ByteBufAllocator：
+    它是字节缓冲区分配器，按照 Netty 的缓冲区实现不同，共有两种不同的分配器：基于内存池的字节缓冲区分配器和普通的字节缓冲区分配器
+3、CompositeByteBuf：
+    它允许将多个 ByteBuf 实例组装到一起，形成一个统一的视图
+4、ByteBufUtil：
+    工具类，提供了一系列方法用于操作 ByteBuf 对象
+    encodeString(ByteBufAllocator alloc, CharBuffer src, Charset charset)：对需要编码的字符串 src 按照指定的字符集进行编码，利用指定的 ByteBufAllocator 生成一个新的 ByteBuf
+    decodeString(ByteBuffer src, Charset charset)：按照指定的字符集对 ByetBuffer 解码，获取解码后的字符串
+
 
 

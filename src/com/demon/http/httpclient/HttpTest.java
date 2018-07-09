@@ -42,7 +42,8 @@ public class HttpTest {
 //        params.add(new BasicNameValuePair("signMsg", "87643ADC9B145FAC268976B7B755248BCBC4AD317698A1FD61B8EE697F9CC34FD307E435BDCC6B3FEDD6E60E3F4EF67A4E4A9977D723977F4D6412714E9AC29BFDBDA1A377383130AC5FF23C4F4A0F39F29880D4470E5A6DA4D432DCFE1E348BDA6AA1132FA189E913CD7755B6581D78EBACAECD421F8C7A93667A40819A070B"));
         System.out.println(new Random().nextInt(999999));
 //        UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(params);
-        HttpPost httpPost = new HttpPost("http://pk.uuuwin.com/api/steamCardThirdOrder?userid=12345&userkey=asdqwedasd&sign=170501c15187119bc6bb495b16da3fe5&orderid=111111&cardid=2048");
+//        HttpPost httpPost = new HttpPost("http://pk.uuuwin.com/api/steamCardThirdOrder?userid=12345&userkey=asdqwedasd&sign=170501c15187119bc6bb495b16da3fe5&orderid=111111&cardid=2048");
+        HttpPost httpPost = new HttpPost("https://www.baidu.com");
 //        httpPost.setEntity(urlEncodedFormEntity);
         RequestConfig requestConfig = RequestConfig.custom()
                     .setConnectTimeout(5000)    // 设置连接超时时间

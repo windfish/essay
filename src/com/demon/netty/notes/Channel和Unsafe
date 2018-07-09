@@ -1,0 +1,4 @@
+Channel
+    是 Netty 网络操作抽象类，它聚合了一组功能，包括但不限于网络的读、写，客户端发起连接、主动关闭连接，链路关闭，获取通信双方的网络地址等。
+    也包含 Netty 相关的一些功能，包含该 Channel 的 EventLoop，获取缓冲分配器 ByteBufAllocator 和 pipeline 等
+
