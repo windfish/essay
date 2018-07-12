@@ -1,0 +1,34 @@
+服务器业务日志监控告警
+
+处理策略
+1、递归遍历业务日志目录下的所有子目录
+2、若子目录名称被包含在exclude的目录中，忽略处理
+3、选择需要处理的日志文件：*_error.log -> *_warn.log：$alarm.log
+4、若没有找到日志文件，continue
+5、stat -c %y $alarm.log，提取last_modify_time，若与当前时间非同一天，忽略处理
+6、若记录索引文件的last_modify_time与当前时间非同一天，把索引行置0
+7、比对上次记录的告警行，与当前的行数是否匹配，若不匹配，增量发出邮件
+8、继续处理下一个子目录
+
+
+
+1、软件安装
+yum install sendmail
+service sendmail start
+chkconfig --level 2345 sendmail on
+
+yum install mutt
+
+mutt语法：
+mutt [-hnpRvxz][-a<文件>][-b<地址>][-c<地址>][-f<邮件文 件>][-F<配置文件>][-H<邮件草稿>][-i<文件>][-m<类型>] [-s<主题>][邮件地址]
+
+//本例为发送邮件到 115449424@qq.com
+//主题为 "测试邮件主题"
+//使用 t.sql 作为附件
+//使用 t.txt 作为邮件正文
+mutt 115449424@qq.com -s "测试邮件主题" -a t.sql < t.txt
+
+2、编写shell，监控项目日志，然后再 crontab 中启动监控
+crontab -e
+* * * * * /root/alarm/shell/alarm-cron.sh
+
