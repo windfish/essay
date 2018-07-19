@@ -43,7 +43,7 @@ public class HttpTest {
         System.out.println(new Random().nextInt(999999));
 //        UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(params);
 //        HttpPost httpPost = new HttpPost("http://pk.uuuwin.com/api/steamCardThirdOrder?userid=12345&userkey=asdqwedasd&sign=170501c15187119bc6bb495b16da3fe5&orderid=111111&cardid=2048");
-        HttpPost httpPost = new HttpPost("https://www.baidu.com");
+        HttpPost httpPost = new HttpPost("https://img-ads.csdn.net/2018/201807131534291735.jpg");
 //        httpPost.setEntity(urlEncodedFormEntity);
         RequestConfig requestConfig = RequestConfig.custom()
                     .setConnectTimeout(5000)    // 设置连接超时时间
