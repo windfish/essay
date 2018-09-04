@@ -17,6 +17,13 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
+/**
+ * 防盗链的图片下载，设置 referer
+ * 
+ * @author xuliang
+ * @since 2018年9月4日 上午11:08:28
+ *
+ */
 public class HttpCsdnTest {
 
     public static void main(String[] args) throws Exception {
