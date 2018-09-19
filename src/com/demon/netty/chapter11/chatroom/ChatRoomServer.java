@@ -1,5 +1,7 @@
 package com.demon.netty.chapter11.chatroom;
 
+import com.demon.jsvc.DaemonJob;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -17,7 +19,7 @@ import io.netty.handler.stream.ChunkedWriteHandler;
  * @since 2017年12月3日 下午2:08:08
  *
  */
-public class ChatRoomServer {
+public class ChatRoomServer extends DaemonJob {
 
 	private void init(int port) throws Exception {
 		EventLoopGroup mainGroup = new NioEventLoopGroup();
@@ -49,7 +51,13 @@ public class ChatRoomServer {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		new ChatRoomServer().init(8888);
+		new ChatRoomServer().init(10000);
 	}
+
+    @Override
+    public void start() throws Exception {
+        // jsvc 方式启动，需实现 org.apache.commons.daemon.Daemon 接口
+        new ChatRoomServer().init(10000);
+    }
 	
 }

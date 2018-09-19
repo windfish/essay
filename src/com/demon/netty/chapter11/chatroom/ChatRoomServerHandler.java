@@ -60,12 +60,13 @@ public class ChatRoomServerHandler extends SimpleChannelInboundHandler<Object> {
 	
 	private void handlerHttpRequest(ChannelHandlerContext ctx, FullHttpRequest req){
 		logger.info("handlerHttpRequest req:{}", JsonUtil.toJsonString(req));
+		System.out.println("handlerHttpRequest req:"+ JsonUtil.toJsonString(req));
 		if(!req.getDecoderResult().isSuccess()
 				|| !"websocket".equals(req.headers().get("Upgrade"))){
 			sendHttpResponse(ctx, req, new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST));
 			return;
 		}
-		WebSocketServerHandshakerFactory wsFactory = new WebSocketServerHandshakerFactory("xlws://localhost:8888/", null, false);
+		WebSocketServerHandshakerFactory wsFactory = new WebSocketServerHandshakerFactory("xlws://localhost:10000/", null, false);
 		handshaker = wsFactory.newHandshaker(req);
 		if(handshaker == null){
 			WebSocketServerHandshakerFactory.sendUnsupportedWebSocketVersionResponse(ctx.channel());
@@ -89,6 +90,7 @@ public class ChatRoomServerHandler extends SimpleChannelInboundHandler<Object> {
 		
 		String request = ((TextWebSocketFrame) frame).text();
 		logger.info("received:{}", request);
+		System.out.println("received:"+ request);
 		
 		ChatRoomMessage msg = JsonUtil.parseObject(request, ChatRoomMessage.class);
 		logger.info("received msg:{}", JsonUtil.toJsonString(msg));

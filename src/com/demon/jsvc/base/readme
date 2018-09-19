@@ -1,0 +1,4 @@
+1、下载 apache commons-daemon-1.1.0-src.tar.gz
+2、解压，commons-daemon-1.1.0.jar 启动时需要加入 CLASSPATH
+3、编译生成 jsvc，源码目录在 src/native/unix 中，./configure，然后make
+4、编写启动脚本
