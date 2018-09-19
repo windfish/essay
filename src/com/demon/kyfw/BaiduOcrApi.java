@@ -42,7 +42,7 @@ public class BaiduOcrApi {
 
     private final String API_Key = "k2su7Ek2yD6HGqDCuh2OCUyU";
     private final String Secret_Key = "bfyAWYyc9RdSc8ZoUegx2dPYkjHzscmI";
-    private final String Access_Token = "24.36291cea39307fdf0b0c318d4c4879ab.2592000.1538897841.282335-10639410";
+    private final String Access_Token = "24.81fe27a8c463219d0c9cf8844882f30a.2592000.1539913178.282335-10639410";
     
     private CloseableHttpClient httpClient = HttpClients.createDefault();
     
@@ -79,8 +79,38 @@ public class BaiduOcrApi {
         if(post == null){
             return ;
         }
-        JSONObject json = JSON.parseObject(post);
+//        JSONObject json = JSON.parseObject(post);
 //        json.getJSONArray("words_result").getst
+    }
+    
+    public void imageRecognition(String url) {
+        //将图片文件转化为字节数组字符串，并对其进行Base64编码处理  
+        InputStream in = null;  
+        byte[] data = null;  
+        //读取图片字节数组  
+        try   
+        {  
+            in = new FileInputStream(new File(url));          
+            data = new byte[in.available()];  
+            in.read(data);  
+            in.close();  
+        }   
+        catch (IOException e)   
+        {  
+            e.printStackTrace();  
+        }  
+        //对字节数组Base64编码  
+        String imgData = Base64.getEncoder().encodeToString(data);//返回Base64编码过的字节数组字符串
+        logger.info("img data:{}", imgData);
+        
+        Map<String, String> params = new HashMap<>();
+        params.put("image", imgData);
+        String post = post("https://aip.baidubce.com/rest/2.0/image-classify/v2/advanced_general?access_token="+Access_Token, params);
+        logger.info("image recognition result:{}", post);
+        if(post == null){
+            return ;
+        }
+//        JSONObject json = JSON.parseObject(post);
     }
     
     private String get(String url, Map<String, String> params){
@@ -123,7 +153,7 @@ public class BaiduOcrApi {
         return sb.toString();
     }
     
-    public String post(String url, Map<String, String> params){
+    private String post(String url, Map<String, String> params){
         StringBuilder sb = new StringBuilder();
         try{
             List<NameValuePair> reqParams = new ArrayList<>();
@@ -169,7 +199,8 @@ public class BaiduOcrApi {
     
     public static void main(String[] args) {
 //        new BaiduOcrApi().getAccessToken();
-        new BaiduOcrApi().wordRecognition("D:\\img\\0.jpg");
+//        new BaiduOcrApi().wordRecognition("D:\\img\\0.jpg");
+        new BaiduOcrApi().imageRecognition("D:\\img\\6.jpg");
     }
     
 }
