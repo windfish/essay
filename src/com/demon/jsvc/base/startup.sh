@@ -1,33 +1,43 @@
 #!/bin/bash
 
+JSVC_HOME=/root/server/jsvc_home
+JSVC=$JSVC_HOME/jsvc
+JAVA_OPTS=
+if [ -r "$JSVC_HOME/setenv.sh" ]; then
+  . "$JSVC_HOME/setenv.sh"
+fi
+
+BASE_HOME=/root/server/chatroom_server
 CLASSPATH=
-for jar in /root/server/chatroom_server/lib/*.jar
+for jar in $BASE_HOME/lib/*.jar
 do
         CLASSPATH=$CLASSPATH:$jar
 done
 
-CLASSPATH="$CLASSPATH:/root/server/chatroom_server/classes:/root/server/jsvc_home/commons-daemon-1.1.0.jar"
+CLASSPATH="$CLASSPATH:$BASE_HOME/classes:$JSVC_HOME/commons-daemon-1.1.0.jar"
 
 echo "CLASSPATH=$CLASSPATH"
 
-JMAIN_OUT="/root/server/chatroom_server/jmain-daemon.out"
-JMAIN_PID=/root/server/chatroom_server/jmain-daemon.pid
+JMAIN_OUT=$BASE_HOME/jmain-daemon.out
+JMAIN_PID=$BASE_HOME/jmain-daemon.pid
 
 MAIN=com.demon.netty.chapter11.chatroom.ChatRoomServer
 
 
 case "$1" in
     start   )
-      /root/server/jsvc_home/jsvc -procname "chatroom" \
+      $JSVC -procname "chatroom" \
       -pidfile "$JMAIN_PID" \
       -java-home "$JAVA_HOME" \
+      -wait "10" \
       -errfile "$JMAIN_OUT" \
       -classpath "$CLASSPATH" \
+      $JAVA_OPTS \
       $MAIN
       exit $?
     ;;
     stop    )
-      /root/server/jsvc_home/jsvc -stop \
+      $JSVC -stop \
       -procname "chatroom" \
       -pidfile "$JMAIN_PID" \
       -classpath "$CLASSPATH" \
