@@ -50,8 +50,13 @@ public class ChatRoomServer extends DaemonJob {
 		}
 	}
 	
+	static{
+	    // logback 日志方式，支持根据项目分别打印日志
+	    System.setProperty("main_alias", "chatroom");
+	}
+	
 	public static void main(String[] args) throws Exception {
-		new ChatRoomServer().init(10000);
+		new ChatRoomServer().init(12345);
 	}
 
     @Override
