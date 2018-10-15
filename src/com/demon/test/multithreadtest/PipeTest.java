@@ -5,7 +5,7 @@ import java.io.PipedReader;
 import java.io.PipedWriter;
 
 /**
- * 两个线程利用 PipedWriter 和 PipedReader 通信
+ * 两个线程利用 PipedWriter 和 PipedReader 通信，生产者
  * 
  * @author xuliang
  * @since 2018年10月12日 上午11:34:40
