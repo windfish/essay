@@ -44,6 +44,11 @@ public class LRUCache<K, V> {
     }
     
     private LinkedHashMap<K, V> initCache(int size){
+        /**
+         * LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder)
+         * accessOrder 为true，表示缓存记录按访问顺序；false，表示缓存顺序按插入顺序
+         * 在put 和putAll 之后，将调用removeEldestEntry 方法，移除最旧的缓存记录
+         */
         return new LinkedHashMap<K, V>(16, 0.75f, true){
             private static final long serialVersionUID = 945362892431345540L;
             
@@ -80,33 +85,63 @@ public class LRUCache<K, V> {
         return new ArrayList<Map.Entry<K,V>>(cache.entrySet());
     }
     
-    public int getSize() {
+    public int getMaxSize() {
         return size;
     }
+    
+    public int getSize(){
+        return cache.size();
+    }
 
+    /**
+     * LRU 缓存构造器，对应的缓存为{@link LRUCache}
+     * 
+     * @author xuliang
+     * @since 2018年10月16日 上午9:18:22
+     */
     public static class LRUCacheBuilder<K, V> {
         
         private int size;
         
+        /**
+         * 实例化LRU 缓存构造器
+         */
         public static LRUCacheBuilder<Object, Object> newBuild(){
             return new LRUCacheBuilder<Object, Object>();
         }
         
+        /**
+         * 设置缓存的最大容量
+         */
         public LRUCacheBuilder<K, V> maxSize(int size){
             this.size = size;
             return this;
         }
         
+        /**
+         * 构造一个LRU 缓存
+         */
         public <K1 extends K, V1 extends V> LRUCache<K1, V1> build() {
             return new LRUCache<>(this.size);
         }
         
+        /**
+         * 构造一个LRU 缓存，该缓存支持key 不存在时，自动根据默认加载方式加载数据到缓存
+         * 
+         * @param loader 缓存加载器，用来加载新的数据到缓存
+         */
         public <K1 extends K, V1 extends V> LRUCache<K1, V1> build(LRUCacheLoader<K1, V1> loader) {
             return new LRUCache<>(this.size, loader);
         }
         
     }
     
+    /**
+     * 缓存加载器接口
+     * 
+     * @author xuliang
+     * @since 2018年10月16日 上午9:27:53
+     */
     public interface LRUCacheLoader<K, V> {
         V load(K key) throws Exception;
     }
