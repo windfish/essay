@@ -187,4 +187,43 @@ public class FileUtils {
 		return file;
 	}
 	
+	/**
+	 * 基于java io 的文件拷贝
+	 * @param source 源文件
+	 * @param dest 目标文件
+	 */
+	public static void copyFileByStream(File source, File dest){
+	    try(FileInputStream fis = new FileInputStream(source);
+	            FileOutputStream fos = new FileOutputStream(dest);){
+	        byte[] buffer = new byte[10];
+	        int length;
+	        while((length = fis.read(buffer)) > 0){
+	            fos.write(buffer, 0, length);
+	        }
+	    } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	/**
+	 * 基于java nio 的transferTo 或transferFrom 实现
+	 * @param source 源文件
+	 * @param dest 目标文件
+	 */
+	public static void copyFileByChannel(File source, File dest) {
+	    try(FileChannel sourceChannel = new FileInputStream(source).getChannel();
+	            FileChannel targetChannel = new FileOutputStream(dest).getChannel();){
+	        for(long count = sourceChannel.size(); count > 0; ){
+	            long transferTo = sourceChannel.transferTo(sourceChannel.position(), count, targetChannel);
+	            count -= transferTo;
+	        }
+	    } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
 }  
