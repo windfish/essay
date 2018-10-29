@@ -1,7 +1,7 @@
 package com.demon.algorithm;
 
 /**
- * 倒序数字
+ * 倒序数字：递归法
  * 
  * @author xuliang
  * @since 2018年10月16日 上午9:46:10
