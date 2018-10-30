@@ -1,0 +1,52 @@
+[
+  {
+    "response" :
+      {
+        "text" : "Hello, Moco"
+      }
+  },
+  {
+    "request":
+      {"uri":"/test"},
+    "response" :
+      {
+        "text" : "test: Hello, Moco"
+      }
+  },
+    {
+        "request":
+        {
+            "method":"post",
+            "uri":"/post"
+        },
+        "response":
+        {
+            "text":"moco post"
+        }
+    },
+    {
+      "request":
+		{
+		"uri":"/ad"
+		},
+      "response":
+      {
+	"json":{"data":
+                {
+                        "ads":[
+                                {"imgs":[{"id":71,"lua":"https://img-blog.csdn.net/20180928154125934","url":"https://img-blog.csdn.net/2018092814032728"}],"key":"71"},
+				{"imgs":[{"id":182,"lua":"https://img-blog.csdn.net/20180920100537996","url":"https://img-blog.csdn.net/2018090514004385"}],"key":"182"}
+                        ],
+                        "barNumber":200036,
+                        "cef":0,
+                        "luaFileTestUrl":"",
+                        "luaFileUrl":"http://adresource.uuuwin.com/logic-2018-09-13-17-26-22.zip",
+                        "luaFolder":"http://adresource.uuuwin.com/lua_folder-2018-09-13-17-26-24.zip",
+                        "luaTestFolder":""
+                },
+                "msg":"",
+                "status":0
+                }
+      }
+    }
+]
