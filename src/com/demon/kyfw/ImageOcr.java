@@ -132,9 +132,49 @@ public class ImageOcr {
         }
 	}
 	
+	public void mergeImage() {
+	    int rows = 2;
+        int cols = 4;
+        int chunks = rows * cols;
+        
+        int chunkHeight, chunkWidth;
+        int type;
+        
+        try{
+            File[] images = new File[chunks];
+            for(int i=1;i<=chunks;i++){
+                images[i-1] = new File(BASE_URL + i + ".jpg");
+            }
+            
+            BufferedImage[] bufferedImages = new BufferedImage[chunks];
+            for(int i=0;i<chunks;i++){
+                bufferedImages[i] = ImageIO.read(images[i]);
+            }
+            
+            type = bufferedImages[0].getType();
+            chunkWidth = bufferedImages[0].getWidth();
+            chunkHeight = bufferedImages[0].getHeight();
+            
+            BufferedImage finalImage = new BufferedImage(chunkWidth * cols, chunkHeight * rows, type);
+            
+            int num=0;
+            for(int i=0;i<rows;i++){
+                for(int j=0;j<cols;j++){
+                    finalImage.createGraphics().drawImage(bufferedImages[num], chunkWidth * j, chunkHeight * i, null);
+                    num++;
+                }
+            }
+            ImageIO.write(finalImage, "jpeg", new File(BASE_URL + "merge.jpg"));
+            
+        }catch (Exception e) {
+            logger.error("merge image exception", e);
+        }
+	}
+	
 	public static void main(String[] args) throws Exception {
 //		new ImageOcr().getImage();
-	    new ImageOcr().splitImage("D:\\img\\code.jpg");
+//	    new ImageOcr().splitImage("D:\\img\\code.jpg");
+	    new ImageOcr().mergeImage();
 	    
 	}
 	
