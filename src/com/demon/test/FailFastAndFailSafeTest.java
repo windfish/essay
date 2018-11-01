@@ -1,11 +1,18 @@
 package com.demon.test;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
+ * <pre>
+ * ArrayList 删除remove 元素时，会修改modCount 列表修改次数；
+ * 而创建Iterator 迭代器时，会将modCount 赋值给expectedModCount；
+ * 在迭代过程中，会校验expectedModCount 是否等于modCount，若不相等，则会抛出ConcurrentModificationException 异常，迭代快速失败fail-fast；
+ * 而使用Iterator 删除remove 元素时，会将迭代器的expectedModCount 置为modCount，因此不会fail-fast
+ * </pre>
  * 
  * @author xuliang
  * @since 2018年2月27日 上午9:56:31
