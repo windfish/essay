@@ -25,7 +25,7 @@ public class CAS {
         public void releaseLock(){
             long t = Thread.currentThread().getId();
             while(!lockUpdate.compareAndSet(this, t, 0L)){
-                // 循环再次修改，相当于尝试获取锁
+                // 循环再次修改，相当于尝试释放锁
             }
         }
     }
