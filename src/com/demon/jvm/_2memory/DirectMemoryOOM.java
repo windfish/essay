@@ -22,6 +22,8 @@ public class DirectMemoryOOM {
         while(true){
             unsafe.allocateMemory(_1MB);
         }
+        
+//        Unsafe u = Unsafe.getUnsafe();
     }
     
 }
