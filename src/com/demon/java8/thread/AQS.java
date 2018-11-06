@@ -30,6 +30,12 @@ public class AQS implements Serializable {
 
 	private static final long serialVersionUID = 7677370200333814858L;
 
+	/**
+	 * 不可重用的互斥锁，所以不需要记录拥有者的线程
+	 * @author xuliang
+	 * @since 2018年11月6日 上午10:20:45
+	 *
+	 */
 	private static class Sync extends AbstractQueuedSynchronizer {
 		private static final long serialVersionUID = -6331303868028542001L;
 		/**
