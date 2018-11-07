@@ -42,7 +42,7 @@ public class BaiduOcrApi {
 
     private final String API_Key = "k2su7Ek2yD6HGqDCuh2OCUyU";
     private final String Secret_Key = "bfyAWYyc9RdSc8ZoUegx2dPYkjHzscmI";
-    private final String Access_Token = "24.81fe27a8c463219d0c9cf8844882f30a.2592000.1539913178.282335-10639410";
+    private final String Access_Token = "24.7993cc4cfbeed14d852346c987f00693.2592000.1544150854.282335-10639410";
     
     private CloseableHttpClient httpClient = HttpClients.createDefault();
     
@@ -200,7 +200,8 @@ public class BaiduOcrApi {
     public static void main(String[] args) {
 //        new BaiduOcrApi().getAccessToken();
 //        new BaiduOcrApi().wordRecognition("D:\\img\\0.jpg");
-        new BaiduOcrApi().imageRecognition("D:\\img\\6.jpg");
+//        new BaiduOcrApi().imageRecognition("D:\\img\\6.jpg");
+        new BaiduOcrApi().imageRecognition("D:\\img\\1.jpg");
     }
     
 }
