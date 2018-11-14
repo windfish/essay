@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<context:component-scan base-package="com.demon.java8.spring.aop.xml" />
+	
+	<!-- 使用xml 配置aop -->
+	<!-- 强制使用cglib 代理，如果不配置，默认使用jdk 代理，但jdk 代理是基于接口实现的 -->
+	<aop:config proxy-target-class="true" />
+	
+	<aop:config>
+		<!-- 定义切面 -->
+		<aop:aspect id="logAspect" ref="logInterceptor" >
+			<!-- 定义切入点（com.demon.java8.spring.aopxml 下所有的类在调用前都会被拦截） -->
+			<aop:pointcut expression="execution(* com.demon.java8.spring.aop.xml.*.*(..))" id="logPointCut" />
+			
+			<!-- 方法执行之前被调用执行 -->
+			<aop:before method="before" pointcut-ref="logPointCut" /><!-- 引入一个切入点 -->
+			<!-- 方法执行之后被调用执行 -->
+			<aop:after method="after" pointcut-ref="logPointCut" /><!-- 引入一个切入点 -->
+		</aop:aspect>
+	</aop:config>
+	
+</beans>
