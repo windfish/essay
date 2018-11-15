@@ -9,7 +9,6 @@ import com.demon.java8.spring.aop.custom.Log;
 @Component
 public class Test {
 
-    @Log
     public void test(){
         System.out.println("main test");
     }
