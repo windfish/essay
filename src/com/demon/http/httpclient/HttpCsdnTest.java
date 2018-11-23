@@ -28,12 +28,15 @@ public class HttpCsdnTest {
 
     public static void main(String[] args) throws Exception {
         String[] urls = new String[]{
-                    "https://img-blog.csdn.net/20180718163444567",
+                    /*"https://img-blog.csdn.net/20180718163444567",
                     "https://img-blog.csdn.net/20180718164236555",
                     "https://img-blog.csdn.net/2018071816402531",
                     "https://img-blog.csdn.net/2018072015440079",
                     "https://img-blog.csdn.net/20180718221753143",
-                    "https://img-blog.csdn.net/20180718163650694"
+                    "https://img-blog.csdn.net/20180718163650694"*/
+//                    "https://img-blog.csdnimg.cn/2018112315323155.png",
+//                    "https://img-blog.csdnimg.cn/20181120161128561.png"
+                    "https://img-blog.csdnimg.cn/20181123164942582.jpg"
                 };
         
         RequestConfig requestConfig = RequestConfig.custom()
@@ -44,7 +47,7 @@ public class HttpCsdnTest {
 //        HttpGet httpGet = new HttpGet("https://img-blog.csdn.net/20180718090110780");
         for(int i=0;i<urls.length;i++){
             String url = urls[i];
-            String name = url.substring(26);
+            String name = url.substring(28);
             System.out.println(url + " : " + name);
                     
             HttpGet httpGet = new HttpGet(url);
