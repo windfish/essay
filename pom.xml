@@ -251,6 +251,12 @@
 		<groupId>org.apache.hadoop</groupId>
 		<artifactId>hadoop-common</artifactId>
 		<version>2.6.4</version>
+		<exclusions>
+			<exclusion>
+				<groupId>tomcat</groupId>
+				<artifactId>jasper-compiler</artifactId>
+			</exclusion>
+		</exclusions>
 	</dependency>
 	<dependency>
 		<groupId>org.apache.hadoop</groupId>
@@ -519,5 +525,7 @@
       </dependency>
 
   </dependencies>
+  
+  
   
 </project>
