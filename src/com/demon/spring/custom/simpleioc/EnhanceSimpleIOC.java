@@ -70,6 +70,9 @@ public class EnhanceSimpleIOC {
             }
             String id = ele.getAttribute("id");
             String className = ele.getAttribute("class");
+            if(beanMap.containsKey(id)){
+                throw new IllegalArgumentException("duplicate bean id: "+ id);
+            }
             
             // 加载Class
             Class<?> beanClass = null;
