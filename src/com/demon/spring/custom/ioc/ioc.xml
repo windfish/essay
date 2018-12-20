@@ -11,4 +11,9 @@
         <property name="brand" value="Michelin" />
         <property name="specification" value="205/55 R16" />
     </bean>
+    
+    <bean id="aspectJAwareAdvisorAutoProxyCreator" class="com.demon.spring.custom.aop.aspect.AspectJAwareAdvisorAutoProxyCreator"/>
+    <bean id="helloService" class="com.demon.spring.custom.simpleaop.HelloServiceImpl" />
+    <bean id="logAdvisor" class="com.demon.spring.custom.aop.aspect.LogAdvisor"/>
+    <bean id="helloServiceNoInterface" class="com.demon.spring.custom.simpleaop.HelloServiceNoInterface"/>
 </beans>

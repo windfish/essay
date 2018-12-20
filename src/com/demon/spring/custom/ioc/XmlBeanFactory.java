@@ -129,7 +129,7 @@ public class XmlBeanFactory implements BeanFactory {
     /**
      * 根据传入的Class 匹配bean，若Class 为bean 的同一个类或接口，或是其超类或超接口，则返回
      */
-    private List<Object> getBeansForType(Class<?> clazz) throws Exception{
+    public List<Object> getBeansForType(Class<?> clazz) throws Exception{
         List<Object> beans = new ArrayList<>();
         for(String beanDefinitionName: beanDefinitionNames){
             if(clazz.isAssignableFrom(beanDefinitionMap.get(beanDefinitionName).getClazz())){
