@@ -3,7 +3,7 @@ package com.demon.spring.custom.aop;
 import org.aopalliance.intercept.MethodInterceptor;
 
 /**
- * 
+ * 通知辅助对象，包含目标对象信息、方法的拦截器、方法的匹配器MethodMatcher
  * @author xuliang
  * @since 2018年12月19日 上午10:59:24
  *

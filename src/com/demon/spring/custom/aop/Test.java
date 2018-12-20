@@ -5,6 +5,12 @@ import java.lang.reflect.Method;
 import com.demon.spring.custom.simpleaop.HelloService;
 import com.demon.spring.custom.simpleaop.HelloServiceImpl;
 
+/**
+ * aop 测试
+ * @author xuliang
+ * @since 2018年12月20日 下午3:13:34
+ *
+ */
 public class Test {
 
     @org.junit.Test

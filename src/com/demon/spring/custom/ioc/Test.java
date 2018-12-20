@@ -4,6 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.demon.spring.custom.simpleioc.Car;
 import com.demon.spring.custom.simpleioc.Wheel;
 
+/**
+ * ioc 测试
+ * @author xuliang
+ * @since 2018年12月20日 下午3:13:55
+ *
+ */
 public class Test {
 
     @org.junit.Test

@@ -3,7 +3,7 @@ package com.demon.spring.custom.aop.aspect;
 import org.aopalliance.aop.Advice;
 
 /**
- * 
+ * 切面，包含AspectJ Expression 的切入点以及具体的通知
  * @author xuliang
  * @since 2018年12月19日 下午4:42:44
  *

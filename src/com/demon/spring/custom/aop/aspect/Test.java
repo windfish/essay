@@ -4,6 +4,12 @@ import com.demon.spring.custom.ioc.XmlBeanFactory;
 import com.demon.spring.custom.simpleaop.HelloService;
 import com.demon.spring.custom.simpleaop.HelloServiceNoInterface;
 
+/**
+ * ioc + aop 测试
+ * @author xuliang
+ * @since 2018年12月20日 下午3:13:20
+ *
+ */
 public class Test {
 
     @org.junit.Test
