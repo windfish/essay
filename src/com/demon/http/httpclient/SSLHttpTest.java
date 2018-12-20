@@ -43,6 +43,7 @@ import com.demon.util.XMLUtil;
  * @since 2018年9月4日 上午9:34:37
  *
  */
+@SuppressWarnings("deprecation")
 public class SSLHttpTest {
 
     private static Logger logger = LoggerFactory.getLogger(SSLHttpTest.class);
@@ -101,7 +102,6 @@ public class SSLHttpTest {
     /**
      * 低版本的 httpclient
      */
-    @SuppressWarnings("deprecation")
     private static CloseableHttpClient getHttpClientOldVersion(){
         try{
             KeyStore keyStore  = KeyStore.getInstance("PKCS12");
