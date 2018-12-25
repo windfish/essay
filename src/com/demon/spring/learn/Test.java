@@ -4,6 +4,9 @@ import org.junit.Before;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.demon.spring.learn.lookup_method.NewsProvider;
+import com.demon.spring.learn.lookup_method.NewsProviderByAware;
+
 /**
  * 
  * @author xuliang
@@ -36,6 +39,32 @@ public class Test {
     public void testFactory(){
         System.out.println(ac.getBean("staticCar"));
         System.out.println(ac.getBean("nonStaticCar"));
+    }
+    
+    @org.junit.Test
+    public void testLookupMethod(){
+        System.out.println("------------no prototype----------------");
+        NewsProvider provider = (NewsProvider) ac.getBean("newsProvider");
+        System.out.println(provider);
+        System.out.println(provider.getNews());
+        System.out.println(provider.getNews());
+        
+        System.out.println("------------aware-----------------------");
+        NewsProviderByAware providerByAware = (NewsProviderByAware) ac.getBean("newsProviderByAware");
+        System.out.println(providerByAware);
+        System.out.println(providerByAware.getNews());
+        System.out.println(providerByAware.getNews());
+        
+        System.out.println("------------lookup-method---------------");
+        NewsProvider providerByLookupMethod = (NewsProvider) ac.getBean("newsProviderByLookupMethod");
+        System.out.println(providerByLookupMethod);
+        System.out.println(providerByLookupMethod.getNews());
+        System.out.println(providerByLookupMethod.getNews());
+    }
+    
+    @org.junit.Test
+    public void testBeanPostProcessor(){
+        
     }
     
 }

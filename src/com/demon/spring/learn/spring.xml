@@ -9,17 +9,40 @@
                 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
                 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
+    <!-- alias begin -->
     <bean id="hello" class="com.demon.spring.learn.HelloAlias">
         <property name="content" value="hello alias" />
     </bean>
     <alias name="hello" alias="alias-hello"/>
     <alias name="alias-hello" alias="alias-alias-hello"/>
+    <!-- alias end -->
     
+    <!-- FactoryBean begin -->
     <bean id="helloFactory" class="com.demon.spring.learn.HelloFactoryBean" />
+    <!-- FactoryBean end -->
     
+    <!-- 工厂模式 begin -->
     <bean id="staticCar" class="com.demon.spring.learn.CarFactory" factory-method="getCarStatic"/>
     
     <bean id="carFactory" class="com.demon.spring.learn.CarFactory"/>
     <bean id="nonStaticCar" factory-bean="carFactory" factory-method="getCar"/>
+    <!-- 工厂模式 end -->
+    
+    <!-- lookup-method begin -->
+    <bean id="news" class="com.demon.spring.learn.lookup_method.News" scope="prototype"/>
+    <bean id="newsProvider" class="com.demon.spring.learn.lookup_method.NewsProvider">
+        <property name="news" ref="news" />
+    </bean>
+    
+    <bean id="newsProviderByAware" class="com.demon.spring.learn.lookup_method.NewsProviderByAware">
+        <property name="news" ref="news" />
+    </bean>
+    
+    <bean id="newsProviderByLookupMethod" class="com.demon.spring.learn.lookup_method.NewsProvider">
+        <lookup-method name="getNews" bean="news"/>
+    </bean>
+    <!-- lookup-method end -->
+    
+    <bean class="com.demon.spring.learn.LoggerBeanPostProcessor" />
 
 </beans>
