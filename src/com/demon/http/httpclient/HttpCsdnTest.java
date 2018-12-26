@@ -28,7 +28,8 @@ public class HttpCsdnTest {
 
     public static void main(String[] args) throws Exception {
         
-        pullImgFromUrl("http://img3.laibafile.cn/p/s/303688780.png", "http://www.tianya.cn/", "tianya");
+//        pullImgFromUrl("http://img3.laibafile.cn/p/s/303688780.png", "http://www.tianya.cn/", "tianya");
+        pullImgFromUrl("https://img-blog.csdnimg.cn/2018122517561381.png", "https://blog.csdn.net", "csdn");
         
         /*
         String[] urls = new String[]{

@@ -43,6 +43,6 @@
     </bean>
     <!-- lookup-method end -->
     
-    <bean class="com.demon.spring.learn.LoggerBeanPostProcessor" />
+    <bean class="com.demon.spring.learn.LoggerBeanPostProcessor" init-method="initMethod" />
 
 </beans>

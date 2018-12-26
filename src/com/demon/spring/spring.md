@@ -25,9 +25,10 @@
 当一个bean 直接依赖另一个bean 时，可以使用<ref/>标签。当某一个bean 不直接依赖另一个bean，但是需要bean 先实例化好，这时候需要使用depends-on 特性
 
 ##### BeanPostProcessor
-bean 实例化的后置处理器，是Spring 的一个扩展点，通过实现该接口，可以查收bean 实例化的过程。例如AOP 就是在bean 实例化时，将切面逻辑织入bean 实例的。
+bean 实例化的后置处理器，是Spring 的一个扩展点，通过实现该接口，可以查收bean 实例化的过程。例如AOP 就是在bean 实例化时，将切面逻辑织入bean 实例的。@see com.demon.spring.learn.LoggerBeanPostProcessor
 
 ##### Aware 接口
 Spring 中定义了一些Aware 接口，通过这些接口，我们可以在运行时获取一些配置信息或一些其他信息，比如：BeanNameAware 接口，可以获取bean 的配置名称；BeanFactoryAware 接口，可以在运行时获取BeanFactory 实例；ApplicationContextAware 接口，可以再运行时获取ApplicationContext 实例。
 
-
+##### init-method 和InitializingBean 接口
+在bean 初始化时，执行一些操作。init-method 指定的方法，会在bean 初始化时执行；实现InitializingBean 接口，Spring 框架会在bean 初始化时，调用afterPropertiesSet 方法。@see com.demon.spring.learn.LoggerBeanPostProcessor
