@@ -1,9 +1,9 @@
 package com.demon.spring.learn;
 
 import org.junit.Before;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.alibaba.fastjson.JSON;
 import com.demon.spring.learn.lookup_method.NewsProvider;
 import com.demon.spring.learn.lookup_method.NewsProviderByAware;
 
@@ -15,12 +15,15 @@ import com.demon.spring.learn.lookup_method.NewsProviderByAware;
  */
 public class Test {
 
-    private ApplicationContext ac;
+    private ClassPathXmlApplicationContext ac;
     private static final String location = "com/demon/spring/learn/spring.xml";
     
     @Before
     public void init(){
         ac = new ClassPathXmlApplicationContext(location);
+        // 重复id 或name 的bean，直接抛出异常，防止不同配置文件中的bean 被覆盖
+        ac.setAllowBeanDefinitionOverriding(false);
+        ac.refresh();
     }
     
     @org.junit.Test
@@ -65,6 +68,11 @@ public class Test {
     @org.junit.Test
     public void testBeanPostProcessor(){
         
+    }
+    
+    @org.junit.Test
+    public void testSameIdOrNameBean(){
+        System.out.println(JSON.toJSONString(ac.getBean("hello")));
     }
     
 }

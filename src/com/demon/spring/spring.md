@@ -1,4 +1,35 @@
 # Spring IOC 容器
+##### id 和name
+Spring 容器中每个Bean 都有唯一的名字（beanName），和0个或多个别名（alias）：
+1. 设置了id，那么beanName 为id 的值，无别名
+2. 设置了id 和name，那么beanName 为id 的值，别名为name 的值，别名可以设置多个，使用逗号分隔
+3. 设置了name，那么beanName 为name 的第一个值，别名为name 其他的值
+4. 没设置id 和name，那么Spring 会以class 生成beanName 和别名
+
+##### 相同的id 或name 的bean，Spring 的处理方式
+1. 同一个配置文件中，会抛出异常
+2. 不同配置文件中，不会抛出异常，会由后面的bean 覆盖前面的bean
+不同配置文件中，覆盖后可能会出现问题，解决方案是：设置 allowBeanDefinitionOverriding 的属性为false
+1. web 环境下，编写ApplicationContextInitializer 接口的实现类，将allowBeanDefinitionOverriding 的值设置为false；并在web.xml 中配置相应的参数
+@see com.demon.spring.learn.XmlApplicationContextInitializer
+```
+// 针对web 环境，在web.xml 中添加配置：
+<context-param>
+    <param-name>contextInitializer</param-name>
+    <param-value>com.demon.spring.learn.XmlApplicationContextInitializer</param-value>
+</context-param>
+// 对于spring mvc，添加如下配置：
+<init-param>
+    <param-name>contextInitializer</param-name>
+    <param-value>com.demon.spring.learn.XmlApplicationContextInitializer</param-value>
+</init-param>
+```
+2. java 服务环境下，设置allowBeanDefinitionOverriding 为false 后，刷新applicationContext
+```
+applicationContext.setAllowBeanDefinitionOverriding(false);
+applicationContext.refresh();
+```
+
 ##### alias 
 在Spring 中，可以使用 alias 标签给bean 起个别名，可通过别名获取bean；也可以给别名起别名，同样的也可以获取bean。@see com.demon.spring.learn.HelloAlias
 
@@ -30,5 +61,17 @@ bean 实例化的后置处理器，是Spring 的一个扩展点，通过实现�
 ##### Aware 接口
 Spring 中定义了一些Aware 接口，通过这些接口，我们可以在运行时获取一些配置信息或一些其他信息，比如：BeanNameAware 接口，可以获取bean 的配置名称；BeanFactoryAware 接口，可以在运行时获取BeanFactory 实例；ApplicationContextAware 接口，可以再运行时获取ApplicationContext 实例。
 
-##### init-method 和InitializingBean 接口
-在bean 初始化时，执行一些操作。init-method 指定的方法，会在bean 初始化时执行；实现InitializingBean 接口，Spring 框架会在bean 初始化时，调用afterPropertiesSet 方法。@see com.demon.spring.learn.LoggerBeanPostProcessor
+##### 初始化bean 的回调
+1. xml 中配置init-method，指定回调方法
+2. bean 实现InitializingBean 接口
+3. 使用@Bean(initMethod="init")注解，指定回调方法
+4. 使用@PostConstruct 注解
+@see com.demon.spring.learn.BeanCallback
+
+##### 销毁bean 的回调
+1. xml 中配置destroy-method，指定回调方法
+2. bean 实现DisposableBean 接口
+3. 使用@Bean(destroyMethod = "cleanup") 注解，指定回调方法
+4. 使用@PreDestroy 注解
+@see com.demon.spring.learn.BeanCallback
+

@@ -43,6 +43,10 @@
     </bean>
     <!-- lookup-method end -->
     
-    <bean class="com.demon.spring.learn.LoggerBeanPostProcessor" init-method="initMethod" />
+    <bean class="com.demon.spring.learn.LoggerBeanPostProcessor" />
+
+    <bean class="com.demon.spring.learn.BeanCallback" init-method="init1" destroy-method="destroy1" />
+
+    <!-- <import resource="spring_bak.xml"/> -->
 
 </beans>
