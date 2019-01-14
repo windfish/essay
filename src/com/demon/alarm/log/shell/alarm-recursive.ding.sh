@@ -42,7 +42,7 @@ do
         LOG_FILE=${FILE##*/}
         echo "LOG_CONTEXT=$LOG_CONTEXT LOG_FILE=$LOG_FILE"
         #bash -x $ALARM_SHELL_CONTEXT/alarm-1.0.sh --emails $EMAILS --log-context $LOG_CONTEXT --file $LOG_FILE
-	bash -x $ALARM_SHELL_CONTEXT/alarm-1.1.sh --mode ding --dingding $DING --log-context $LOG_CONTEXT --file $LOG_FILE
+	    bash -x $ALARM_SHELL_CONTEXT/alarm-1.1.sh --mode ding --dingding $DING --log-context $LOG_CONTEXT --file $LOG_FILE
         break
     done
 done
