@@ -2,9 +2,11 @@
 Jenkins 运行环境，需要java 支持，因此，需要先安装JDK，并配置相关的环境变量。
 #### 搭建步骤
 1. 下载Jenkins
+
 我下载是war包，启动后支持浏览器访问Jenkins，下载地址为[Jenkins Download](http://mirrors.jenkins.io/war-stable/latest/jenkins.war)，也可以到官网上自行操作。
 
 2. 启动Jenkins
+
 官网上的教程，是直接启动（java -jar jenkins.war --httpPort=8080），那么当你断开终端连接或者Ctrl+C 中断操作时，会将Jenkins 一并关闭。因此，需要编写执行脚本来启动
 ```
 cd /data/jenkins && pwd
@@ -12,6 +14,7 @@ nohup java -jar jenkins.war --httpPort=8888 2>&1 &
 ```
 
 3. 访问Jenkins 控制台
+
 在浏览器里输入http://IP:8888 即可访问Jenkins 控制台，第一次访问控制台，会提示设置管理员和密码，并且会提示安装Jenkins 插件，按需操作即可
 
 
@@ -49,6 +52,7 @@ bash -x start-global.sh
 ```
 
 2. Jenkins 配置
+
 在Jenkins 主页左边的菜单里，点击“New 任务”，然后输入任务名称并选择“自由风格的软件项目”，下一步可以看到任务的详细内容配置。
 
 在这里填写项目的基本信息
@@ -64,3 +68,39 @@ bash -x start-global.sh
 
 可以看到，每一条命令在执行之前，都会先将命令打印出来
 ![](https://oscimg.oschina.net/oscnet/65e1958ef9a011b8e3eda052061db42b969.jpg)
+
+**注意**
+Jenkins 会默认将子进程kill 掉，需要在系统管理，配置环境变量
+> Name：BUILD_ID
+> Value：allow_to_run_as_daemon start_my_service
+
+# Jenkins 远程管理服务
+基本流程是利用Jenkins SSH 到远程机器上，然后执行Shell 脚本
+#### 必要条件
+1. Publish Over SSH插件
+
+在Jenkins 的 系统管理 --> 插件管理，搜索Publish Over SSH 插件并安装。然后在系统管理中，就可以配置SSH 
+![](https://oscimg.oschina.net/oscnet/57e975d4028008477fc2bdff2b893879c9e.jpg)
+
+SSH Servers 中配置SSH Server，包含hostname、username、remote directory，在Advanced 中可以录入远程机器的用户密码
+
+2. linux sudo
+
+若远程机器的脚本中存在sudo，那么需要设置sudo 为免密执行。
+设置方法为visudo，增加以下配置：
+```
+jenkins ALL=NOPASSWD:ALL
+```
+
+#### 配置步骤
+
+构建步骤中选择远程shell 
+![](https://oscimg.oschina.net/oscnet/fa1581d3992357ec1dc510af32c151dadfb.jpg)
+
+有几点需要注意：
+1. linux sudo 需要处理，配置sudo 不需要输入密码
+2. Shell 脚本中需要#!/bin/bash -il，否则会出现无法读取环境变量的问题。
+-i 交互式Shell；-l 登录式Shell
+![](https://oscimg.oschina.net/oscnet/f67984763ed5daec02c59dc5966533ef28f.jpg)
+
+
