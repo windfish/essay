@@ -59,7 +59,7 @@ bash -x start-global.sh
 ![](https://oscimg.oschina.net/oscnet/595b5ab943f320619d872eda9553890d3ad.jpg)
 
 在这里填写具体的构建过程，我们选择“执行 Shell”。Jenkins 建议我们添加 -ex 参数来执行，那么所以的命令在执行之前就会被打印出来，方便在日志中查看Shell 的执行情况。
-![](https://oscimg.oschina.net/oscnet/4bdb0f85e6a7dc76fc19b6c41560c99e5ad.jpg)
+![](https://oscimg.oschina.net/oscnet/f9a294e30e4735f557caf9496cc1aabac29.jpg)
 
 3. 执行构建
 
@@ -71,7 +71,9 @@ bash -x start-global.sh
 
 **注意**
 Jenkins 会默认将子进程kill 掉，需要在系统管理，配置环境变量
+
 > Name：BUILD_ID
+
 > Value：allow_to_run_as_daemon start_my_service
 
 # Jenkins 远程管理服务
@@ -94,7 +96,7 @@ SSH Servers 中配置SSH Server，包含hostname、username、remote directory�
 
 设置方法为visudo，增加以下配置：
 ```
-jenkins ALL=NOPASSWD:ALL
+xuliang ALL=NOPASSWD:ALL
 ```
 
 2. Shell 脚本中需要#!/bin/bash -il，否则会出现无法读取环境变量的问题。
