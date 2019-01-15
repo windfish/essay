@@ -77,20 +77,12 @@ Jenkins 会默认将子进程kill 掉，需要在系统管理，配置环境变�
 # Jenkins 远程管理服务
 基本流程是利用Jenkins SSH 到远程机器上，然后执行Shell 脚本
 #### 必要条件
-1. Publish Over SSH插件
+Publish Over SSH插件
 
 在Jenkins 的 系统管理 --> 插件管理，搜索Publish Over SSH 插件并安装。然后在系统管理中，就可以配置SSH 
 ![](https://oscimg.oschina.net/oscnet/57e975d4028008477fc2bdff2b893879c9e.jpg)
 
 SSH Servers 中配置SSH Server，包含hostname、username、remote directory，在Advanced 中可以录入远程机器的用户密码
-
-2. linux sudo
-
-若远程机器的脚本中存在sudo，那么需要设置sudo 为免密执行。
-设置方法为visudo，增加以下配置：
-```
-jenkins ALL=NOPASSWD:ALL
-```
 
 #### 配置步骤
 
@@ -99,6 +91,12 @@ jenkins ALL=NOPASSWD:ALL
 
 有几点需要注意：
 1. linux sudo 需要处理，配置sudo 不需要输入密码
+
+设置方法为visudo，增加以下配置：
+```
+jenkins ALL=NOPASSWD:ALL
+```
+
 2. Shell 脚本中需要#!/bin/bash -il，否则会出现无法读取环境变量的问题。
 -i 交互式Shell；-l 登录式Shell
 ![](https://oscimg.oschina.net/oscnet/f67984763ed5daec02c59dc5966533ef28f.jpg)
