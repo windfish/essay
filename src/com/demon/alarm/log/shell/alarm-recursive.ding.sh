@@ -30,7 +30,7 @@ cd $LOG_HOME && pwd
 for DIR in `find . -maxdepth 2 -path "*.com*" -type d | sed -e '/^alarm/d' -e '/\/resources$/d'`
 do
     echo "DIR: $DIR"
-    if [ "$TEST" == "1" ] && [ "${DIR##*/}" != "yun.uuuwin.com" ]; then
+    if [ "$TEST" == "1" ] && [ "${DIR##*/}" != "pk.com" ]; then
         echo "Test: ignore handle $DIR"
         continue
     fi

@@ -1,18 +1,15 @@
 #!/bin/bash
-# author tanshenghui
-# since 2016-12-25
-
-# configs
-# EMAILS="1181486095@qq.com"
-# EMAILS="1181486095@qq.com;397622441@qq.com;115449424@qq.com"
-
-# LOG_CONTEXT=/data/platform/logs/yun.uuuwin.com
-# FILE=yun_api_warn.log
+# author xuliang
+# since 2018-07-12
+# 分析日志，若日志有变化，则发送到邮箱中
+# 1、本地记录日志对应的日期版本，日志的行数
+# 2、若日期为当天，则比较当前日志的行数和之前记录的行数是否一致，不一致，则将之前行数到现在行数新增的日志内容，发送到相应的邮箱里
+# 3、若日期不为当天，则修改日期版本为当天，日志行数为0
 
 # modify by xuliang 2019-1-8
 # 增加预警方式，参数“--mode”，mode=email时，“--emails”参数必输，为邮件地址；mode=ding时，“--dingding”参数必输，为钉钉机器人webhook
 
-ALARM_CONTEXT=/data/platform/logs/alarm.uuuwin.com
+ALARM_CONTEXT=/root/alarm/config
 
 while [ ".$1" != . ]
 do

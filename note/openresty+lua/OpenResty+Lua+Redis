@@ -1,0 +1,39 @@
+OpenResty + Lua + Redis，记录uri 访问次数
+```
+-- openresty + lua + redis
+local redis = require "resty.redis"
+local red = redis:new()
+                
+local ok, err = red.connect(red, "121.40.155.5", "7480")
+ngx.say("<br>redis connect: ", ok)
+if not ok then
+    ngx.say("<br>failed to connect: ", err)
+    return
+end
+
+local res, err = red:auth("s7480.uw.redis")
+ngx.say("<br>redis auth: ", res)
+if not res then
+    ngx.say("<br>failed to authenticate: ", err)
+    return
+end
+
+local res, err = red:get("test")
+if not res then
+    ngx.say("<br>fail to get test: ", err)
+    return
+end
+ngx.say("<br>redis get: ", res)
+
+if string.find(ngx.var.request_uri, ".html") then
+    local date=os.date("%Y%m%d")
+    local sss = red:hincrby("NginxAdPv:" .. date, "http://www.shuuichi.cn" .. ngx.var.request_uri, 1)
+    ngx.say("<br>hincrby: ", sss)
+end
+
+local ok, err = red:set_keepalive(60000, 20)
+if not ok then
+    ngx.say("<br>failed to set keepalive: ", err)
+    return
+end
+```

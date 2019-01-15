@@ -1,0 +1,27 @@
+OpenResty + Lua + Http，访问图片并保存
+```
+-- http 请求图片并保存
+local http = require "resty.http"
+local httpc = http:new()
+
+local res, err = httpc:request_uri("https://img-blog.csdn.net/20180718090110780?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h4eDE4Mjc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70", {
+    ssl_verify = ssl_verify or false,
+    method = "GET",
+    headers = {
+        ["Referer"] = "https://blog.csdn.net/",
+    },
+})
+if not res then
+    ngx.say("failed to request: ", err)
+    return
+end
+ngx.say(res.body)
+
+local file = io.open("/data/lua_csdn.jpg", "w+b")
+if not file then
+    ngx.say("file not found")
+    return
+end
+if file:write(res.body) == nil then return false end
+io.close(file)
+```

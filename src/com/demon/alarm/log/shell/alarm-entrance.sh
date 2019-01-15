@@ -21,8 +21,8 @@ do
   echo "DIR: $DIR"
   
   # ${DIR##*/} 拿掉最后一条 / 及其左边的字符串
-  # eg. DIR=./log/pk.uuuwin.com, ${DIR##*/} 结果为 pk.uuuwin.com
-  if [ "$TEST" == "1" ] && [ "${DIR##*/}" != "pk.uuuwin.com" ]; then
+  # eg. DIR=./log/pk.com, ${DIR##*/} 结果为 pk.com
+  if [ "$TEST" == "1" ] && [ "${DIR##*/}" != "pk.com" ]; then
     echo "Test: ignore handle $DIR"
     continue
   fi
