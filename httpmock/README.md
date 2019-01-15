@@ -7,7 +7,7 @@
 ```
 java -jar moco-runner-0.12.0-standalone.jar http -p 12306 -c config.json
 ```
--p 指定端口  -c 指定配置文件
+-p 指定端口  -c 指定配置文件，使用 http://IP:PORT/{uri} 来访问
 
 ```
 [
