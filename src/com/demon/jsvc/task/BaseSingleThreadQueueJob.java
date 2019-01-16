@@ -1,7 +1,7 @@
 package com.demon.jsvc.task;
 
 import com.alibaba.fastjson.JSON;
-import com.demon.log.LogUtil;
+import com.demon.util.log.LogUtil;
 
 
 public abstract class BaseSingleThreadQueueJob<T> extends BaseThreadPoolQueueJob<T> {

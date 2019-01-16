@@ -1,4 +1,4 @@
-package com.demon.log;
+package com.demon.util.log;
 
 import org.slf4j.MDC;
 

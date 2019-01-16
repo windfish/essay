@@ -1,4 +1,4 @@
-package com.demon.test;
+package com.demon.java8;
 
 /**
  * <pre>
@@ -12,14 +12,14 @@ package com.demon.test;
  * 
  * </pre>
  */
-public class StaticTest
+public class ClassInit
 {
     public static void main(String[] args)
     {
         staticFunction();
     }
     
-    static StaticTest st = new StaticTest();
+    static ClassInit st = new ClassInit();
 
     static
     {
@@ -30,7 +30,7 @@ public class StaticTest
         System.out.println("2");
     }
 
-    StaticTest(){
+    ClassInit(){
         System.out.println("3");
         System.out.println("a="+a+",b="+b);
     }
@@ -43,7 +43,7 @@ public class StaticTest
     static int b =112;
 }
 
-class Child extends StaticTest {
+class Child extends ClassInit {
     
     public static void main(String[] args) {
         System.out.println("child 1");

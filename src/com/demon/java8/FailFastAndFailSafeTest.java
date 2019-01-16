@@ -1,4 +1,4 @@
-package com.demon.test;
+package com.demon.java8;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
