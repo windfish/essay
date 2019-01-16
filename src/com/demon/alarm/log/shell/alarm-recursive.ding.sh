@@ -2,12 +2,8 @@
 # author xuliang
 # since 2019-1-8
 
-# EMAILS="1181486095@qq.com"
 LOG_HOME=/data/platform/logs
-# ALARM_CONTEXT=~/alarm_context
-
-# ALARM_SHELL_CONTEXT=~/svn/java/docs/shell/alarm
-ALARM_SHELL_CONTEXT=/data/platform/shell/alarm
+ALARM_SHELL_CONTEXT=/root/alarm/shell
 
 # TEST
 # 0: alarming closed

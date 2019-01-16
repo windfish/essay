@@ -1,3 +1,14 @@
+# 插件地址
+
+##### lua-resty-http： https://github.com/ledgetech/lua-resty-http
+
+##### lua-cjson： https://github.com/mpx/lua-cjson
+
+##### lua-resty-redis： https://github.com/openresty/lua-resty-redis
+
+##### lua-resty-kafka： https://github.com/doujiang24/lua-resty-kafka
+
+
 # 缓存
 ### 配置缓存
 ```
@@ -72,9 +83,10 @@ nginx 在处理每一个用户请求时，都是按照若干个不同的阶段�
 10. content：内容产生阶段，是所有请求处理阶段中最为重要的阶段，因为这个阶段的指令通常是用来生成HTTP响应内容的；nginx 的 content 阶段是所有请求处理阶段中最为重要的一个，因为运行在这个阶段的配置指令一般都肩负着生成“内容” 并输出 HTTP 响应的使命。
 11. log：日志模块处理阶段；记录日志
 
-
+**nginx\_lua 的具体执行阶段参考 http://www.cnblogs.com/JohnABC/p/6206622.html**
 
 _satisfy 功能_
+
 如果在一个字段中同时使用了ngx_http_access_module 模块和Auth Basic 模块的指令，可以使用这个指令确定一种验证方式：
 * all - 必须同时匹配Access和Auth Basic中指令指定的权限。 
 * any - 具有Access 或 Auth Basic指令任一权限即可通过匹配 
@@ -91,12 +103,4 @@ location / {
 ```
 
 
-# 插件地址
 
-##### lua-resty-http： https://github.com/ledgetech/lua-resty-http
-
-##### lua-cjson： https://github.com/mpx/lua-cjson
-
-##### lua-resty-redis： https://github.com/openresty/lua-resty-redis
-
-##### lua-resty-kafka： https://github.com/doujiang24/lua-resty-kafka
