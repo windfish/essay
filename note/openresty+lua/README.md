@@ -103,4 +103,26 @@ location / {
 ```
 
 
+# proxy_pass
+```
+server {
+    listen      80;
+    server_name test.demon.com;
+    
+   # 访问 http://test.demon.com/test1/api/test
+   # 后端的request_uri 为 /test1/api/test
+   location /test1 {
+        proxy_pass  http://test1.demon.com
+   }
+   
+   # 访问 http://test.demon.com/test1/api/test
+   # 后端的request_uri 为 /api/test
+   location /test2 {
+        proxy_pass  http://test2.demon.com/
+   }
+   
+   # 第二个proxy_pass 的后面带了“/”，会在代理后，忽略匹配的uri（/test2），第一种不会忽略
+    
+}
+```
 

@@ -15,6 +15,8 @@ OpenResty 使用记录，涉及nginx 缓存、OpenResty+Lua 等
 * [Jenkins 使用笔记](https://github.com/windfish/essay/tree/master/jenkins)
 Jenkins 部署与使用，涉及本地服务的管理，远程机器的服务管理等
 
+* [Spring+SpringMVC+Mybatis 项目模板](https://github.com/windfish/ssm_example)
+
 
 ### 学习与使用
 
