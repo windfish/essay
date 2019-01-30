@@ -4,7 +4,7 @@
 
 # Jenkins 环境搭建
 Jenkins 运行环境，需要java 支持，因此，需要先安装JDK，并配置相关的环境变量。
-#### 搭建步骤
+### 搭建步骤
 1. 下载Jenkins
 
 我下载是war包，启动后支持浏览器访问Jenkins，下载地址为[Jenkins Download](http://mirrors.jenkins.io/war-stable/latest/jenkins.war)，也可以到官网上自行操作。
@@ -24,7 +24,7 @@ nohup java -jar jenkins.war --httpPort=8888 2>&1 &
 
 # Jenkins 管理本地服务
 通过本地Shell 脚本管理本地服务，Shell 脚本最好在机器上编写，仅适用Jenkins 来调用，方便管理Shell 脚本
-#### Jenkins 配置步骤
+### Jenkins 配置步骤
 以moco 服务为例
 
 1. 编写脚本
@@ -73,40 +73,113 @@ bash -x start-global.sh
 可以看到，每一条命令在执行之前，都会先将命令打印出来
 ![](https://oscimg.oschina.net/oscnet/65e1958ef9a011b8e3eda052061db42b969.jpg)
 
-**注意**
-Jenkins 会默认将子进程kill 掉，需要在系统管理，配置环境变量
+
+# Jenkins 管理测试服
+基本流程是利用Jenkins SSH 到内网测试服机器上，然后执行Shell 脚本
+### 必要条件
+1. Publish Over SSH插件
+
+在Jenkins 的 系统管理 --> 插件管理，搜索Publish Over SSH 插件并安装。然后在系统管理中，就可以配置SSH 
+![](https://oscimg.oschina.net/oscnet/3d2a778c703a9fd3d86e676cbbba31990f5.jpg)
+
+SSH Servers 中配置SSH Server，包含hostname、username、remote directory，在Advanced 中可以录入远程机器的用户密码
+
+2. 专用的用户，例如：jenkins
+
+### 配置步骤
+
+构建步骤中选择远程shell 
+![](https://oscimg.oschina.net/oscnet/97f6bf1c6d3dcb8442918345a1954f15c63.jpg)
+
+
+# Jenkins 管理正式服
+### 基本流程
+1. SSH 到内网测试服，package 项目
+2. rsync 打包的文件到正式服
+3. SSH 到正式服，执行相应的脚本
+
+### 构建rsync 服务
+1. 安装rsync
+
+使用 yum install rsync -y 安装
+
+2. 配置/etc/rsyncd.conf
+
+```
+log file=/var/log/rsync.log         # 日志文件
+pid file=/var/run/rsyncd.pid        # pid 文件
+use chroot=false                    # 表示在传输文件前首先chroot到path参数所指定的目录下。这样做的原因是实现额外的安全防护，但缺点是需要以roots权限，并且不能备份指向外部的符号连接所指向的目录文件。默认情况下chroot值为true，如果你的数据当中有软连接文件，建议设置成false
+[deploy]                            # 自定义模块名
+read only=false                     # 如果为true，则不能上传到该模块指定的路径下
+uid=root                            # 指定传输文件时以哪个用户的身份传输
+gid=root                            # 指定传输文件时以哪个组的身份传输
+path=/home/jenkins/publish          # 指定数据存放的路径
+auth users=jenkins                  # 指定传输时要使用的用户名
+secrets file=/etc/rsyncd.passwd     # 指定密码文件，该参数连同上面的参数如果不指定，则不使用密码验证。注意该密码文件的权限一定要是600。格式：用户名:密码
+```
+
+3. 启动rsync 服务
+
+```
+rsync --daemon
+```
+
+### 配置构建逻辑
+
+1. SSH 到测试服，打包项目，并rsync 到正式服务器
+![](https://oscimg.oschina.net/oscnet/83781b90dfb91c0c139a26b4324289bf8f8.jpg)
+
+2. SSH 到正式服，重启服务
+![](https://oscimg.oschina.net/oscnet/68704998e37916242a42fa742ef834f0428.jpg)
+
+
+
+# 遇到的问题汇总
+##### jenkins 执行shell 后，会kill 掉子进程
+需要在系统管理，配置环境变量
 
 > Name：BUILD_ID
 
 > Value：allow_to_run_as_daemon start_my_service
 
-# Jenkins 远程管理服务
-基本流程是利用Jenkins SSH 到远程机器上，然后执行Shell 脚本
-#### 必要条件
-1. Publish Over SSH插件
-
-在Jenkins 的 系统管理 --> 插件管理，搜索Publish Over SSH 插件并安装。然后在系统管理中，就可以配置SSH 
-![](https://oscimg.oschina.net/oscnet/57e975d4028008477fc2bdff2b893879c9e.jpg)
-
-SSH Servers 中配置SSH Server，包含hostname、username、remote directory，在Advanced 中可以录入远程机器的用户密码
-
-2. 专用的用户
-
-#### 配置步骤
-
-构建步骤中选择远程shell 
-![](https://oscimg.oschina.net/oscnet/fa1581d3992357ec1dc510af32c151dadfb.jpg)
-
-有几点需要注意：
-1. linux sudo 需要处理，配置sudo 不需要输入密码
+##### linux sudo 需要处理，配置sudo 不需要输入密码
 
 设置方法为visudo，增加以下配置：
 ```
-xuliang ALL=NOPASSWD:ALL
+jenkins ALL=NOPASSWD:ALL
 ```
 
-2. Shell 脚本中需要#!/bin/bash -il，否则会出现无法读取环境变量的问题。
+##### Shell 脚本中需要#!/bin/bash -il，否则会出现无法读取环境变量的问题。
 -i 交互式Shell；-l 登录式Shell
 ![](https://oscimg.oschina.net/oscnet/f67984763ed5daec02c59dc5966533ef28f.jpg)
 
+##### 远程执行shell 时，提示 sudo: sorry, you must have a tty to run sudo
+
+提示这个是因为sudo 执行时，默认需要打开控制终端。
+解决方案：修改sudo 配置文件，设置某个用户或用户组执行sudo 不需要打开控制终端
+```
+Defaults    requiretty               # 默认配置，都需要用户终端
+Defaults:jenkins    !requiretty      # jenkins 用户需要控制终端
+Defaults:%operators    !requiretty   # operators 组不需要控制终端
+```
+
+##### rsync 需要录入密码
+
+解决方式有两种（我选择第二种方式）：
+* 一种是通过远程rsync 的方式，配置SSH 免密认证，rsync -avrI -e 'ssh -p ${PORT}' ${FILE} ${USER}@${HOST}:${PATH}
+* 另一种是通过rsync 服务的方式，配置rsync 服务专用密码，客户端可以通过指定密码文件来免密同步，rsync -avrI ${FILE} ${USER}@${HOST}::${MODULE} --password-file=${PASSWD}
+
+##### 重启操作（restart）非正常退出时，需要再次进行启动操作（start）
+需要判断脚本的shell 退出标识，不为0时，需要进行start 操作。
+sleep 是为了防止前一个shell 还未退出，后一个shell 执行失败的情况
+```
+./jmain-igame-asyn_log_to_db_jenkins.sh restart
+result=$?
+echo "------------result:$result"
+if [ "$result" != "0" ]; then
+  sleep 3
+  echo "start asyn_log"
+  ./jmain-igame-asyn_log_to_db_jenkins.sh start
+fi
+```
 
