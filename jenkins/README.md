@@ -142,25 +142,25 @@ rsync --daemon
 
 
 # 遇到的问题汇总
-##### jenkins 执行shell 后，会kill 掉子进程
+#### jenkins 执行shell 后，会kill 掉子进程
 需要在系统管理，配置环境变量
 
 > Name：BUILD_ID
 
 > Value：allow_to_run_as_daemon start_my_service
 
-##### linux sudo 需要处理，配置sudo 不需要输入密码
+#### linux sudo 需要处理，配置sudo 不需要输入密码
 
 设置方法为visudo，增加以下配置：
 ```
 jenkins ALL=NOPASSWD:ALL
 ```
 
-##### Shell 脚本中需要#!/bin/bash -il，否则会出现无法读取环境变量的问题。
+#### Shell 脚本中需要#!/bin/bash -il，否则会出现无法读取环境变量的问题。
 -i 交互式Shell；-l 登录式Shell
 ![](https://oscimg.oschina.net/oscnet/f67984763ed5daec02c59dc5966533ef28f.jpg)
 
-##### 远程执行shell 时，提示 sudo: sorry, you must have a tty to run sudo
+#### 远程执行shell 时，提示 sudo: sorry, you must have a tty to run sudo
 
 提示这个是因为sudo 执行时，默认需要打开控制终端。
 解决方案：修改sudo 配置文件，设置某个用户或用户组执行sudo 不需要打开控制终端
@@ -170,13 +170,13 @@ Defaults:jenkins    !requiretty      # jenkins 用户需要控制终端
 Defaults:%operators    !requiretty   # operators 组不需要控制终端
 ```
 
-##### rsync 需要录入密码
+#### rsync 需要录入密码
 
 解决方式有两种（我选择第二种方式）：
 * 一种是通过远程rsync 的方式，配置SSH 免密认证，rsync -avrI -e 'ssh -p ${PORT}' ${FILE} ${USER}@${HOST}:${PATH}
 * 另一种是通过rsync 服务的方式，配置rsync 服务专用密码，客户端可以通过指定密码文件来免密同步，rsync -avrI ${FILE} ${USER}@${HOST}::${MODULE} --password-file=${PASSWD}
 
-##### 重启操作（restart）非正常退出时，需要再次进行启动操作（start）
+#### 重启操作（restart）非正常退出时，需要再次进行启动操作（start）
 需要判断脚本的shell 退出标识，不为0时，需要进行start 操作。
 sleep 是为了防止前一个shell 还未退出，后一个shell 执行失败的情况
 ```
