@@ -1,3 +1,10 @@
+#目录
+* [Jenkins 环境搭建](https://github.com/windfish/java-essay/tree/master/jenkins#jenkins-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)
+* [Jenkins 管理本地服务](https://github.com/windfish/java-essay/tree/master/jenkins#Jenkins-%E7%AE%A1%E7%90%86%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1)
+* [Jenkins 管理测试服](https://github.com/windfish/java-essay/tree/master/jenkins#Jenkins-%E7%AE%A1%E7%90%86%E6%B5%8B%E8%AF%95%E6%9C%8D)
+* [Jenkins 管理正式服](https://github.com/windfish/java-essay/tree/master/jenkins#Jenkins-%E7%AE%A1%E7%90%86%E6%AD%A3%E5%BC%8F%E6%9C%8D)
+* [遇到的问题汇总](https://github.com/windfish/java-essay/tree/master/jenkins#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB)
+
 # 背景
 测试服务器上已有打包、重启、发布脚本，但每次发布还需要依次执行各个脚本，所以考虑使用Jenkins，每次测试服发布时，只需要点一次构建就可以了。
 构建Jenkins 环境时，原有脚本还是有一定的修改。
