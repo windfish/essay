@@ -1,4 +1,4 @@
-#目录
+# 目录
 * [Jenkins 环境搭建](https://github.com/windfish/java-essay/tree/master/jenkins#jenkins-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)
 * [Jenkins 管理本地服务](https://github.com/windfish/java-essay/tree/master/jenkins#Jenkins-%E7%AE%A1%E7%90%86%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1)
 * [Jenkins 管理测试服](https://github.com/windfish/java-essay/tree/master/jenkins#Jenkins-%E7%AE%A1%E7%90%86%E6%B5%8B%E8%AF%95%E6%9C%8D)
@@ -128,7 +128,7 @@ secrets file=/etc/rsyncd.passwd     # 指定密码文件，该参数连同上面
 3. 启动rsync 服务
 
 ```
-rsync --daemon
+sudo rsync --daemon
 ```
 
 ### 配置构建逻辑

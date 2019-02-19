@@ -29,7 +29,9 @@ public class HttpCsdnTest {
     public static void main(String[] args) throws Exception {
         
 //        pullImgFromUrl("http://img3.laibafile.cn/p/s/303688780.png", "http://www.tianya.cn/", "tianya");
-        pullImgFromUrl("https://img-blog.csdnimg.cn/2018122517561381.png", "https://blog.csdn.net", "csdn");
+//        pullImgFromUrl("https://img-blog.csdnimg.cn/2018122517561381.png", "https://blog.csdn.net", "csdn");
+//        pullImgFromUrl("https://image-static.segmentfault.com/290/981/2909819103-5c6a7f9fcb461_articlex", "https://segmentfault.com", "segmentfault");
+        pullImgFromUrl("https://oscimg.oschina.net/oscnet/0b01f5ce7ff1628859099cef829779c7877.jpg", "https://my.oschina.net", "oschina");
         
         /*
         String[] urls = new String[]{
@@ -89,7 +91,9 @@ public class HttpCsdnTest {
         HttpGet httpGet = new HttpGet(url);
         System.out.println(httpGet.getURI());
         httpGet.setConfig(requestConfig);
-        httpGet.setHeader("referer", baseHost);
+        if(baseHost != null && !baseHost.trim().isEmpty()){
+            httpGet.setHeader("referer", baseHost);
+        }
         
         CloseableHttpClient client = HttpClients.createDefault();
         CloseableHttpResponse response = client.execute(httpGet);
