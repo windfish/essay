@@ -29,56 +29,12 @@ public class HttpCsdnTest {
     public static void main(String[] args) throws Exception {
         
 //        pullImgFromUrl("http://img3.laibafile.cn/p/s/303688780.png", "http://www.tianya.cn/", "tianya");
-//        pullImgFromUrl("https://img-blog.csdnimg.cn/2018122517561381.png", "https://blog.csdn.net", "csdn");
+        pullImgFromUrl("https://img-blog.csdnimg.cn/20190221172728151.gif", "https://blog.csdn.net", "csdn");
+//        pullImgFromUrl("https://s1.51cto.com/images/blog/201902/15/a25e738b5139da642bffe241e6fb2769.png", "https://51cto.com", "51cto");
 //        pullImgFromUrl("https://image-static.segmentfault.com/290/981/2909819103-5c6a7f9fcb461_articlex", "https://segmentfault.com", "segmentfault");
-        pullImgFromUrl("https://oscimg.oschina.net/oscnet/0b01f5ce7ff1628859099cef829779c7877.jpg", "https://my.oschina.net", "oschina");
+//        pullImgFromUrl("https://oscimg.oschina.net/oscnet/0b01f5ce7ff1628859099cef829779c7877.jpg", "https://my.oschina.net", "oschina");
+//        pullImgFromUrl("https://note.youdao.com/yws/public/resource/7dd0d1c545c271096fd1cceaefac9ccb/xmlnote/365D4036E0F14213973F5E4A23927D23/3764", "http://youdao.com/", "youdao");
         
-        /*
-        String[] urls = new String[]{
-                "https://img-blog.csdn.net/20180718163444567",
-                "https://img-blog.csdn.net/20180718164236555",
-                "https://img-blog.csdn.net/2018071816402531",
-                "https://img-blog.csdn.net/2018072015440079",
-                "https://img-blog.csdn.net/20180718221753143",
-                "https://img-blog.csdn.net/20180718163650694"
-//                "https://img-blog.csdnimg.cn/2018112315323155.png",
-//                "https://img-blog.csdnimg.cn/20181120161128561.png"
-                "https://img-blog.csdnimg.cn/20181123164942582.jpg"
-            };
-//        HttpGet httpGet = new HttpGet("https://img-blog.csdn.net/20180718090110780");
-        for(int i=0;i<urls.length;i++){
-            String url = urls[i];
-            String name = url.substring(28);
-            System.out.println(url + " : " + name);
-                    
-            HttpGet httpGet = new HttpGet(url);
-            System.out.println(httpGet.getURI());
-            httpGet.setConfig(requestConfig);
-    //        httpGet.setHeader("referer", "https://blog.csdn.net/xxx1827/article/details/81091963");
-            httpGet.setHeader("referer", "https://blog.csdn.net");
-            
-            CloseableHttpClient client = HttpClients.createDefault();
-            CloseableHttpResponse response = client.execute(httpGet);
-            System.out.println(response);
-            if(response != null){
-                HttpEntity entity = response.getEntity();
-                if(entity != null){
-                    //通过输入流获取图片数据  
-                    InputStream inStream = entity.getContent();  
-                    //得到图片的二进制数据，以二进制封装得到数据，具有通用性  
-                    byte[] data = readInputStream(inStream);  
-                    System.out.println(new String(data));
-                    //new一个文件对象用来保存图片，默认保存当前工程根目录  
-                    File imageFile = new File("D:\\"+name+".jpg");
-                    //创建输出流  
-                    FileOutputStream outStream = new FileOutputStream(imageFile);  
-                    //写入数据  
-                    outStream.write(data);  
-                    //关闭输出流  
-                    outStream.close(); 
-                }
-            }
-        }*/
     }
     
     private static final RequestConfig requestConfig = RequestConfig.custom()
@@ -98,6 +54,8 @@ public class HttpCsdnTest {
         CloseableHttpClient client = HttpClients.createDefault();
         CloseableHttpResponse response = client.execute(httpGet);
         System.out.println(response);
+        System.out.println("http code: " + response.getStatusLine().getStatusCode());
+        System.out.println("content type: " + response.getHeaders("Content-Type")[0].getValue());
         if(response != null){
             HttpEntity entity = response.getEntity();
             if(entity != null){

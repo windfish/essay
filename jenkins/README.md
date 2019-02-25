@@ -166,7 +166,7 @@ jenkins ALL=NOPASSWD:ALL
 解决方案：修改sudo 配置文件，设置某个用户或用户组执行sudo 不需要打开控制终端
 ```
 Defaults    requiretty               # 默认配置，都需要用户终端
-Defaults:jenkins    !requiretty      # jenkins 用户需要控制终端
+Defaults:jenkins    !requiretty      # jenkins 用户不需要控制终端
 Defaults:%operators    !requiretty   # operators 组不需要控制终端
 ```
 
