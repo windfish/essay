@@ -29,12 +29,12 @@ public class HttpCsdnTest {
     public static void main(String[] args) throws Exception {
         
 //        pullImgFromUrl("http://img3.laibafile.cn/p/s/303688780.png", "http://www.tianya.cn/", "tianya");
-        pullImgFromUrl("https://img-blog.csdnimg.cn/20190221172728151.gif", "https://blog.csdn.net", "csdn");
+//        pullImgFromUrl("https://img-blog.csdnimg.cn/20190221172728151.gif", "https://blog.csdn.net", "csdn");
 //        pullImgFromUrl("https://s1.51cto.com/images/blog/201902/15/a25e738b5139da642bffe241e6fb2769.png", "https://51cto.com", "51cto");
 //        pullImgFromUrl("https://image-static.segmentfault.com/290/981/2909819103-5c6a7f9fcb461_articlex", "https://segmentfault.com", "segmentfault");
 //        pullImgFromUrl("https://oscimg.oschina.net/oscnet/0b01f5ce7ff1628859099cef829779c7877.jpg", "https://my.oschina.net", "oschina");
 //        pullImgFromUrl("https://note.youdao.com/yws/public/resource/7dd0d1c545c271096fd1cceaefac9ccb/xmlnote/365D4036E0F14213973F5E4A23927D23/3764", "http://youdao.com/", "youdao");
-        
+        pullImgFromUrl("https://ws3.sinaimg.cn/large/005BYqpggy1g0nax8c7sij30ka0e1qet.jpg", "", "sinaimg");
     }
     
     private static final RequestConfig requestConfig = RequestConfig.custom()

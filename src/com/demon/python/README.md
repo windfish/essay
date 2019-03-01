@@ -1,5 +1,4 @@
 # python3.7 安装遇到的问题
-
 ### windows
 * 运行缺少 api-ms-win-crt-runtime-l1-1-0.dll，安装 KB2999226补丁程序，win7 64位版本：https://www.microsoft.com/en-us/download/details.aspx?id=49093
 
