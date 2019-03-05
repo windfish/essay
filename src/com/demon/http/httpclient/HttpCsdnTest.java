@@ -34,7 +34,8 @@ public class HttpCsdnTest {
 //        pullImgFromUrl("https://image-static.segmentfault.com/290/981/2909819103-5c6a7f9fcb461_articlex", "https://segmentfault.com", "segmentfault");
 //        pullImgFromUrl("https://oscimg.oschina.net/oscnet/0b01f5ce7ff1628859099cef829779c7877.jpg", "https://my.oschina.net", "oschina");
 //        pullImgFromUrl("https://note.youdao.com/yws/public/resource/7dd0d1c545c271096fd1cceaefac9ccb/xmlnote/365D4036E0F14213973F5E4A23927D23/3764", "http://youdao.com/", "youdao");
-        pullImgFromUrl("https://ws3.sinaimg.cn/large/005BYqpggy1g0nax8c7sij30ka0e1qet.jpg", "", "sinaimg");
+//        pullImgFromUrl("https://ws3.sinaimg.cn/large/005BYqpggy1g0nax8c7sij30ka0e1qet.jpg", "", "sinaimg");
+        pullImgFromUrl("https://mmbiz.qpic.cn/mmbiz_png/icSKQ4U9UVY6eLGaialMUAd0h4NXDvAXka6OPg4kmRibPc2aDX0TX9fYB1k92SB97kVpVqetnASqcEZNZHB9Txe2g/0?wx_fmt=png", "", "qpic");
     }
     
     private static final RequestConfig requestConfig = RequestConfig.custom()
