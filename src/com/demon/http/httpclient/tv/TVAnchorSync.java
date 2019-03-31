@@ -111,7 +111,7 @@ public class TVAnchorSync {
         }
     }
     
-    public void txKuaishouSync(){
+    public void tvKuaishouSync(){
         try{
             String url = "https://www.kuaishouvideo.com/Tashan";
             
@@ -139,7 +139,7 @@ public class TVAnchorSync {
     public static void main(String[] args) {
 //        new TVAnchorSync().tv9xiuSync();
 //        new TVAnchorSync().tvkkSync();
-        new TVAnchorSync().txKuaishouSync();
+        new TVAnchorSync().tvKuaishouSync();
     }
     
 }
