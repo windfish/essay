@@ -30,6 +30,7 @@ mutt [-hnpRvxz][-a<文件>][-b<地址>][-c<地址>][-f<邮件文 件>][-F<配置
 mutt 115449424@qq.com -s "测试邮件主题" -a t.sql < t.txt
 
 2、编写shell，监控项目日志，然后再 crontab 中启动监控
+sudo su alarm
 crontab -e
 * * * * * /root/alarm/shell/alarm-cron.sh
 
