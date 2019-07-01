@@ -11,9 +11,10 @@
 
 # jsvc 启动 tomcat（tomcat7）
 
-1. tomcat-home/bin 下有 commons-daemon-native.tar.gz，解压编译生成 jsvc，然后将 jsvc 拷贝到 bin 目录下
-2. 可以在 bin 目录下创建 setenv.sh 设置 JVM 参数等信息
-3. 执行 daemon.sh start 启动tomcat
+1. tomcat-home/bin 下有 commons-daemon-native.tar.gz，解压
+2. 进入 commons-daemon 目录的 unix 文件夹下，编译生成 jsvc（依次执行 ./configure, make），然后将 jsvc 拷贝到 bin 目录下
+3. 可以在 bin 目录下创建 setenv.sh 设置 JVM 参数等信息
+4. 执行 daemon.sh start 启动tomcat
 
 
 
