@@ -23,6 +23,37 @@ public class LRUCache<K, V> {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
     
+    public static void main(String[] args) {
+        /*LRUCache<Integer, Integer> cache = LRUCacheBuilder.newBuild().maxSize(3).build();
+        cache.put(1, 1);
+        cache.put(2, 2);
+        cache.put(3, 3);
+        cache.get(1);
+        cache.put(4, 4);
+        System.out.println(cache.getSize());
+        System.out.println(JSON.toJSONString(cache.getAll(), true));*/
+        
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(1, 1);
+        map.put(2, 2);
+        map.put(3, 3);
+        map.put(4, 4);
+        LRUCache<Integer, Integer> cache = LRUCacheBuilder.newBuild().maxSize(3)
+                .build(new LRUCacheLoader<Integer, Integer>() {
+                    @Override
+                    public Integer load(Integer key) throws Exception {
+                        return map.get(key);
+                    }
+                });
+        System.out.println(cache.get(1));
+        System.out.println(cache.get(2));
+        System.out.println(cache.get(3));
+        System.out.println(cache.get(1));
+        System.out.println(cache.get(4));
+        System.out.println(cache.getSize());
+        System.out.println(JSON.toJSONString(cache.getAll(), true));
+    }
+    
     /**
      * 最大缓存大小
      */
@@ -144,37 +175,6 @@ public class LRUCache<K, V> {
      */
     public interface LRUCacheLoader<K, V> {
         V load(K key) throws Exception;
-    }
-    
-    public static void main(String[] args) {
-        /*LRUCache<Integer, Integer> cache = LRUCacheBuilder.newBuild().maxSize(3).build();
-        cache.put(1, 1);
-        cache.put(2, 2);
-        cache.put(3, 3);
-        cache.get(1);
-        cache.put(4, 4);
-        System.out.println(cache.getSize());
-        System.out.println(JSON.toJSONString(cache.getAll(), true));*/
-        
-        HashMap<Integer, Integer> map = new HashMap<>();
-        map.put(1, 1);
-        map.put(2, 2);
-        map.put(3, 3);
-        map.put(4, 4);
-        LRUCache<Integer, Integer> cache = LRUCacheBuilder.newBuild().maxSize(3)
-                .build(new LRUCacheLoader<Integer, Integer>() {
-                    @Override
-                    public Integer load(Integer key) throws Exception {
-                        return map.get(key);
-                    }
-                });
-        System.out.println(cache.get(1));
-        System.out.println(cache.get(2));
-        System.out.println(cache.get(3));
-        System.out.println(cache.get(1));
-        System.out.println(cache.get(4));
-        System.out.println(cache.getSize());
-        System.out.println(JSON.toJSONString(cache.getAll(), true));
     }
     
 }

@@ -8,6 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+/**
+ * 授权，基于注解方式
+ * @author xuliang
+ * @since 2019年7月11日 上午9:38:48
+ *
+ */
 @Component
 public class AuthorizationTest {
 

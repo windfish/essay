@@ -34,7 +34,7 @@ public class Tutorial {
          * SecurityManager 是shiro 的核心，每一个程序都有一个SecurityManager。
          */
         // 1. IniSecurityManagerFactory 加载 ini 配置文件，构造 SecurityManager 工厂
-        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:com/demon/shiro/shiro.ini");
         // 2. 使用工厂构造 SecurityManager 实例
         SecurityManager manager = factory.getInstance();
         // 3. 将 SecurityManager 实例化为虚拟机的单独静态实例

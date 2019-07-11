@@ -66,4 +66,28 @@ Cryptography 在安全框架中是一个自然的附加产物，Shiro 的 crypto
 
 多个realm 的认证顺序时根据配置文件中的顺序依次执行的，也可以配置securityManager.realms = $oneRealm, $twoRealm, $threeRealm 来指定顺序
 
+### 认证流程
+
+1. 程序代码调用 Subject.login 方法，向AuthenticationToken（认证令牌）实例的构造函数传递用户的身份和证明。
+2. Subject 实例，通常是一个 DelegatingSubject（或其子类）通过调用 securityManager.login(token )将这个令牌转交给程序的 SecurityManager。
+3. SecurityManager，基本的“安全伞”组件，得到令牌并通过调用 authenticator.authenticate(token))简单地将其转交它内部的 Authenticator 实例，大部分情况下是一个 ModularRealmAuthenticator 实例，用来支持在验证过程中协调一个或多个Realm实例。ModularRealmAuthenticator 本质上为 Apache Shiro（在 PAM 术语中每一个 Realm 称为一个“模块”）提供一个 PAM 类型的范例。
+4. 如程序配置了多个 Realm，ModularRealmAuthenticator实例将使用其配置的 AuthenticationStrategy 开始一个 多 Realm 身份验证的尝试。在 Realm 被验证调用的整个过程中，AuthenticationStrategy（安全策略）被调用用来回应每个Realm结果。如果仅有一个 Realm 被配置，它直接被调用--在单 Realm 程序中不需要AuthenticationStrategy。
+5. 每一个配置的 Realm 都被检验看其是否支持)提交的AuthenticationToken，如果支持，则该 Realm 的 getAuthenticationInfo) 方法随着提交的牌被调用，getAuthenticationInfo 方法为特定的 Realm 有效提供一次独立的验证尝试。
+
+
+# Authorization 授权
+
+授权有三个核心元素，在 Shiro 中我们经常要用到它们：权限（permissions）、角色（roles）和用户（users）。
+
+在 Shiro 中执行授权可以有三种途径：
+* 程序代码--你可以在你的 JAVA 代码中执行用类似于 if 和 else 的结构来执行权限检查。
+* JDK 注解--你可以在你的 JAVA 方法上附加权限注解
+* JSP/GSP 标签--你可以基于角色和权限控制 JSP 或 GSP 页面输出内容。
+
+### 授权流程
+
+1. 程序或框架代码调用一个 Subject 的hasRole*、checkRole*、 isPermitted*或者 checkPermission*方法，传递所需的权限或角色。
+2. Subject实例，通常是一个 DelegatingSubject（或子类），通过调用securityManager 与各 hasRole*、checkRole*、 isPermitted* 或 checkPermission* 基本一致的方法将权限或角色传递给程序的 SecurityManager(实现了 org.apache.shiro.authz.Authorizer 接口)
+3. SecurityManager 作为一个基本的“保护伞”组件,接替/代表其内部 org.apache.shiro.authz.Authorizer 实例通过调用 authorizer 的各自的 hasRole*, checkRole* , isPermitted* ,或 checkPermission* 方法。 authorizer 默认情况下是一个实例 ModularRealmAuthorizer 支持协调一个或多个实例 Realm 在任何授权操作实例。
+4. 检查每一个被配置的 Realm 是否实现相同的 Authorizer接口，如果是，Realm 自己的各 hasRole*、checkRole*、 isPermitted* 或 checkPermission* 方法被调用。
 
