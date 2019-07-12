@@ -100,3 +100,21 @@ Cryptography 在安全框架中是一个自然的附加产物，Shiro 的 crypto
 3. SecurityManager 作为一个基本的“保护伞”组件,接替/代表其内部 org.apache.shiro.authz.Authorizer 实例通过调用 authorizer 的各自的 hasRole*, checkRole* , isPermitted* ,或 checkPermission* 方法。 authorizer 默认情况下是一个实例 ModularRealmAuthorizer 支持协调一个或多个实例 Realm 在任何授权操作实例。
 4. 检查每一个被配置的 Realm 是否实现相同的 Authorizer接口，如果是，Realm 自己的各 hasRole*、checkRole*、 isPermitted* 或 checkPermission* 方法被调用。
 
+
+# 拦截器Filter
+
+* NameableFilter：NameableFilter 给Filter起个名字，如果没有设置默认就是FilterName
+* OncePerRequestFilter：OncePerRequestFilter用于防止多次执行Filter的；也就是说一次请求只会走一次拦截器链；另外提供enabled属性，表示是否开启该拦截器实例，默认enabled=true表示开启，如果不想让某个拦截器工作，可以设置为false即可。
+* ShiroFilter：ShiroFilter是整个Shiro的入口点，用于拦截需要安全控制的请求进行处理
+* AdviceFilter：AdviceFilter提供了AOP风格的支持，类似于SpringMVC中的Interceptor；
+    preHandler：类似于AOP中的前置增强；在拦截器链执行之前执行；如果返回true则继续拦截器链；否则中断后续的拦截器链的执行直接返回；进行预处理（如基于表单的身份验证、授权）
+    postHandle：类似于AOP中的后置返回增强；在拦截器链执行完成后执行；进行后处理（如记录执行时间之类的）
+    afterCompletion：类似于AOP中的后置最终增强；即不管有没有异常都会执行；可以进行清理资源（如接触Subject与线程的绑定之类的）
+* PathMatchingFilter：PathMatchingFilter提供了基于Ant风格的请求路径匹配功能及拦截器参数解析的功能，如“roles[admin,user]”自动根据“，”分割解析到一个路径参数配置并绑定到相应的路径
+    pathsMatch：该方法用于path与请求路径进行匹配的方法；如果匹配返回true；
+    onPreHandle：在preHandle中，当pathsMatch匹配一个路径后，会调用opPreHandler方法并将路径绑定参数配置传给mappedValue；然后可以在这个方法中进行一些验证（如角色授权），如果验证失败可以返回false中断流程；默认返回true；也就是说子类可以只实现onPreHandle即可，无须实现preHandle。如果没有path与请求路径匹配，默认是通过的（即preHandle返回true）。
+* AccessControlFilter：AccessControlFilter提供了访问控制的基础功能；比如是否允许访问/当访问拒绝时如何处理等
+
+
+
+
