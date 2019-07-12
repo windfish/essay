@@ -25,7 +25,7 @@ public class _1_LoginLogoutTest {
     public void test() {
 
         // 获取 SecurityManager 工厂，从INI 配置文件里初始化SecurityManager
-        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:com/demon/shiro/study/_1/shiro.ini");
+        Factory<SecurityManager> factory = getIniSecurityManagerFactory_MyRealm();  //getIniSecurityManagerFactory();
         // 使用工厂方法构造SecurityManager
         SecurityManager instance = factory.getInstance();
         // 将SecurityManager 绑定给SecurityUtils，全局公用
@@ -38,12 +38,27 @@ public class _1_LoginLogoutTest {
             // 登录，验证身份
             subject.login(token);
         }catch (Exception e) {
-            logger.warn("login exception", e);
+//            logger.warn("login exception", e);
         }
         // 断言用户已验证通过
         Assert.assertEquals(true, subject.isAuthenticated());
         // 退出
         subject.logout();
+        logger.info("test end");
+    }
+    
+    /**
+     * 默认配置
+     */
+    public Factory<SecurityManager> getIniSecurityManagerFactory(){
+        return new IniSecurityManagerFactory("classpath:com/demon/shiro/study/_1/shiro.ini");
+    }
+    
+    /**
+     * 自定义Realm
+     */
+    public Factory<SecurityManager> getIniSecurityManagerFactory_MyRealm(){
+        return new IniSecurityManagerFactory("classpath:com/demon/shiro/study/_1/shiro-realm.ini");
     }
 
 }

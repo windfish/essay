@@ -74,6 +74,15 @@ Cryptography 在安全框架中是一个自然的附加产物，Shiro 的 crypto
 4. 如程序配置了多个 Realm，ModularRealmAuthenticator实例将使用其配置的 AuthenticationStrategy 开始一个 多 Realm 身份验证的尝试。在 Realm 被验证调用的整个过程中，AuthenticationStrategy（安全策略）被调用用来回应每个Realm结果。如果仅有一个 Realm 被配置，它直接被调用--在单 Realm 程序中不需要AuthenticationStrategy。
 5. 每一个配置的 Realm 都被检验看其是否支持)提交的AuthenticationToken，如果支持，则该 Realm 的 getAuthenticationInfo) 方法随着提交的牌被调用，getAuthenticationInfo 方法为特定的 Realm 有效提供一次独立的验证尝试。
 
+### shiro 提供的Realm
+
+一般继承AuthorizingRealm（授权）即可；其继承了AuthenticatingRealm（即身份验证），而且也间接继承了CachingRealm（带有缓存实现）
+
+* org.apache.shiro.realm.text.IniRealm：[users]部分指定用户名/密码及其角色；[roles]部分指定角色即权限信息
+* org.apache.shiro.realm.text.PropertiesRealm： user.username=password,role1,role2指定用户名/密码及其角色；role.role1=permission1,permission2指定角色及权限信息
+* org.apache.shiro.realm.jdbc.JdbcRealm：通过sql查询相应的信息，如 select password from users where username=? 获取用户密码，select password, password\_salt from users where username=? 获取用户密码及salt；select role\_name from user\_roles where username=? 获取用户角色；select permission from roles\_permissions where role\_name=? 获取角色对应的权限信息；也可以调用相应的api进行自定义sql
+* 自定义的AuthenticationStrategy：继承org.apache.shiro.authc.pam.AbstractAuthenticationStrategy，实现具体的方法。beforeAllAttempts 在所有Realm 验证之前调用；beforeAttempt 在每个Realm 之前调用；afterAttempt 在每个Realm 之后调用；afterAllAttempts 在所有Realm 之后调用
+
 
 # Authorization 授权
 
