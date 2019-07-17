@@ -1,0 +1,59 @@
+### IndexWriter
+
+用于创建和维护一个索引
+
+* IndexWriterConfig.OpenMode.CREATE 即使其他用户正在使用索引，您也可以打开索引。旧的用户将继续搜索他们打开的“时间点”快照，并且在重新打开之前不会看到新创建的索引。
+* IndexWriterConfig.OpenMode.CREATE_OR_APPEND 如果在提供的路径中还没有索引，则IndexWriter将创建新索引，否则将打开现有索引。
+* 更改索引的操作在内存中缓冲，并定期刷新到Directory，自上次刷新后有足够的添加文档时会触发刷新。
+刷新由文档的RAM使用（IndexWriterConfig.setRAMBufferSizeMB(double)）或添加的文档数量（IndexWriterConfig.setMaxBufferedDocs(int)）。
+默认情况下，当RAM使用率达到IndexWriterConfig.DEFAULT_RAM_BUFFER_SIZE_MBMB 时刷新 。为获得最佳索引速度，您应该使用大RAM缓冲区来刷新RAM。
+与此相反的齐平的选择IndexWriterConfig.setRAMBufferSizeMB(double)和 IndexWriterConfig.setMaxBufferedDocs(int)，删除的条款将不会触发段齐平。
+请注意，刷新只是将IndexWriter中的内部缓冲状态移动到索引中，但这些更改对于IndexReader是不可见的，直到 commit()或者close()叫做。
+刷新还可以触发一个或多个段合并，默认情况下使用后台线程运行，以便不阻止addDocument调用
+
+
+### FSDirectory
+
+ 提供用于存储文件列表的抽象层，目录仅包含文件（无子文件夹层次结构）
+
+用于在文件系统中存储索引文件的Directory实现的基类，目前有三个子类
+* SimpleFSDirectory 是使用Files.newByteChannel的简单实现。但是，它具有较差的并发性能（多个线程将成为瓶颈），因为当多个线程从同一文件读取时它会同步。
+* NIOFSDirectory 在读取时使用java.nio 的FileChannel的位置io，以避免从同一文件读取时的同步。不幸的是，由于仅支持Windows的Sun JRE错误，这对于Windows来说是一个糟糕的选择，但在所有其他平台上，这是首选。
+使用Thread.interrupt()或 Future.cancel(boolean)应使用的 应用程序RAFDirectory
+* MMapDirectory 在读取时使用内存映射IO，如果有相对于索引大小的大量虚拟内存，这是一个不错的选择
+* FSDirectory.open(java.nio.file.Path) 方法，以允许Lucene根据您的环境选择最佳的FSDirectory实现，以及每个实现的已知限制
+
+
+### Analyzer
+
+分析器，用于分析文本。将文本分解为索引标记（也称为术语）的管道，并可选择对这些标记执行其他操作，例如，下载，同义词插入，过滤掉不需要的令牌等。
+我们使用的分析器是StandardAnalyzer，它使用创建令牌Word Break Annex＃29中指定的Unicode文本分段算法中的Word Break规则; 将令牌转换为小写; 然后过滤掉停用词。
+停用词是常见的语言词，例如文章（a，an，等）和其他可能具有较少搜索价值的令牌。
+
+
+### Document
+
+Document 相当于一个要进行索引的单元，任何可以想要被索引的文件都必须转化为Document 对象才能进行索引。
+
+### IndexSearcher
+
+lucene 中最基本的检索工具，所有的检索都会用到IndexSearcher工具
+
+### Query
+
+查询，lucene 中支持模糊查询，语义查询，短语查询，组合查询等等,如有TermQuery,BooleanQuery,RangeQuery,WildcardQuery 等一些类。
+
+
+### QueryParser
+
+一个解析用户输入的工具，可以通过扫描用户输入的字符串，生成Query对象。
+
+
+### Hits
+
+在搜索完成之后，需要把搜索结果返回并显示给用户，只有这样才算是完成搜索的目的。在lucene 中，搜索的结果的集合是用Hits 类的实例来表示的。
+
+
+
+
+ 
