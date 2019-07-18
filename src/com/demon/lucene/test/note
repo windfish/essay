@@ -15,4 +15,4 @@ Lucene 可以索引和搜索存储在文件中的如下数据（包括但不限�
 
 一个简单的搜索引擎结构：
 
-![](https://github.com/windfish/java-essay/blob/master/src/com/demon/lucene/test/%E7%BB%93%E6%9E%84%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/windfish/java-essay/master/src/com/demon/lucene/test/%E7%BB%93%E6%9E%84%E5%9B%BE.png)
