@@ -562,21 +562,54 @@
 	      <version>1.1.16</version>
 	  </dependency>
 	  
+	  <!-- lucene start -->
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-core</artifactId>
         <version>8.1.1</version>
       </dependency>
+      <!-- lucene 查询 -->
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-queries</artifactId>
+        <version>8.1.1</version>
+      </dependency>
+      <!-- lucene 查询解析器 -->
       <dependency>
 	    <groupId>org.apache.lucene</groupId>
 	    <artifactId>lucene-queryparser</artifactId>
 	    <version>8.1.1</version>
 	  </dependency>
+	  <!-- lucene 公共分词器 -->
 	  <dependency>
 		<groupId>org.apache.lucene</groupId>
 		<artifactId>lucene-analyzers-common</artifactId>
 		<version>8.1.1</version>
 	  </dependency>
+	  <!-- lucene 中文智能分词器 -->
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-analyzers-smartcn</artifactId>
+        <version>8.1.1</version>
+      </dependency>
+      <!-- lucene 关键字高亮 -->
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-highlighter</artifactId>
+        <version>8.1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-memory</artifactId>
+        <version>8.1.1</version>
+      </dependency>
+      <!-- IK analyzer 中文分词器 -->
+      <dependency>
+        <groupId>com.janeluo</groupId>
+        <artifactId>ikanalyzer</artifactId>
+        <version>2012_u6</version>
+      </dependency>
+	  <!-- lucene end -->
 
   </dependencies>
   
