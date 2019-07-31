@@ -35,4 +35,30 @@ Analyzer 是一个抽象类，切分词的具体规则由子类实现。内部�
 * KeywordAnalyzer： 关键词分词器，把整个输入作为一个单独词汇单元，方便特殊类型的文本进行索引。针对邮政编码、地址等文本信息使用关键词分词器进行索引建立非常方便
 
 
+# 创建索引
+
+1. Lucene 创建索引需要使用IndexWriter 对象，创建IndexWriter 对象需要两个参数，一个是IndexWriterConfig 对象，一个是索引的保存路径
+2. IndexWriterConfig 设置创建索引使用哪种分词器以及索引的模式
+3. IndexWriter 对象的addDocument() 用于添加文档，一次可以添加多个Document，最后调用commit() 方法生成索引
+4. Document 表示文档，是Lucene 索引和搜索的基本单位，比文档小的单位是域，即字段。一个文档可以有多个域，FieldType 对象用于指定域的索引信息，如是否解析、是否存储、是否保存词项频率等
+
+
+# 检索查询
+
+索引建立之后就可以对其进行检索，当用户输入一个关键字后，对关键字进行处理，提高检索的效率，同时检索出更加有效的结果
+* Lucene 中处理用户输入和查询关键词就是构建Query 对象的过程
+* 搜索时，先实例化一个IndexSearch 对象，通过该对象的search() 方法完成搜索过程，参数为Query 对象。方法返回TopDocs 类型的文本集合
+* 查询解析器QueryParser 用于生产Query 对象，需两个参数field 和analyzer，告诉QueryParser 在哪个字段内查找该关键字信息以及搜索时使用什么样的分词器
+
+### Query 类型
+
+* TermQuery： 词项搜索，最简单最常用的Query，可以在索引中搜索某一词条，词条就是key/value 对，key 是字段名，value 是字段中所包含的某个关键字
+* BooleanQuery： 布尔搜索，一个组合Query，使用时把各种Query 对象添加进去并标明他们之间的逻辑关系
+* RangeQuery： 范围搜索，有时用户需要查找满足一定范围的文档，如某一时间段的文档，回复条数在一定区间的文档。查询时需要有“开始词条”和“结束词条”
+* PrefixQuery： 前缀搜索，使用前缀来进行查找，首先定义一个词条Term，该词条包含要查找的字段名以及关键字前缀，然后通过该词条创造一个PrefixQuery 对象
+* PhraseQuery： 多关键字搜索，针对用户输入多个不同的关键字，这些关键字之前要么紧密相连，要么还插有其他无关的内容，此时使用PhraseQuery
+* FuzzyQuery： 模糊搜索，简单识别两个相近的词语，例如：因拼写错误把"Trump"拼成"Trmp"或"Tramp"，可以使用FuzzyQuery
+* WildcardQuery： 通配符搜索，用 ? 代替 * 
+
+
 

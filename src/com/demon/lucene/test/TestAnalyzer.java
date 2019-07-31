@@ -54,6 +54,12 @@ public class TestAnalyzer {
         analyzer = new StopAnalyzer(StopFilter.makeStopSet(new String[]{}, true));
         System.out.println("停用词分词： " + analyzer.getClass());
         logAnalyzer(analyzer);
+        
+        // IK 智能分词器
+        analyzer = new IKAnalyzer();
+        System.out.println("IK智能分词： " + analyzer.getClass());
+        logAnalyzer(analyzer);
+        
     }
     
     private static void logAnalyzer(Analyzer analyzer) throws IOException{
