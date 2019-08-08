@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.apache.lucene.analysis.Analyzer;
 
 import com.demon.lucene.book.ik.IKAnalyzer8x;
-import com.demon.lucene.book.utils.PrintUtil;
+import com.demon.lucene.book.utils.LuceneUtil;
 
 /**
  * 自定义词典测试
@@ -19,7 +19,7 @@ public class ExtDicTest {
     
     public static void main(String[] args) throws IOException {
         Analyzer analyzer = new IKAnalyzer8x(true);
-        PrintUtil.printAnalyzer(analyzer, str);
+        LuceneUtil.printAnalyzer(analyzer, str);
     }
     
 }

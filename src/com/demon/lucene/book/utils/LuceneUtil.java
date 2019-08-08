@@ -13,8 +13,10 @@ import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
  * @since 2019年8月5日 下午4:57:27
  *
  */
-public class PrintUtil {
+public class LuceneUtil {
 
+    public static String indexDir = "/data/lucene/book/chapter2";
+    
     public static void printAnalyzer(Analyzer analyzer, String str) throws IOException{
         StringReader reader = new StringReader(str);
         TokenStream tokenStream = analyzer.tokenStream(str, reader);
