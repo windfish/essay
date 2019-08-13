@@ -610,6 +610,32 @@
         <version>2012_u6</version>
       </dependency>
 	  <!-- lucene end -->
+	  
+	  <!-- tika begin -->
+	  <!-- <dependency>
+          <groupId>essay</groupId>
+          <artifactId>tika-app</artifactId>
+          <version>1.22</version>
+          <scope>system</scope>
+          <systemPath>${project.basedir}/lib/tika-app-1.22.jar</systemPath>
+      </dependency> -->
+      <dependency>
+		<groupId>org.apache.tika</groupId>
+		<artifactId>tika-core</artifactId>
+		<version>1.22</version>
+	  </dependency>
+      <dependency>
+        <groupId>org.apache.tika</groupId>
+        <artifactId>tika-parsers</artifactId>
+        <version>1.22</version>
+      </dependency>
+      <!-- 默认依赖的版本太低，需手工导入高版本的 -->
+      <dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-compress</artifactId>
+	    <version>1.18</version>
+	  </dependency>
+	  <!-- tika end -->
 
   </dependencies>
   

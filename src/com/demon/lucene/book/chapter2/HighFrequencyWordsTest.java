@@ -111,6 +111,7 @@ public class HighFrequencyWordsTest {
     }
     
     public void getTopN(List<Map.Entry<String, Integer>> list, int n){
+        System.out.println("高频词排序：");
         for(int i=0;i<n;i++){
             Entry<String, Integer> entry = list.get(i);
             System.out.println(entry.getKey() + ":" + entry.getValue());
