@@ -15,7 +15,9 @@
 * service 创建索引和html 关键字替换工具
 * WebContent/files 原始文件
 * WebContent/indexdir 索引文件
-* WebContent/lucene.jsp 搜索系统主页  WebContent/result.jsp 搜索结果展示页面  WebContent/error.jsp 搜索错误页面
+* WebContent/lucene.jsp 搜索系统主页
+* WebContent/result.jsp 搜索结果展示页面
+* WebContent/error.jsp 搜索错误页面
 
 
 ## 文件解析
