@@ -1,0 +1,123 @@
+获取对方物品
+
+https://steamcommunity.com/tradeoffer/new/send
+
+
+Accept:*/*
+Accept-Encoding:gzip, deflate, br
+Accept-Language:zh-CN,zh;q=0.9
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Length:542
+Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+Cookie:bCompletedTradeOfferTutorial=true; strTradeLastInventoryContext=578080_2; steamMachineAuth76561198389582507=E374B94D60CEB31746509702403F283EF3EFCBB8; steamMachineAuth76561198177541010=9421297505051B2FD6D67A13D0B9C52FBB7D6A68; _ga=GA1.2.965952316.1510652370; timezoneOffset=28800,0; sessionid=9f1a73656645b73fc7092286; strInventoryLastContext=578080_2; _gid=GA1.2.20431903.1517210473; webTradeEligibility=%7B%22allowed%22%3A0%2C%22reason%22%3A16416%2C%22allowed_at_time%22%3A1519802611%2C%22steamguard_required_days%22%3A15%2C%22sales_this_year%22%3A0%2C%22max_sales_per_year%22%3A200%2C%22forms_requested%22%3A0%2C%22new_device_cooldown_days%22%3A7%2C%22time_checked%22%3A1517210611%7D; steamCountry=JP%7Ceb2362ea853dc2fc7c2c3d4d3c673513; steamLogin=76561198389582507%7C%7C26302824DB4F974CDC31AAF72F94FDCF8EC1CD7E; steamLoginSecure=76561198389582507%7C%7C95B36057B64EBA49A321DAF5E9E94F05D8D98F60
+Host:steamcommunity.com
+Origin:https://steamcommunity.com
+Pragma:no-cache
+Referer:https://steamcommunity.com/tradeoffer/new/?partner=472777042&token=6fAnzAa_
+User-Agent:Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36
+
+
+sessionid:9f1a73656645b73fc7092286
+serverid:1
+partner:76561198433042770
+tradeoffermessage:
+json_tradeoffer:{"newversion":true,"version":2,"me":{"assets":[],"currency":[],"ready":false},"them":{"assets":[{"appid":578080,"contextid":"2","amount":1,"assetid":"1808624450313828939"}],"currency":[],"ready":false}}
+captcha:
+trade_offer_create_params:{"trade_offer_access_token":"6fAnzAa_"}
+
+
+https://steamcommunity.com/tradeoffer/new/?partner=472777042&token=6fAnzAa_ 
+
+
+
+before pull item 
+username:mjqdi390428 
+pull item 
+param:[
+	sessionid=1657c6b154636e697c3391de, 
+	serverid=1, 
+	partner=429316779, 
+	tradeoffermessage=, 
+	captcha=, 
+	trade_offer_create_params={"trade_offer_access_token":"bllDGIbx"}, 
+	json_tradeoffer={"newversion":true,"version":2,"me":{"assets":[],"currency":[],"ready":false},"them":{"assets":[{"appid":570,"contextid":"2","amount":1,"assetid":"12912300241"},{"appid":570,"contextid":"2","amount":1,"assetid":"12912300329"}],"currency":[],"ready":false}}]
+
+
+	
+取消报价：
+ {"success":8}  已取消的报价，再次取消返回
+ {"success":11} 已拒绝的报价，再次取消返回
+ {"success":11} 已接受的报价，再次取消返回
+
+ 
+https://steamcommunity-a.akamaihd.net/economy/image/1MrIl4MIJ_pNBhReTwBpxJ8G4GM4OekG2V3huqL5LCqk1i0eEBQwwm_zt8cl-xrtvDXIxynVGhd-5Biaf3aCPFpqEsCh9FmnCUsIfcE
+ 
+https://steamcommunity.com/inventory/76561198209275820/578080/2?l=schinese&count=4000
+
+
+[INFO] 2018-04-09 11:57:36 837 [PullItemManage:147] - pull item result, 
+
+account:mdfum38744 
+pull item:{"account":"mdfum38744","assetids":[{"appid":578080,"assetid":"1882942730922917080","contextid":"2","num":1,"recordId":201804080010087}],"maFile":"{\"shared_secret\":\"5SXunN54ANOpI1H0WSCcDplR9F0=\",\"serial_number\":\"3808289217040216280\",\"revocation_code\":\"R06605\",\"uri\":\"otpauth://totp/Steam:mdfum38744?secret=4US65HG6PAANHKJDKH2FSIE4B2MVD5C5&issuer=Steam\",\"server_time\":1503308414,\"account_name\":\"mdfum38744\",\"token_gid\":\"27f57be8d7638fb4\",\"identity_secret\":\"/PJlc2iJCJo5just4/+tBj5yatw=\",\"secret_1\":\"On5Oue94fItUo0TIqkvmCG+FAZ4=\",\"status\":1,\"device_id\":\"android:2eb58d66-cc42-8d66-8d66-8d66cc42b99c\",\"fully_enrolled\":true,\"Session\":{\"SessionID\":\"03909bcc28b235ca1891fae4\",\"SteamLogin\":\"76561198209670128%7C%7C4085D357D7AF95867326FDCD75FA5973D6745A02\",\"SteamLoginSecure\":\"76561198209670128%7C%7C8F0EC90E882F772E8A389DD60C21DCB02F3F8D90\",\"WebCookie\":\"F073186691D9823F1FD58101C5471F3C065A7371\",\"OAuthToken\":\"3096cc5d3005f943e05853b5d0d7f65b\",\"SteamID\":76561198209670128}}","password":"xDBx61sR3Y55","steamLink":"https://steamcommunity.com/tradeoffer/new/?partner=249010092&token=zYpFS9nN","steamid":"76561198209670128","token":"5SXunN54ANOpI1H0WSCcDplR9F0="} 
+reponse:{"needs_email_confirmation":false,"needs_mobile_confirmation":false,"responseText":"{\"tradeofferid\":\"3145290838\"}\n","tradeofferid":"3145290838"}
+
+
+https://documentation.playbattlegrounds.com/en/community-sdks.html
+吃鸡开发者平台
+
+
+#570_2_12912300241   荣光之焰
+#570_2_12912300329   寒铁巫女斗篷
+
+
+
+
+
+send item, usernaem:mgny9173158 -- 
+tradeofferUrl:https://steamcommunity.com/tradeoffer/new/?partner=469886282&token=5ToKAyDN partner:469886282 sendPartner:76561198430152010 token:5ToKAyDN
+
+
+
+根据交易链接获取的交易对象信息
+
+<script type="text/javascript">
+var g_rgAppContextData = {"570":{"appid":570,"name":"Dota 2","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/570\/0bbb630d63262dd66d2fdd0f7d37e8661a410075.jpg","link":"http:\/\/steamcommunity.com\/app\/570","asset_count":18,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/570\/910ef16cd7bf6c6986e78b3ad4eee7eaa5d26cc0.png","trade_permissions":"FULL","load_failed":0,"rgContexts":{"2":{"asset_count":18,"id":"2","name":"Backpack"}}},"578080":{"appid":578080,"name":"PLAYERUNKNOWN'S BATTLEGROUNDS","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/578080\/93d896e7d7a42ae35c1d77239430e1d90bc82cae.jpg","link":"http:\/\/steamcommunity.com\/app\/578080","asset_count":7,"trade_permissions":"FULL","load_failed":0,"rgContexts":{"2":{"asset_count":7,"id":"2","name":"Backpack"}}},"230410":{"appid":230410,"name":"Warframe","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/230410\/bcf887d7b0707e5418e1680de92e85ca899516ac.jpg","link":"http:\/\/steamcommunity.com\/app\/230410","asset_count":0,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/230410\/49958ed9dfdee9545369e41778c9a986be5bbfa8.png","trade_permissions":"FULL","load_failed":0,"rgContexts":{"2":{"asset_count":0,"id":"2","name":"Inventory"}}},"753":{"appid":753,"name":"Steam","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/753\/135dc1ac1cd9763dfc8ad52f4e880d2ac058a36c.jpg","link":"http:\/\/steamcommunity.com\/app\/753","asset_count":0,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/753\/db8ca9e130b7b37685ab2229bf5a288aefc3f0fa.png","trade_permissions":"FULL","load_failed":0,"rgContexts":{"1":{"asset_count":0,"id":"1","name":"\u793c\u7269"},"3":{"asset_count":0,"id":"3","name":"\u4f18\u60e0\u5238"},"6":{"asset_count":0,"id":"6","name":"\u793e\u533a"},"7":{"asset_count":0,"id":"7","name":"\u7269\u54c1\u5956\u52b1"}}}};
+var g_rgPartnerAppContextData = {"578080":{"appid":578080,"name":"PLAYERUNKNOWN'S BATTLEGROUNDS","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/578080\/93d896e7d7a42ae35c1d77239430e1d90bc82cae.jpg","link":"http:\/\/steamcommunity.com\/app\/578080","asset_count":73,"trade_permissions":"FULL","load_failed":0,"rgContexts":{"2":{"asset_count":73,"id":"2","name":"Backpack"}}},"753":{"appid":753,"name":"Steam","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/753\/135dc1ac1cd9763dfc8ad52f4e880d2ac058a36c.jpg","link":"http:\/\/steamcommunity.com\/app\/753","asset_count":0,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/753\/db8ca9e130b7b37685ab2229bf5a288aefc3f0fa.png","trade_permissions":"FULL","load_failed":0,"rgContexts":{"3":{"asset_count":0,"id":"3","name":"\u4f18\u60e0\u5238"},"6":{"asset_count":0,"id":"6","name":"\u793e\u533a"},"7":{"asset_count":0,"id":"7","name":"\u7269\u54c1\u5956\u52b1"}}}};
+var g_rgForeignAppContextData = { };
+var g_rgWalletInfo = {"success":false};
+var g_strCountryCode = "CN";
+var g_bMarketAllowed = true;
+var g_ulTradePartnerSteamID = '76561198433042770';	// 交易对象steamid
+var g_bTradePartnerProbation = false;
+var g_sessionID = "9f1a73656645b73fc7092286";
+
+var g_rgCurrentTradeStatus = {"newversion":true,"version":1,"me":{"assets":[],"currency":[],"ready":false},"them":{"assets":[],"currency":[],"ready":false}};
+
+UserYou.SetProfileURL( "https:\/\/steamcommunity.com\/profiles\/76561198389582507" );
+UserYou.SetSteamId( '76561198389582507' );	// 发起交易的steamid
+var g_strYourPersonaName = "xxx";			// 发起交易的steam名称
+var g_strInventoryLoadURL = 'https://steamcommunity.com/profiles/76561198389582507/inventory/json/';
+
+UserThem.SetProfileURL( "https:\/\/steamcommunity.com\/profiles\/76561198433042770" );
+UserThem.SetSteamId( '76561198433042770' );			// 交易对象steamid
+var g_strTradePartnerPersonaName = "fisherXeon";	// 交易对象的steam名称
+var g_strTradePartnerInventoryLoadURL = 'https://steamcommunity.com/tradeoffer/new/partnerinventory/';
+
+$J( function() {
+	UserYou.LoadContexts( g_rgAppContextData );
+	UserThem.LoadContexts( g_rgPartnerAppContextData );
+	BeginTradeOffer( 0, false );
+
+	
+	
+			CTradeOfferStateManager.SetTradeOfferCreateParams( {"trade_offer_access_token":"6fAnzAa_"} );
+	} );
+</script>
+
+
+
+
+
+
+

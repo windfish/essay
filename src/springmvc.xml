@@ -19,11 +19,13 @@
 		直接导致的结果就是在service-context中的事务配置不起作用，发生异常时，无法对数据进行回滚。
 	 -->
 	<context:component-scan base-package="com.demon.clothes.controller"></context:component-scan>
+	<context:component-scan base-package="com.demon.lucene.book.chapter3.controller"></context:component-scan>
 	<mvc:annotation-driven/>
 	
 	<!-- 视图解析器 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
+		<!-- <property name="prefix" value="/WEB-INF/views/" /> -->
+		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 	

@@ -1,0 +1,109 @@
+复用qqdata
+
+账号检测task：替代CheckDataServlet
+循环处理checking_queue
+1、有FinishTime的，超过一定时间的，从queue中删除，其余的不处理
+2、根据uuid查找redis中是否有验证结果
+3、无结果的，retryCount<3 && checkTime 超时，重新推送；>3 && checkTime 超时，删除；其余不处理
+4、有结果的，写FinishTime和result，并扔给HeroJob处理
+
+循环处理pre_queue
+1、checking_queue中是否存在
+2、不存在的，放入checking_queue中，从pre_queue删除
+3、存在的，checking_queue删除，重新放入checking_queue，然后从pre_queue删除；FinishTime的，同时删除redis
+
+
+账号检测结果task：替代FinishDataServlet
+根据uuid写入redis，设置缓存时间
+
+验证码处理：替代GetVerifycodeDataServlet
+upload.jsp 
+1、根据uuid，校验uuid是否超时
+2、上传验证码图片后，调用打码兔接口，将返回的验证码推送到网吧服务器
+3、若打码兔接口打码失败，则人工输入验证码，推送到网吧服务器
+
+
+安全监控
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+云平台账号检测：
+云平台账号检测action，获取账号信息，设置推送时间，写处理中列表redis，推送账号信息到配置中心（xxtea 加密，每个网吧加密密钥不一样）
+
+账号检测task：
+循环处理中列表，推送时间超过一定时间，更新推送时间，重新推送。
+推送次数超过N次，从列表中剔除。
+查询账号检测结果，若存在，将结果信息写入qq_login2_hero待HeroJob处理，从待处理列表中剔除
+
+检测结果task：
+检测结果写入redis，设定过期时间
+
+
+验证码处理：
+验证码上传成功后，调用打码兔接口，将返回的验证码推送到配置中心
+
+
+
+
+
+前端修改：提交检测申请后，定时访问后端，根据barid和qq查找检测结果？
+
+前端获取检测结果的，有两种实现方案：
+一种是前端发起检测请求之后，定时请求服务端获取检测结果，进行展示
+另一种是前端websocket实现，异步等待服务端返回检测结果
+
+
+// 1 账号验证数据
+{
+	uuid:@string	// uuid
+	area:@int32		// 区服
+	barid:@int64	// 网吧编号
+	name:@string	// qq号
+	p:@string		// 密码
+}
+
+// 2 验证码
+{
+	uuid:@string	// uuid
+	barid:@int64	// 网吧ID
+	qq:@string		// qq号
+	verifycode:@string	// 验证码
+}
+
+
+
+
+
+
+// qq_login2_hero 数据结构
+{
+"qq":"2929726879",
+"lol":{
+	"area":"2",
+	"accountId":"",
+	"heroids":"10,11,12,13,15,16,18,20,21,22,23,25,26,32,45,53,78,99,86,",
+	"roleName":"高端大气上档次AB",
+	"roleLevel":30
+	},
+"login":{
+	"device_lock":0,
+	"message":"",
+	"status":0
+	},
+"type":1,
+"barid":263461
+}
+
+
