@@ -24,7 +24,7 @@
     </div>
     <div class="info">
         <p>基于Lucene 的文件检索系统</p>
-        <p>&copy; <%=year > 2019 ? (2019 + "-" + year) : year %> essay 读书笔记 </p> 
+        <p>&copy; <%=year > 2019 ? (2019 + "-" + year) : year %> 读书笔记 </p> 
     </div>
 </div>
 </body>

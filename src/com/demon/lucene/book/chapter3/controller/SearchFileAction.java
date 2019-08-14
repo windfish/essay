@@ -36,7 +36,7 @@ import com.demon.lucene.book.chapter3.model.FileModel;
 import com.demon.lucene.book.ik.IKAnalyzer8x;
 
 /**
- * 
+ * 基于Lucene 的文件搜索
  * @author xuliang
  * @since 2019年8月14日 上午10:49:43
  *

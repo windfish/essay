@@ -10,6 +10,13 @@
 
 ![](https://oscimg.oschina.net/oscnet/f3a15d93125fc1afa9c411d33868ea0238c.jpg)
 
+* controller 搜索和下载 http 服务
+* model 文件对象
+* service 创建索引和html 关键字替换工具
+* WebContent/files 原始文件
+* WebContent/indexdir 索引文件
+* WebContent/lucene.jsp 搜索系统主页  WebContent/result.jsp 搜索结果展示页面  WebContent/error.jsp 搜索错误页面
+
 
 ## 文件解析
 
@@ -34,5 +41,6 @@ Tika 自动解析文档的过程：
 * 首先，传入一个文件到Tika，文件类型可以是任意的，Tika 使用自身的类型检查机制来检查文件类型
 * Tika 提供了一个解析器库，包含多种类型的解析器。根据文件类型来选择合适的解析器
 * 将文档传入解析器中，进行文档内容的提取、元数据提取
+
 
 

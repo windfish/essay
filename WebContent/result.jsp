@@ -66,5 +66,9 @@ RegexHtml regexHtml = new RegexHtml();
     }
     %>
 </div>
+<div class="info">
+    <p>基于Lucene 的文件检索系统</p>
+    <p>&copy; 2019 读书笔记 </p> 
+</div>
 </body>
 </html>

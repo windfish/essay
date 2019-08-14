@@ -38,6 +38,9 @@ Java 8 学习，包含Lambda、FunctionalInterface、default 方法、CAS 和AQS
 * [Apache Daemon](https://github.com/windfish/essay/tree/master/src/com/demon/jsvc)
 Apache Daemon 学习与使用，编译生成的javc，可以将普通的java 应用程序作为Linux 或Windows 的后台服务,以daemon 方式运行
 
+* [Apache Lucene](https://github.com/windfish/java-essay/tree/master/src/com/demon/lucene/book/chapter3)
+基于Apache Lucene 文件搜索系统 
+
 * [深入理解Java 虚拟机学习](https://github.com/windfish/essay/tree/master/src/com/demon/jvm)
 深入理解Java 虚拟机学习（未完）
 
