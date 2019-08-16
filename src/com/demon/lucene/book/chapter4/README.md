@@ -48,10 +48,17 @@ _注意_：Elasticsearch 中，提到某个索引下的某个类型的某个文�
 # 安装运行elasticsearch
 
 下载 elasticsearch-7.3.0，直接解压
-./bin/elasticsearch 启动
-./bin/elasticsearch -d 后台启动
+* ./bin/elasticsearch 启动
+* ./bin/elasticsearch -d 后台启动
 
 HTTP 默认端口为9200，TCP 默认端口为9300，启动后可以通过 curl localhost:9200 访问，返回JSON 格式的对象
+
+### 版本号
+
+* elasticsearch-7.3.0-linux-x86_64.tar.gz
+* elasticsearch-analysis-ik-7.3.0.zip
+* elasticsearch-head-master.zip
+* node-v10.16.2-linux-x64.tar.xz
 
 ### 报错情况
 
