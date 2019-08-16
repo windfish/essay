@@ -17,7 +17,7 @@ Jenkins 部署与使用，涉及本地服务的管理，远程机器的服务管
 
 * [Spring+SpringMVC+Mybatis+Dubbo+Apache Daemon 项目模板](https://github.com/windfish/ssm_example)
 
-*[nikit](https://github.com/windfish/netkit)
+* [nikit](https://github.com/windfish/netkit)
 基于netty3.7 的封装，简化通信上的处理，专注于业务上的处理
 
 
