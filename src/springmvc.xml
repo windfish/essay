@@ -19,6 +19,7 @@
 		直接导致的结果就是在service-context中的事务配置不起作用，发生异常时，无法对数据进行回滚。
 	 -->
 	<context:component-scan base-package="com.demon.clothes.controller"></context:component-scan>
+	<!-- 基于Lucene 的文件搜索服务 -->
 	<context:component-scan base-package="com.demon.lucene.book.chapter3.controller"></context:component-scan>
 	<mvc:annotation-driven/>
 	
