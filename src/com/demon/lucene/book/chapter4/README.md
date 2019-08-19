@@ -192,7 +192,7 @@ Waiting forever...
 Started connect web server on http://192.168.10.100:9100
 ```
 访问http://192.168.10.100:9100/ 可以查看Elasticsearch 集群的情况
-![](https://oscimg.oschina.net/oscnet/693f5dca7172ded8ebabb4f3322a6a3cfa7.jpg)
+![](https://oscimg.oschina.net/oscnet/44bcc274225c37586c4024efa4b99a35931.jpg)
 
 
 # Kibana 工具
