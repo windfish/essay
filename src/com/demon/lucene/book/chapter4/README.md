@@ -205,7 +205,7 @@ sudo vim config/kibana.yml
 
 # Kibana 服务端口
 server.port: 5601
-# 绑定服务器地址
+# 绑定服务器地址，以便外部机器可以访问
 server.host: "192.168.11.248"
 # ES 地址
 elasticsearch.hosts: ["http://192.168.11.248:9200"]
@@ -215,6 +215,20 @@ nohup ./bin/kibana &
 ```
 浏览器可以通过 http://192.168.11.248:5601 访问
 
+### 遇到的问题
+```
+# [node-1] flood stage disk watermark [95%] exceeded on [AbQ6RdHsTleXuFvtCyBrLg][node-1][/data/elasticsearch/elasticsearch-7.2.1/data/nodes/0] 
+# free: 214.6mb[3.2%], all indices on this node will be marked read-only
+磁盘空间不足，导致Kibana 连不上ES 集群
+
+Kibana 报错如下：
+[elasticsearch] Request error, retrying 
+GET http://192.168.10.100:9200/_nodes?filter_path=nodes.*.version%2Cnodes.*.http.publish_address%2Cnodes.*.ip => read ECONNRESET
+[elasticsearch] Request error, retrying
+PUT http://192.168.10.100:9200/_template/.management-beats => socket hang up
+[elasticsearch] Request error, retrying
+GET http://192.168.10.100:9200/_xpack => socket hang up
+```
 
 
 
