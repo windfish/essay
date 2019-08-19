@@ -1,0 +1,178 @@
+以下的命令都是利用 Kibana 的开发工具执行的
+
+# 索引管理
+
+索引名称不能出现大写字母
+```
+# 创建索引
+PUT blog
+
+# ES 默认给一个索引设置5个分片1个副本，索引的分片数一经指定不能修改，副本可以通过命令随时修改
+# 可以在创建索引时指定分片数和副本数
+PUT blog1
+{
+    "settings": {
+        "number_of_shards": 3,
+        "number_of_replicas": 0
+    }
+}
+```
+```
+# 更新索引
+PUT blog/_settings
+{
+    "number_of_replicas": 2
+}
+```
+
+索引还可以设置读写权限：
+* blocks.read_only: true 索引只允许读，不允许写或更新
+* blocks.read: true 禁止对当前索引进行读操作
+* blocks.write: true 禁止对当前索引进行写操作
+```
+PUT blog/_settings
+{
+    "blocks.write": true
+}
+# 设置后blog 索引不能写入数据
+PUT blog/article/1
+{
+    "title": "Java 虚拟机"
+}
+
+# 索引恢复写入权限
+PUT blog/_settings
+{
+    "blocks.write": false
+}
+```
+```
+# 查看索引配置
+GET blog/_settings
+# 查看多条索引配置
+GET blog,blog1/_settings
+# 查看索引索引
+GET _all/_settings
+```
+```
+# 删除索引
+DELETE blog1
+```
+
+索引可以进行打开与关闭操作，关闭后的索引几乎不占用系统资源，关闭后的索引不能进行读写操作
+```
+# 关闭索引，也支持关闭多个索引
+POST blog/_close
+POST blog,blog1/_close
+# 打开索引
+POST blog_open
+# 开关操作也支持通配符和_all
+POST _all/_close
+POST test*/_close
+```
+
+复制索引：_reindex API 可以把文档从源索引复制到目标索引，目标索引不会复制源索引中的配置信息，_reindex 操作之前需要设置目标索引的分片数、副本数等信息
+```
+POST _reindex
+{
+    "source": {"index": "blog"},
+    "dest": {"index": "blog_new"}
+}
+# 可以加入type 和query 来限制文档
+POST _reindex
+{
+    "source": {
+        "index": "blog",
+        "type": "article",
+        "query": {
+            "term": { "title": "git" }
+        }
+    },
+    "dest": {
+        "index": "blog_new"
+    }
+}
+```
+
+收缩索引：一个索引的分片初始化后是无法再修改的，但是可以使用shrink index API 提供的缩小索引分片数机制，把一个索引变成一个更少分片的索引。
+收缩后的分片数必须是原始分片的因子，比如8个分片可以收缩为4、2、1，若分片数是素数（7、11等），则只能收缩为1。
+收缩索引之前，索引中的每个分片都要在同一个节点上，并且被标记为只读，节点健康值为绿色的。
+
+收缩索引的过程：
+* 创建一个目标索引，设置与源索引相同，但目标索引的分片数较少
+* 把源索引硬链接到目标索引，若文件系统不支持硬链接，那么所有端都会被复制到新索引中，这是一个耗费更多时间的过程
+* 新的索引恢复使用
+```
+POST blog/_shrink/blog_new
+{
+    "settings": {
+        "index.number_of_replicas": 0,
+        "index.number_of_shards": 1,
+        "index.codec": "best_compression"
+    },
+    "aliases": {
+        "my_search_indices": {}
+    }
+}
+```
+
+索引别名：就是给一个索引或多个索引起另一个名字
+```
+# 新增别名
+POST /_aliases
+{
+    "actions": [
+        {"add": {"index": "test1", "alias": "alias1"}}
+    ]
+}
+# 删除别名
+POST /_aliases
+{
+    "actions": [
+        {"remove": {"index": "test1", "alias": "alias1"}}
+    ]
+}
+```
+
+
+# 文档管理
+
+```
+# 新建文档
+PUT blog/article/1
+{
+    "id": 1,
+    "title": "Git 简介",
+    "posttime": "2019-08-19",
+    "content": "Git 是一款免费、开源的分布式版本控制系统"
+}
+# 若不指定docID，则使用POST 命令，docID 会自动生成
+POST blog/article
+{
+    "id": 1,
+    "title": "Git 简介",
+    "posttime": "2019-08-19",
+    "content": "Git 是一款免费、开源的分布式版本控制系统"
+}
+```
+```
+# 获取文档
+GET blog/article/1
+# 检查一个文档是否存在，文档存在，返回“200 - OK”，不存在，返回“404 - Not Found”
+HEAD blog/article/1
+
+# Multi GET API 可以获取多个文档
+GET _mget
+{
+    "docs": [
+        {"_index": "blog", "_type": "article", "_id": 1},
+        {"_index": "blog1", "_type": "article", "_id": 2}
+    ]
+}
+
+```
+
+
+
+
+
