@@ -47,7 +47,7 @@ _注意_：Elasticsearch 中，提到某个索引下的某个类型的某个文�
 
 # 安装运行elasticsearch
 
-下载 elasticsearch-7.3.0，直接解压
+下载 elasticsearch-7.2.1，直接解压
 * ./bin/elasticsearch 启动
 * ./bin/elasticsearch -d 后台启动
 
@@ -55,9 +55,10 @@ HTTP 默认端口为9200，TCP 默认端口为9300，启动后可以通过 curl 
 
 ### 版本号
 
-* elasticsearch-7.3.0-linux-x86_64.tar.gz
-* elasticsearch-analysis-ik-7.3.0.zip
+* elasticsearch-7.2.1-linux-x86_64.tar.gz
+* elasticsearch-analysis-ik-7.2.1.zip
 * elasticsearch-head-master.zip
+* kibana-7.2.1-linux-x86_64.tar.gz
 * node-v10.16.2-linux-x64.tar.xz
 
 ### 报错情况
@@ -69,7 +70,7 @@ seccomp是linux kernel从2.6.23版本开始所支持的一种安全机制，内�
 不能使用root 用户运行，建议使用单独的用户启动
 
 * localhost:9200 可访问，本机和外机 IP:9200 不能访问
-配置文件elasticsearch.yml 增加 network.host: 192.168.10.100，重启后发现还有报错
+配置文件elasticsearch.yml 增加 network.host: 192.168.11.248，重启后发现还有报错
 ```
 # max file descriptors [4096] for elasticsearch process is too low, increase to at least [65535]
 su root
@@ -118,16 +119,16 @@ config 目录是存放配置文件的，elasticsearch.yml 是基本配置文件�
 https://github.com/medcl/elasticsearch-analysis-ik/releases 版本号要与Elasticsearch 一致
 
 * 将下载的包解压，放入Elasticsearch/plugins/ik 目录下，重启Elasticsearch，日志中 loaded plugin [analysis-ik] 表示插件安装成功。
-* ik 的配置文件在elasticsearch-7.3.0/config/analysis-ik/IKAnalyzer.cfg.xml 或 elasticsearch-7.3.0/plugins/ik/config/IKAnalyzer.cfg.xml。ik 自定义词典需配置plugins/ik/config 的相对路路径。
+* ik 的配置文件在elasticsearch-7.2.1/config/analysis-ik/IKAnalyzer.cfg.xml 或 elasticsearch-7.2.1/plugins/ik/config/IKAnalyzer.cfg.xml。ik 自定义词典需配置plugins/ik/config 的相对路路径。
 * ik_max_word: 会将文本做最细粒度的拆分，比如会将“中华人民共和国国歌”拆分为“中华人民共和国,中华人民,中华,华人,人民共和国,人民,人,民,共和国,共和,和,国国,国歌”，会穷尽各种可能的组合，适合 Term Query
 * ik_smart: 会做最粗粒度的拆分，比如会将“中华人民共和国国歌”拆分为“中华人民共和国,国歌”，适合 Phrase 查询
 
 测试分词的请求：
 ```
 # 创建索引
-curl -XPUT http://localhost:9200/test
+curl -XPUT http://192.168.11.248:9200/test
 # 测试分词
-curl -XGET "http://localhost:9200/test/_analyze" -H 'Content-Type: application/json' -d'
+curl -XGET "http://192.168.11.248:9200/test/_analyze" -H 'Content-Type: application/json' -d'
 {
    "text":"洪荒之力","tokenizer": "ik_smart"
 }'
@@ -194,7 +195,25 @@ Started connect web server on http://192.168.10.100:9100
 ![](https://oscimg.oschina.net/oscnet/693f5dca7172ded8ebabb4f3322a6a3cfa7.jpg)
 
 
+# Kibana 工具
 
+下载Kibana，kibana-7.2.1-linux-x86_64.tar.gz
+```
+sudo tar -zxvf kibana-7.2.1-linux-x86_64.tar.gz
+# 修改配置
+sudo vim config/kibana.yml
+
+# Kibana 服务端口
+server.port: 5601
+# 绑定服务器地址
+server.host: "192.168.11.248"
+# ES 地址
+elasticsearch.hosts: ["http://192.168.11.248:9200"]
+
+# 后台运行
+nohup ./bin/kibana &
+```
+浏览器可以通过 http://192.168.11.248:5601 访问
 
 
 
