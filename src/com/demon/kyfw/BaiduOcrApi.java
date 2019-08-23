@@ -22,6 +22,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,10 +39,11 @@ public class BaiduOcrApi {
 
     private final String API_Key = "k2su7Ek2yD6HGqDCuh2OCUyU";
     private final String Secret_Key = "bfyAWYyc9RdSc8ZoUegx2dPYkjHzscmI";
-    private final String Access_Token = "24.7993cc4cfbeed14d852346c987f00693.2592000.1544150854.282335-10639410";
+    private final String Access_Token = "24.569433cf3b78689c3d1e4fb47da3d8fb.2592000.1568886927.282335-10639410";
     
     private CloseableHttpClient httpClient = HttpClients.createDefault();
     
+    @Test
     public void getAccessToken(){
         String url = "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id="+API_Key+"&client_secret="+Secret_Key;
         String accessToken = get(url, null);
@@ -195,9 +197,9 @@ public class BaiduOcrApi {
     
     public static void main(String[] args) {
 //        new BaiduOcrApi().getAccessToken();
-//        new BaiduOcrApi().wordRecognition("D:\\img\\0.jpg");
+        new BaiduOcrApi().wordRecognition("D:\\img\\111111.png");
 //        new BaiduOcrApi().imageRecognition("D:\\img\\6.jpg");
-        new BaiduOcrApi().imageRecognition("D:\\img\\1.jpg");
+//        new BaiduOcrApi().imageRecognition("D:\\img\\1.jpg");
     }
     
 }
