@@ -714,6 +714,164 @@ GET geoshape/_search
 }
 ```
 
+# 特殊查询
+
+### more_like_this query
+可以查询和提供文本类似的文档，通常用于近似文本的推荐等场景
+```
+GET books/_search
+{
+  "query": {
+    "more_like_this": {
+      "fields": [
+        "title", "description"
+      ],
+      "like": "java virtual machine",
+      "min_term_freq": 1,
+      "max_query_terms": 12
+    }
+  }
+}
+```
+可选参数及取值：
+* fields 要匹配的字段，默认是_all 字段
+* like 要匹配的文本
+* min_term_freq 文档中词项的最低频率，低于此频率的文档会被忽略
+* max_query_terms 文档中能包含的最大词项数
+
+### script query
+支持使用脚本进行查询
+```
+# 查询价格大于70 的文档
+GET books/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "script": {
+            "script": {
+              "inline": "doc['price'].value > 70",
+              "lang": "painless"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+
+# 搜索高亮
+
+### 自定义高亮片段
+在高亮属性中给需要高亮的字段加上pre_tags 和post_tags
+```
+GET books/_search
+{
+  "query": {
+    "match": {
+      "title": "javascript"
+    }
+  },
+  "highlight": {
+    "fields": {
+      "title": {
+        "pre_tags": ["<strong>"],
+        "post_tags": ["</strong>"]
+      }
+    }
+  }
+}
+```
+
+### 多字段高亮
+require_field_match 设置为false；默认为true，只会高亮匹配的字段
+```
+GET books/_search
+{
+  "query": {
+    "match": {
+      "title": "javascript"
+    }
+  },
+  "highlight": {
+    "require_field_match": "false", 
+    "fields": {
+      "title": {
+        "pre_tags": ["<strong>"],
+        "post_tags": ["</strong>"]
+      },
+      "description": {}
+    }
+  }
+}
+```
+
+### ES 高亮器
+* 默认的highlight 是最基本的高亮器，需要对_source 中的文档进行二次分析，速度是最慢的，优点是不需要额外的存储空间
+* postings-highlighter 高亮器不需要二次分析，但需要在字段映射中设置index_options 值为offsets，即保存字段的偏移量
+* fast-vector-highlighter 高亮器速度最快，但需要在字段的映射中设置term_vector 参数取值为with_positions_offsets，即保存关键词的位置和偏移信息，占用的存储空间最大
+```
+PUT /example
+{
+  "mappings": {
+    "properties": {
+      "comment": {
+        "type": "text",
+        "index_options": "offsets"
+      }
+    }
+  }
+}
+PUT /example
+{
+  "mappings": {
+    "properties": {
+      "comment": {
+        "type": "text",
+        "term_vector": "with_positions_offsets"
+      }
+    }
+  }
+}
+```
+
+
+# 搜索排序
+```
+# 默认排序，是按评分降序排序
+GET books/_search
+{
+  "query": {
+    "term": {
+      "title": "java"
+    }
+  }
+}
+# 多字段排序
+GET books/_search
+{
+  "sort": [
+    {
+      "price": {
+        "order": "desc"
+      },
+      "year": {
+        "order": "asc"
+      }
+    }
+  ]
+}
+# ES 是在每一个分片上单独打分的，分片的数量会影响打分的结果；分词器也会影响打分的结果
+```
+
+
+
+
+
+
 
 
 

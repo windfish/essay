@@ -463,6 +463,8 @@
 	    <groupId>io.netty</groupId>
 	    <artifactId>netty-all</artifactId>
 	    <version>5.0.0.Alpha1</version>
+	    <!-- ES TransportClient 版本冲突修改 -->
+	    <!-- <version>4.1.35.Final</version> -->
 	</dependency>
 	
 	<dependency>
@@ -566,42 +568,42 @@
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-core</artifactId>
-        <version>8.1.1</version>
+        <version>8.0.0</version>
       </dependency>
       <!-- lucene 查询 -->
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-queries</artifactId>
-        <version>8.1.1</version>
+        <version>8.0.0</version>
       </dependency>
       <!-- lucene 查询解析器 -->
       <dependency>
 	    <groupId>org.apache.lucene</groupId>
 	    <artifactId>lucene-queryparser</artifactId>
-	    <version>8.1.1</version>
+	    <version>8.0.0</version>
 	  </dependency>
 	  <!-- lucene 公共分词器 -->
 	  <dependency>
 		<groupId>org.apache.lucene</groupId>
 		<artifactId>lucene-analyzers-common</artifactId>
-		<version>8.1.1</version>
+		<version>8.0.0</version>
 	  </dependency>
 	  <!-- lucene 中文智能分词器 -->
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-analyzers-smartcn</artifactId>
-        <version>8.1.1</version>
+        <version>8.0.0</version>
       </dependency>
       <!-- lucene 关键字高亮 -->
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-highlighter</artifactId>
-        <version>8.1.1</version>
+        <version>8.0.0</version>
       </dependency>
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-memory</artifactId>
-        <version>8.1.1</version>
+        <version>8.0.0</version>
       </dependency>
       <!-- IK analyzer 中文分词器 -->
       <dependency>
@@ -636,6 +638,25 @@
 	    <version>1.18</version>
 	  </dependency>
 	  <!-- tika end -->
+	  <!-- Elasticsearch begin -->
+	  <dependency>
+	    <groupId>org.elasticsearch.client</groupId>
+	    <artifactId>elasticsearch-rest-high-level-client</artifactId>
+	    <version>7.2.1</version>
+	  </dependency>
+	  <dependency>
+	    <groupId>org.elasticsearch.client</groupId>
+		<artifactId>transport</artifactId>
+		<version>7.2.1</version>
+	  </dependency>
+	  <!-- 冲突的版本升级 begin -->
+	  <dependency>
+	    <groupId>joda-time</groupId>
+	    <artifactId>joda-time</artifactId>
+	    <version>2.10.2</version>
+	  </dependency>
+	  <!-- 冲突的版本升级 end -->
+	  <!-- Elasticsearch end -->
 
   </dependencies>
   
