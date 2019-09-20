@@ -44,6 +44,11 @@ do
 		      shift;shift;
 		      continue
 		;;
+		--prefix )
+              LOG_PREFIX="$2"
+              shift;shift;
+              continue
+        ;;
 		* )
 			break
 		;;
@@ -69,9 +74,15 @@ test ".$FILE" = . && echo "FILE not found!" && exit
 # constants
 FILE_LOG=$LOG_CONTEXT/$FILE
 
-FILE_ALARM_INDEX=$ALARM_CONTEXT/$FILE.index
-FILE_ALARM_VERSION=$ALARM_CONTEXT/$FILE.version
-FILE_ALARM_MESSAGE=$ALARM_CONTEXT/$FILE.message
+if [ $LOG_PREFIX == "" ]; then
+  FILE_ALARM_INDEX=$ALARM_CONTEXT/$FILE.index
+  FILE_ALARM_VERSION=$ALARM_CONTEXT/$FILE.version
+  FILE_ALARM_MESSAGE=$ALARM_CONTEXT/$FILE.message
+else
+  FILE_ALARM_INDEX=$ALARM_CONTEXT/${LOG_PREFIX}_$FILE.index
+  FILE_ALARM_VERSION=$ALARM_CONTEXT/${LOG_PREFIX}_$FILE.version
+  FILE_ALARM_MESSAGE=$ALARM_CONTEXT/${LOG_PREFIX}_$FILE.message
+fi
 
 if [ ! -f "$FILE_LOG" ]; then
 	echo "$FILE_LOG not found!"

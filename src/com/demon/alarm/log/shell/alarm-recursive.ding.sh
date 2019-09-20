@@ -37,8 +37,19 @@ do
         LOG_CONTEXT=$LOG_HOME/${DIR#*/}
         LOG_FILE=${FILE##*/}
         echo "LOG_CONTEXT=$LOG_CONTEXT LOG_FILE=$LOG_FILE"
+        
+        # 同名日志文件处理（不同目录）
+        LOG_PREFIX=""
+        if [ "${DIR##*/}" == "asyn_log_to_db" ]; then
+          LOG_PREFIX=${DIR%/*}
+          LOG_PREFIX=${LOG_PREFIX#*/}
+          LOG_PREFIX=${LOG_PREFIX#*.}
+          LOG_PREFIX=${LOG_PREFIX%.*}
+          echo "LOG_PREFIX=$LOG_PREFIX"
+        fi
+        
         #bash -x $ALARM_SHELL_CONTEXT/alarm-1.0.sh --emails $EMAILS --log-context $LOG_CONTEXT --file $LOG_FILE
-	    bash -x $ALARM_SHELL_CONTEXT/alarm-1.1.sh --mode ding --dingding $DING --log-context $LOG_CONTEXT --file $LOG_FILE
+	    bash -x $ALARM_SHELL_CONTEXT/alarm-1.1.sh --mode ding --dingding $DING --log-context $LOG_CONTEXT --file $LOG_FILE --prefix $LOG_PREFIX
         break
     done
 done
