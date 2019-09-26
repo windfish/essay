@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+body{
+	margin: 0 auto;
+}
+
+.box{
+	border: 1px solid #CCCCCC;
+	width: 600px;
+	height: 400px;
+	margin: 100px auto;
+}
+
+.box h1{
+	text-align: center;
+	color: #008040;
+	margin: 50px auto;
+}
+
+.searchbox{
+	height: 30px;
+	border: 1px solid #008040;
+	width: 80%;
+	margin: 50px auto;
+}
+
+.searchbox input[type="text"]{
+	height: 30px;
+	width: 85%;
+	outline: none;
+	border: 0;
+	font-size: 18px;
+}
+
+.searchbox input[type="submit"]{
+	height: 30px;
+	width: 14%;
+	float: right;
+	border: 0;
+	outline: none;
+	background-color: #008040;
+	color: #FFFFFF;
+}

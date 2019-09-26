@@ -16,9 +16,11 @@ public class DataToES {
 
     private String indexName = "news";
     
+    /**
+     * 设置mapping，创建索引
+     */
     @Test
     public void createIndex() throws IOException {
-        // 2. 设置mapping，创建索引
         XContentBuilder builder = XContentFactory.jsonBuilder();
         builder.startObject();
         {
@@ -78,6 +80,9 @@ public class DataToES {
         ESUtils.createIndex(indexName, 3, 0, builder);
     }
     
+    /**
+     * 导入mysql 数据到ES
+     */
     @Test
     public void dataToES() throws IOException{
         Dao dao = new Dao();

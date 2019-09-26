@@ -21,6 +21,8 @@
 	<context:component-scan base-package="com.demon.clothes.controller"></context:component-scan>
 	<!-- 基于Lucene 的文件搜索服务 -->
 	<context:component-scan base-package="com.demon.lucene.book.chapter3.controller"></context:component-scan>
+	<!-- 新闻搜索服务 -->
+	<context:component-scan base-package="com.demon.lucene.book.chapter10"></context:component-scan>
 	<mvc:annotation-driven/>
 	
 	<!-- 视图解析器 -->
