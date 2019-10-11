@@ -1,7 +1,7 @@
 /**
  * <pre>
  * 《从Lucene到Elasticsearch：全文检索实战》 读书笔记
- * page.280
+ * page.313
  * 
  * 第一章：信息检索模型
  * 第二章：Lucene 开发入门
