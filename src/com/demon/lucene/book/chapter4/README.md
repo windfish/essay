@@ -217,7 +217,7 @@ nohup ./bin/kibana &
 
 ### 遇到的问题
 ```
-# [node-1] flood stage disk watermark [95%] exceeded on [AbQ6RdHsTleXuFvtCyBrLg][node-1][/data/elasticsearch/elasticsearch-7.2.1/data/nodes/0] 
+# [node-1] flood stage disk watermark [95%] exceeded on [AbQ6RdHsTleXuFvtCyBrLg]
 # free: 214.6mb[3.2%], all indices on this node will be marked read-only
 磁盘空间不足，导致Kibana 连不上ES 集群
 
