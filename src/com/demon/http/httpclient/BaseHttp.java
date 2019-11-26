@@ -32,7 +32,7 @@ import com.alibaba.fastjson.JSON;
  * @since 2019年3月28日 下午4:35:03
  *
  */
-public class BaseHttp {
+public final class BaseHttp {
     
     private static Logger logger = LoggerFactory.getLogger(BaseHttp.class);
 
