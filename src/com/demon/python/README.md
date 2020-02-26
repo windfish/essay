@@ -3,6 +3,13 @@
 * 运行缺少 api-ms-win-crt-runtime-l1-1-0.dll，安装 KB2999226补丁程序，win7 64位版本：https://www.microsoft.com/en-us/download/details.aspx?id=49093
 
 ### CentOS 编译安装
+```
+tar -zxvf Python-3.7.2.tgz
+cd Python-3.6.1
+./configure
+make && make install
+```
+
 * zipimport.ZipImportError: can’t decompress data
 缺少zlib 的相关工具包，yum -y install zlib*，然后 make && make install
 * ModuleNotFoundError: No module named '_ctypes'
