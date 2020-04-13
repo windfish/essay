@@ -1,3 +1,4 @@
+# 定义项目语言时，linguist-vendored 用来忽略某些文件
 *.sql linguist-vendored
 *.css linguist-vendored
 *.js linguist-vendored
