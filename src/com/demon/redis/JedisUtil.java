@@ -25,18 +25,21 @@ public class JedisUtil {
 	}
 	
 	private static Map<String, JedisPool> maps = new HashMap<String, JedisPool>();
+	private static JedisPoolConfig config = null;
+	
+	static{
+	    config = new JedisPoolConfig();
+        config.setMaxTotal(RedisConfig.MAX_ACTIVE);
+        config.setMaxIdle(RedisConfig.MAX_IDLE);
+        config.setMaxWaitMillis(RedisConfig.MAX_WAIT);
+        config.setTestOnBorrow(true);
+        config.setTestOnReturn(true);
+	}
 	
 	private static JedisPool getPool(String ip, int port){
 		String key = ip+":"+port;
 		JedisPool pool = null;
 		if(!maps.containsKey(key)){
-			JedisPoolConfig config = new JedisPoolConfig();
-			config.setMaxTotal(RedisConfig.MAX_ACTIVE);
-			config.setMaxIdle(RedisConfig.MAX_IDLE);
-			config.setMaxWaitMillis(RedisConfig.MAX_WAIT);
-			config.setTestOnBorrow(true);
-			config.setTestOnReturn(true);
-			
 			pool = new JedisPool(config, ip, port, RedisConfig.TIME_OUT);
 			maps.put(key, pool);
 		}else{
@@ -44,6 +47,18 @@ public class JedisUtil {
 		}
 		return pool;
 	}
+	
+	private static JedisPool getPool(String ip, int port, String password){
+        String key = ip+":"+port;
+        JedisPool pool = null;
+        if(!maps.containsKey(key)){
+            pool = new JedisPool(config, ip, port, RedisConfig.TIME_OUT, password);
+            maps.put(key, pool);
+        }else{
+            pool = maps.get(key);
+        }
+        return pool;
+    }
 	
 	public Jedis getJedis(String ip, int port){
 		Jedis jedis = null;
@@ -58,6 +73,21 @@ public class JedisUtil {
 			count++;
 		}while(jedis==null&&count<RedisConfig.RETRY_NUM);
 		return jedis;
+	}
+	
+	public Jedis getJedis(String ip, int port, String password){
+	    Jedis jedis = null;
+        int count = 0;
+        do{
+            try {
+                jedis = getPool(ip, port, password).getResource();
+            } catch (Exception e) {
+                logger.error("get redis master1 error", e);
+                getPool(ip, port).returnBrokenResource(jedis);
+            }
+            count++;
+        }while(jedis==null&&count<RedisConfig.RETRY_NUM);
+        return jedis;
 	}
 	
 	public void closeJedis(Jedis jedis, String ip, int port){

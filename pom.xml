@@ -691,6 +691,13 @@
 	    <artifactId>xml-apis</artifactId>
 	    <version>1.4.01</version>
 	</dependency>
+	
+	<!-- poi -->
+	<dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>3.13</version>
+    </dependency>
 
   </dependencies>
 
