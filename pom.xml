@@ -279,6 +279,7 @@
 		错误信息：Missing artifact jdk.tools:jdk.tools:jar:1.7
 		解决方案：需指定maven加载的tools.jar的路径
 	 -->
+	  <!--
 	<dependency>
 	    <groupId>jdk.tools</groupId>
 	    <artifactId>jdk.tools</artifactId>
@@ -286,7 +287,8 @@
 	    <scope>system</scope>
 	    <systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
 	</dependency>
-	
+	-->
+
 	<!-- 
 		memcached 客户端jar，手工加入本地仓库 
 		命令为：mvn install:install-file -Dfile=java_memcached-release_2.6.6.jar 
