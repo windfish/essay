@@ -17,10 +17,13 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  */
 public class TimeServer {
 
+	/**
+	 * Netty 内部会构造两个线程池，一个线程池只处理accept 请求，另一个线程池只处理read/write 请求
+	 */
 	public void bind(int port) throws Exception {
 		// 配置服务端NIO线程组
-		EventLoopGroup bossGroup = new NioEventLoopGroup();
-		EventLoopGroup workerGroup = new NioEventLoopGroup();
+		EventLoopGroup bossGroup = new NioEventLoopGroup();	// 处理accept 请求
+		EventLoopGroup workerGroup = new NioEventLoopGroup(); // 处理read/write 请求
 		try {
 			ServerBootstrap b = new ServerBootstrap(); // Netty用于启动NIO的辅助启动类
 			b.group(bossGroup, workerGroup)
