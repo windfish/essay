@@ -7,7 +7,6 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
@@ -44,8 +43,7 @@ public class Server {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
                         ChannelPipeline cpl = socketChannel.pipeline();
-                        cpl.addLast(new LineBasedFrameDecoder(1024))
-                                .addLast(new StringDecoder())
+                        cpl.addLast(new StringDecoder())
                                 .addLast(new StringEncoder())
                                 .addLast(new ServerHandler());
                     }

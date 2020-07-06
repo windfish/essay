@@ -7,7 +7,6 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
@@ -16,8 +15,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Netty RPC 客户端
@@ -52,8 +49,7 @@ public class Client {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
                         ChannelPipeline cpl = socketChannel.pipeline();
-                        cpl.addLast(new LineBasedFrameDecoder(1024))
-                                .addLast(new StringDecoder())
+                        cpl.addLast(new StringDecoder())
                                 .addLast(new StringEncoder())
                                 .addLast(clientHandler);
                     }
@@ -74,12 +70,7 @@ public class Client {
                     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                         System.out.println("客户端请求参数：" + args[0]);
                         clientHandler.setRequestParams(args[0].toString());
-                        Future f = es.submit(clientHandler);
-                        es.awaitTermination(1, TimeUnit.SECONDS);
-                        System.out.println("future isDone: " + f.isDone());
-                        Object o = f.get();
-                        System.out.println("future result: " + o);
-                        return o; // 返回执行结果，也就是服务端返回的结果
+                        return es.submit(clientHandler).get(); // 返回执行结果，也就是服务端返回的结果
                     }
                 });
     }

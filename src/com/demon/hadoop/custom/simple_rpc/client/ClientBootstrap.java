@@ -14,5 +14,11 @@ public class ClientBootstrap {
         DateTimeService serviceProxy = (DateTimeService) client.getProxy(DateTimeService.class);
         String result = serviceProxy.hello("xxx");
         System.out.println("client invoke service.hello result: " + result);
+
+        String result2 = serviceProxy.hello("xxx222");
+        System.out.println("client invoke service.hello result: " + result2);
+
+        String result3 = serviceProxy.format(new Date());
+        System.out.println("client invoke format result: " + result3);
     }
 }

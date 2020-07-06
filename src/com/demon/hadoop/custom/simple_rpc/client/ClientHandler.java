@@ -16,8 +16,6 @@ public class ClientHandler extends ChannelHandlerAdapter implements Callable {
     private String result;
     private String requestParams;
 
-    private Lock lock = new ReentrantLock();
-
     public void setRequestParams(String requestParams) {
         this.requestParams = requestParams;
     }
@@ -29,10 +27,9 @@ public class ClientHandler extends ChannelHandlerAdapter implements Callable {
 
         // 发送数据到服务端
         ctx.writeAndFlush(requestParams + System.getProperty("line.separator"));
-        lock.lock();
-//        wait(); // 发送完请求后，等待服务端返回数据
-        System.out.println("唤醒后，返回服务端数据-----");
-        return result; // 服务端返回数据后，将结果返回代理对象
+        wait(); // 发送完请求后，等待服务端返回数据
+        System.out.println("唤醒后，返回服务端数据-----" + this.result);
+        return this.result; // 服务端返回数据后，将结果返回代理对象
     }
 
     @Override
@@ -42,12 +39,11 @@ public class ClientHandler extends ChannelHandlerAdapter implements Callable {
     }
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        result = msg.toString();
-        System.out.println("client received result: " + result);
+    public synchronized void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        this.result = msg.toString();
+        System.out.println("client received result: " + this.result);
 
-//        notify(); // 唤醒call 返回数据
-        lock.unlock();
+        notify(); // 唤醒call 返回数据
     }
 
     @Override
