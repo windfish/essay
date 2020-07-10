@@ -1,4 +1,4 @@
-package com.demon.hadoop.custom.simple_rpc.utils;
+package com.demon.hadoop.custom.rpc_simple.utils;
 
 public class Constants {
 

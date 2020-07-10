@@ -1,4 +1,4 @@
-package com.demon.hadoop.custom.simple_rpc.client;
+package com.demon.hadoop.custom.rpc_simple.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelInitializer;

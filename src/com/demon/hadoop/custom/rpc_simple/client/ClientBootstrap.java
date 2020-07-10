@@ -1,7 +1,7 @@
-package com.demon.hadoop.custom.simple_rpc.client;
+package com.demon.hadoop.custom.rpc_simple.client;
 
-import com.demon.hadoop.custom.simple_rpc.service.DateTimeService;
-import com.demon.hadoop.custom.simple_rpc.utils.Constants;
+import com.demon.hadoop.custom.rpc_simple.service.DateTimeService;
+import com.demon.hadoop.custom.rpc_simple.utils.Constants;
 
 import java.util.Date;
 

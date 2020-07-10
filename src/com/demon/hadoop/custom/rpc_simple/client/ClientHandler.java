@@ -1,11 +1,9 @@
-package com.demon.hadoop.custom.simple_rpc.client;
+package com.demon.hadoop.custom.rpc_simple.client;
 
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.util.concurrent.Callable;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 客户端处理类

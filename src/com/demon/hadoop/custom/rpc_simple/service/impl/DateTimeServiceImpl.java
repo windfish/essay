@@ -1,7 +1,6 @@
-package com.demon.hadoop.custom.simple_rpc.service.impl;
+package com.demon.hadoop.custom.rpc_simple.service.impl;
 
-import com.demon.hadoop.custom.simple_rpc.service.DateTimeService;
-import io.netty.util.internal.StringUtil;
+import com.demon.hadoop.custom.rpc_simple.service.DateTimeService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

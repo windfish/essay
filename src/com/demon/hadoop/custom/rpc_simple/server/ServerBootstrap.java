@@ -1,6 +1,6 @@
-package com.demon.hadoop.custom.simple_rpc.server;
+package com.demon.hadoop.custom.rpc_simple.server;
 
-import com.demon.hadoop.custom.simple_rpc.utils.Constants;
+import com.demon.hadoop.custom.rpc_simple.utils.Constants;
 
 public class ServerBootstrap {
 

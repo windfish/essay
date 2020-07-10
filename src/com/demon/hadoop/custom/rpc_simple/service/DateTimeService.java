@@ -1,4 +1,4 @@
-package com.demon.hadoop.custom.simple_rpc.service;
+package com.demon.hadoop.custom.rpc_simple.service;
 
 import java.util.Date;
 

@@ -1,6 +1,6 @@
-package com.demon.hadoop.custom.simple_rpc.server;
+package com.demon.hadoop.custom.rpc_simple.server;
 
-import com.demon.hadoop.custom.simple_rpc.service.impl.DateTimeServiceImpl;
+import com.demon.hadoop.custom.rpc_simple.service.impl.DateTimeServiceImpl;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
