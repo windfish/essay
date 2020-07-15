@@ -1,5 +1,8 @@
 package com.demon.hadoop.custom.mapreduce.task;
 
+/**
+ * 逻辑上的数据块，每个数据块对应一个MapTask
+ */
 public class InputSplit {
 
     private String blockId;     // blockId

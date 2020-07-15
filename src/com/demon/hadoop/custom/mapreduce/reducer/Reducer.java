@@ -11,6 +11,9 @@ public class Reducer {
 
     }
 
+    /**
+     * 将词的个数累加，然后输出
+     */
     protected void reduce(String key, List<Integer> values, ReduceOutputFormat reduceOutputFormat){
         int total = 0;
         for(int v: values){

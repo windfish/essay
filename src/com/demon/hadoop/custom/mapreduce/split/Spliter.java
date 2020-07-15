@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 切分器
+ * 切分器，每个源文件都切分为一个InputSplit，后续会为其创建一个MapTask 处理数据
  */
 public class Spliter {
 
@@ -32,6 +32,9 @@ public class Spliter {
         return splits;
     }
 
+    /**
+     * 支持文件夹级联的切分
+     */
     public List<InputSplit> getSplits(String path, List<InputSplit> list){
         if(list == null){
             list = new ArrayList<>();

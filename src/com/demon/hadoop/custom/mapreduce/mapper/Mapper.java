@@ -3,6 +3,9 @@ package com.demon.hadoop.custom.mapreduce.mapper;
 import com.demon.hadoop.custom.mapreduce.inputformat.MapInputFormat;
 import com.demon.hadoop.custom.mapreduce.outputformat.MapOutputFormat;
 
+/**
+ * Mapper 阶段逻辑处理
+ */
 public class Mapper {
 
     /**
@@ -13,7 +16,7 @@ public class Mapper {
     }
 
     /**
-     * 一条记录处理一次的map 方法
+     * 将每一行的数据，拆分为单个词，将词个数写入文件中
      */
     protected void map(Object currentKey, Object currentValue, MapOutputFormat mapOutputFormat){
         String value = (String) currentValue;

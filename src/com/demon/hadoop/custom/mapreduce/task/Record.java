@@ -1,8 +1,13 @@
 package com.demon.hadoop.custom.mapreduce.task;
 
+/**
+ * 结果对象
+ */
 public class Record {
 
+    // 英文词
     private String key;
+    // 词的个数
     private int value;
 
     @Override

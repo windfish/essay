@@ -13,6 +13,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Mapper 阶段输出格式化工具类
+ */
 public class MapOutputFormat {
 
     // Task 的输出

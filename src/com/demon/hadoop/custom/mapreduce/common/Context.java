@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * 上下文对象
+ */
 public class Context {
 
     private String jobId;

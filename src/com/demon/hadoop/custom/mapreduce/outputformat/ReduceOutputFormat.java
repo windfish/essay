@@ -6,12 +6,19 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Reducer 阶段输出格式化工具类
+ */
 public class ReduceOutputFormat {
 
+    // 当前处理的词
     private String key;
-    private String lastLine = null;
-    private String lastKey = null;
+    // 当前处理的词的个数列表
     private List<Integer> values;
+    // 当前读取的最后一行
+    private String lastLine = null;
+    // 当前读取的最后一个词，其应该不同意当前处理的词。因为排过序，所有读取到不同的词时，表示前一个词的个数都已读完，可以返回处理了
+    private String lastKey = null;
     private PrintWriter printWriter;
     private BufferedReader reader;
 
@@ -35,6 +42,12 @@ public class ReduceOutputFormat {
         }
     }
 
+    /**
+     * 读取map 处理后，并且已经排序后的结果
+     * 读取到相同的词时，一直往下读
+     * 直到读到不同的词，记录当前读到的位置（lastLine 和lastKey）
+     * 然后返回前一个词及其个数列表
+     */
     public boolean nextKeyValue(){
         // 处理每一组的第一条数据
         if(lastLine == null){

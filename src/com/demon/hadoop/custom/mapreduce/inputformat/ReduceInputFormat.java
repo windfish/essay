@@ -9,6 +9,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Reducer 阶段数据输入格式化工具
+ * Reducer 阶段的数据是map 处理之后的数据，格式为：英文词\t个数
+ */
 public class ReduceInputFormat {
 
     // 用来做合并输出的流
@@ -16,6 +20,9 @@ public class ReduceInputFormat {
 
     private List<Record> records;
 
+    /**
+     * 将map 处理后的数据，进行排序
+     */
     public String mergeMapTempFiles(Context context, int reduceTaskIdIndex){
         this.records = new ArrayList<>();
 
@@ -92,7 +99,6 @@ public class ReduceInputFormat {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-
         sort.dictSort(this.records);
 
         // 再写入磁盘
