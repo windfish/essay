@@ -25,8 +25,8 @@ public class RuntimeConstantPoolOOM {
         
         String str2 = new StringBuilder("ja").append("va").toString();
         System.out.println(str2.intern() == str2);  // 常量池中默认有java这个字符串，所以返回false
-        
-        
+
+
         List<String> list = new ArrayList<String>();
         int i=0;
         while(true){

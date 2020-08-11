@@ -37,7 +37,7 @@ public class TransientTest implements Serializable {
         }else{
             note = pwd;
         }
-        return "BaseClass [d=" + d + ", uid=" + uid + ", pwd=" + pwd + ", note=" + note + "]";
+        return "BaseClass [d=" + d + ", uid=" + uid + ", pwd=" + pwd + ", 五种IO模型=" + note + "]";
     }
     
     public static void main(String[] args) {
