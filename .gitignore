@@ -8,3 +8,4 @@ src/com/demon/thread/
 .idea/
 essay.iml
 out/
+.DS_Store
