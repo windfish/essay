@@ -22,7 +22,7 @@ public class IKAnalyzer8x extends Analyzer {
         this.useSmart = useSmart;
     }
     
-    // 重新最新版本的createComponents，构造分词组件
+    // 重写最新版本的createComponents，构造分词组件
     @Override
     protected TokenStreamComponents createComponents(String arg0) {
         Tokenizer _IKTokenizer = new IKTokenizer8x(this.useSmart);

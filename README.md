@@ -27,7 +27,16 @@ Jenkins 部署与使用，涉及本地服务的管理，远程机器的服务管
 基于Apache Lucene 文件搜索系统 
 
 * [Elasticsearch](https://github.com/windfish/essay/tree/master/src/com/demon/lucene/book/chapter4)
-Elasticsearch 和相关插件安装
+Elasticsearch 和相关插件安装与配置
+    * [信息索引基础](https://github.com/windfish/essay/tree/master/src/com/demon/lucene/book/chapter1)
+    * [Lucene 基础](https://github.com/windfish/essay/tree/master/src/com/demon/lucene/book/chapter2)
+    * [Lucene 文件检索项目](https://github.com/windfish/essay/tree/master/src/com/demon/lucene/book/chapter3)
+    * [ES 集群入门，利用Kibana 管理集群](https://github.com/windfish/essay/tree/master/src/com/demon/lucene/book/chapter5)
+    * [ES 搜索机制](https://github.com/windfish/essay/tree/master/src/com/demon/lucene/book/chapter6)
+    * [ES Java API](https://github.com/windfish/essay/tree/master/src/com/demon/lucene/book/chapter8)
+    * [ES 新闻搜索项目](https://github.com/windfish/essay/tree/master/src/com/demon/lucene/book/chapter10)
+    * [ES for Hadoop](https://github.com/windfish/essay/tree/master/src/com/demon/lucene/book/chapter11)
+    * [IK 分词器](https://github.com/windfish/essay/tree/master/src/com/demon/lucene/book/ik)
 
 * [Java 7 并发编程实战手册学习](https://github.com/windfish/essay/tree/master/src/com/demon/concurrency)
 Java 7 并发编程实战手册的阅读笔记，包含书中的例子程序以及详细的注释与笔记
