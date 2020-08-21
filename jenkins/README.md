@@ -67,10 +67,10 @@ bash -x start-global.sh
 在Jenkins 主页左边的菜单里，点击“New 任务”，然后输入任务名称并选择“自由风格的软件项目”，下一步可以看到任务的详细内容配置。
 
 在这里填写项目的基本信息
-![](https://oscimg.oschina.net/oscnet/595b5ab943f320619d872eda9553890d3ad.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/jenkins/595b5ab943f320619d872eda9553890d3ad.jpg)
 
 在这里填写具体的构建过程，我们选择“执行 Shell”。Jenkins 建议我们添加 -ex 参数来执行，那么所以的命令在执行之前就会被打印出来，方便在日志中查看Shell 的执行情况。
-![](https://oscimg.oschina.net/oscnet/f9a294e30e4735f557caf9496cc1aabac29.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/jenkins/f9a294e30e4735f557caf9496cc1aabac29.jpg)
 
 3. 执行构建
 
