@@ -86,7 +86,7 @@
 第二阶段：提交/执行/回滚阶段
 * 事务协调者收到所有参与者反馈后，若所有参与者均可以提交，则通知参与者和发起者执行commit，否则rollback
 
-![](https://oscimg.oschina.net/oscnet/up-7e70cbd3a6b9169210183f6bf04c57b9b5a.png)
+![](https://github.com/windfish/img/blob/master/notes-img/分布式理论/up-7e70cbd3a6b9169210183f6bf04c57b9b5a.png?raw=true)
 
 2PC 的问题
 * 性能问题，同步阻塞：各个节点都处于阻塞状态，只有当所有节点准备完毕，协调者才会通知进行全局commit/rollback，参与者才会释放锁定的资源
@@ -307,7 +307,7 @@ server.3=127.0.0.1:2890:3890
 # 若需要配置observer 角色
 # server.4=127.0.0.1:2891:3891:observer
 ``` 
-![](https://oscimg.oschina.net/oscnet/up-618f1a1bc33a401e861c1475cedece543ea.png)
+![](https://github.com/windfish/img/blob/master/notes-img/分布式理论/up-618f1a1bc33a401e861c1475cedece543ea.png?raw=true)
 
 ### 集群模式
 
@@ -338,7 +338,7 @@ znode 的分类：
 * 有三种注册监听的方式
 * 有五种触发监听的方式
 * 有四种类型的事件
-![](https://oscimg.oschina.net/oscnet/up-eef9d9c00704108ca867a01cb07956b34fc.png)
+![](https://github.com/windfish/img/blob/master/notes-img/分布式理论/up-eef9d9c00704108ca867a01cb07956b34fc.png?raw=true)
 
 监听工作原理：
 * zookeeper 的watch 机制主要包括客户端线程、客户端WatchManager、zookeeper 服务器三部分
@@ -429,7 +429,7 @@ zookeeper 是一个leader，follower 对等架构，在内部选举leader，集�
 
 #### 监听机制
 
-![](https://oscimg.oschina.net/oscnet/up-e7578710b0a698b966c9299ba7be13ee8f9.png)
+![](https://github.com/windfish/img/blob/master/notes-img/分布式理论/up-e7578710b0a698b966c9299ba7be13ee8f9.png?raw=true)
 
 * Watcher 接口，定义了process 方法，事件处理接口需要实现的接口
 * Event 接口，Watcher 的内部类，无方法
