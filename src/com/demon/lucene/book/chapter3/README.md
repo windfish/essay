@@ -8,7 +8,7 @@
 
 ## 架构设计
 
-![](https://oscimg.oschina.net/oscnet/f3a15d93125fc1afa9c411d33868ea0238c.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/搜索/f3a15d93125fc1afa9c411d33868ea0238c.jpg?raw=true)
 
 * controller 搜索和下载 http 服务
 * model 文件对象

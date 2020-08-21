@@ -7,7 +7,7 @@ ini 只是shiro 一种基本的配置方式，使其可在任何环境中进行�
 # Detailed Architecture 详细架构
 
 下面的图表展示了 Shiro 的核心架构思想，下面有简单的解释。
-![](https://oscimg.oschina.net/oscnet/97215848578312ceb4bf28f455aff9c36bd.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/shiro/97215848578312ceb4bf28f455aff9c36bd.jpg?raw=true)
 
 * Subject (org.apache.shiro.subject.Subject)
 正在与软件交互的一个特定的实体“view”（用户、第三方服务、时钟守护任务等）。

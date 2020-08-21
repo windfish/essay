@@ -1,6 +1,6 @@
 # Elasticsearch 结构
 
-![](https://oscimg.oschina.net/oscnet/628e84aff978e30343eaf8108d8547c9689.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/搜索/628e84aff978e30343eaf8108d8547c9689.jpg?raw=true)
 
 * Gateway 是Elasticsearch 用来存储索引的文件系统，支持多种文件类型。
     Local FileSystem 是存储在本地的文件系统，Shared FileSystem 是共享存储，也可以使用Hadoop 的HDFS 分布式存储，也可以存储在Amazon S3 云服务上
@@ -192,7 +192,7 @@ Waiting forever...
 Started connect web server on http://192.168.10.100:9100
 ```
 访问http://192.168.10.100:9100/ 可以查看Elasticsearch 集群的情况
-![](https://oscimg.oschina.net/oscnet/44bcc274225c37586c4024efa4b99a35931.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/搜索/44bcc274225c37586c4024efa4b99a35931.jpg?raw=true)
 
 
 # Kibana 工具

@@ -1,6 +1,6 @@
 # Elasticsearch 搜索机制
 
-![](https://oscimg.oschina.net/oscnet/0c45389d7b58abf00808dea1465644e130b.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/搜索/0c45389d7b58abf00808dea1465644e130b.jpg?raw=true)
 
 ```
 # 创建索引并设置settings 和mapping

@@ -83,7 +83,7 @@ export HADOOP_OPTS="$HADOOP_OPTS -Djava.net.preferIPv4Stack=true -Djava.security
 ```
 
 8. 访问HDFS 的50070 端口
-![](https://oscimg.oschina.net/oscnet/4856fe2f46eeb671d389fa750689e11ce24.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/搜索/4856fe2f46eeb671d389fa750689e11ce24.jpg?raw=true)
 
 
 # HDFS 常用命令

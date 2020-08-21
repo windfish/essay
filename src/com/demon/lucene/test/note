@@ -14,7 +14,7 @@ Lucene 可以索引和搜索存储在文件中的如下数据（包括但不限�
 * pdf 文档
 
 一个简单的搜索引擎结构：
-![](https://oscimg.oschina.net/oscnet/dd407fcd8eca9232eec875ca7e38fccb113.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/搜索/dd407fcd8eca9232eec875ca7e38fccb113.jpg?raw=true)
 
 从web 或本地获取数据，将数据转为文档，然后进行文本提取，在通过索引程序生成索引，存入索引库，当用户输入关键字搜索时，从索引库中找到关键字对应的索引并显示对应的文档数据
 

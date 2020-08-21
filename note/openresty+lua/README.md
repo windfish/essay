@@ -56,7 +56,7 @@ location / {
 
 ### 缓存判断机制
 
-![](https://oscimg.oschina.net/oscnet/6d71cdf35c576ce1c94b3eb428ad501323b.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/nginx/6d71cdf35c576ce1c94b3eb428ad501323b.jpg?raw=true)
 
 
 # OpenResty 里使用Lua

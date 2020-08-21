@@ -2,7 +2,7 @@
 
 ### 运行时数据区域
 
-![](https://oscimg.oschina.net/oscnet/up-a4f8299e9df48942fbc1bd6ec704ce9da0d.png)
+![](https://github.com/windfish/img/blob/master/notes-img/jvm/up-a4f8299e9df48942fbc1bd6ec704ce9da0d.png?raw=true)
 
 ##### 程序计数器
 * 一块较小的内存空间，看作是当前线程所执行的字节码的行号指示器。
@@ -55,7 +55,7 @@
 
 ##### 创建对象
 
-![](https://oscimg.oschina.net/oscnet/up-f2c422c3e896da4bf478e9e9debe4252e36.png)
+![](https://github.com/windfish/img/blob/master/notes-img/jvm/up-f2c422c3e896da4bf478e9e9debe4252e36.png?raw=true)
 
 内存分配的方式：
 * 指针碰撞 Bump the Pointer
@@ -188,7 +188,7 @@ Serial 收集器对于运行在Client 模式下的虚拟机，是一个很好的
 
 GC 日志关键字：DefNew(Default New Generation)
 
-![](https://oscimg.oschina.net/oscnet/up-5c5793d875d49123b10885f40a52f8a458e.png)
+![](https://github.com/windfish/img/blob/master/notes-img/jvm/up-5c5793d875d49123b10885f40a52f8a458e.png?raw=true)
 
 #### ParNew 收集器
 
@@ -202,7 +202,7 @@ GC 日志关键字：DefNew(Default New Generation)
 
 GC日志关键字：ParNew(Parallel New Generation)
 
-![](https://oscimg.oschina.net/oscnet/up-de27bd7b7f09a228d5c898869a1eb870d91.png)
+![](https://github.com/windfish/img/blob/master/notes-img/jvm/up-de27bd7b7f09a228d5c898869a1eb870d91.png)
 
 #### Parallel Scavenge 收集器
 
@@ -219,7 +219,7 @@ CMS 等收集器的关注点是尽可能缩短垃圾收集时用户线程的停�
 
 GC日志关键字：PSYoungGen
 
-![](https://oscimg.oschina.net/oscnet/up-5a8cf260e719e0a0c160379039c4268e443.png)
+![](https://github.com/windfish/img/blob/master/notes-img/jvm/up-5a8cf260e719e0a0c160379039c4268e443.png)
 
 #### Serial Old 收集器
 
@@ -248,7 +248,7 @@ GC日志关键字：ParOldGen
 * 无法处理标记之后产生的垃圾，只好留到下一次gc，这部分称为浮动垃圾，可能会出现Concurrent Mode Failure 而导致一次full gc 的产生
 * 基于标记-清除，那么会有空间碎片产生，默认在进行full gc时，进行碎片整理
 
-![](https://oscimg.oschina.net/oscnet/up-2957cb6bca39310add6058ed4e5b52d1c9b.png)
+![](https://github.com/windfish/img/blob/master/notes-img/jvm/up-2957cb6bca39310add6058ed4e5b52d1c9b.png?raw=true)
 
 #### G1 收集器
 
@@ -270,13 +270,13 @@ G1 运作的大致步骤：
 
 -XX:MaxGCPauseMillis 设定期望的GC 停顿时间，单位毫秒
 
-![](https://oscimg.oschina.net/oscnet/up-2b2368be8f38888ada6bdcecc26e67e321e.png)
+![](https://github.com/windfish/img/blob/master/notes-img/jvm/up-2b2368be8f38888ada6bdcecc26e67e321e.png?raw=true)
 
 ##### 内存区域
 
 G1 将整个Java 堆划分为多个大小相等的独立区域Region，Region 默认大小为512k，逻辑上连续，物理内存地址不连续
 
-![](https://oscimg.oschina.net/oscnet/up-b3c1c7defdd6c55cc9f0745df8c95c11bcf.png)
+![](https://github.com/windfish/img/blob/master/notes-img/jvm/up-b3c1c7defdd6c55cc9f0745df8c95c11bcf.png?raw=true)
 
 H 表示Humongous，表示大的对象，当分配的对象大于等于Region 大小的一半时，会被认为是巨型对象，默认分配在老年代，防止GC 时大对象的内存拷贝
 
@@ -286,7 +286,7 @@ Young 区可能引用有Old 区的对象，这就是跨代引用，为了避免Y
 * RSet：Remembered Set，用来记录外部指向本Region 的所有引用，每个Region 维护一个RSet
 * Card：JVM 将每个Region 分成多个Card
 
-![](https://oscimg.oschina.net/oscnet/up-19feb64fc888c947309bc22845beb9dfeda.png)
+![](https://github.com/windfish/img/blob/master/notes-img/jvm/up-19feb64fc888c947309bc22845beb9dfeda.png?raw=true)
 每个Region被分成了多个Card，其中绿色部分的Card表示该Card中有对象引用了其他Card中的对象，这种引用关系用蓝色实线表示。
 RSet其实是一个HashTable，Key是Region的起始地址，Value是Card Table （字节数组）,字节数组下标表示Card的空间地址，当该地址空间被引用的时候会被标记为dirty_card。
 
@@ -297,7 +297,7 @@ RSet其实是一个HashTable，Key是Region的起始地址，Value是Card Table 
     * E区的对象会移动到S区，当S区空间不足时，E区的对象会直接晋升到O区
     * S区的数据会移动到新的S区，如果S区的部分对象达到一定年龄，会晋升到O区
     
-![](https://oscimg.oschina.net/oscnet/up-b6036dfb70dc42135edacfc21568fa124b3.png)
+![](https://github.com/windfish/img/blob/master/notes-img/jvm/up-b6036dfb70dc42135edacfc21568fa124b3.png?raw=true)
     
 * Mixed GC
     * 回收所有年轻代Region 和部分老年代Region
@@ -314,7 +314,7 @@ RSet其实是一个HashTable，Key是Region的起始地址，Value是Card Table 
         * 该阶段可以自由选择任意多个Region 来收集构成收集集合（collection set，简称CSet），CSet集合中Region 的选定依赖于停顿预测模型
         * 该阶段并不回收所有有活对象的Region，只选择收益高的少量Region 来回收，这种暂停的开销就（在一定范围内）可控
 
-![](https://oscimg.oschina.net/oscnet/up-7891b943aa797bc9f57320acb0fcf5c3c8f.png)
+![](https://github.com/windfish/img/blob/master/notes-img/jvm/up-7891b943aa797bc9f57320acb0fcf5c3c8f.png?raw=true)
 
 * Full GC
     * 由于垃圾回收和应用程序是并发执行的，当Mixed GC 的回收速度赶不上应用程序申请内存的速度时，就会引发Full GC

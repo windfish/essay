@@ -52,7 +52,7 @@
         * WAL 机制：所有的影响数据状态的操作，都应该记录操作日志，然后更新数据到内存（做事务保证）
             操作日志可以做数据恢复
 ```
-![](https://oscimg.oschina.net/oscnet/up-80ce5689c5843e5b7a481e580012c52e08b.png)
+![](https://github.com/windfish/img/blob/master/notes-img/数据存储/up-80ce5689c5843e5b7a481e580012c52e08b.png?raw=true)
 
 #### 上传数据的流程
 * 规划

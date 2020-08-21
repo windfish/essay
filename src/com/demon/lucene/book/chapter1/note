@@ -24,7 +24,7 @@
 
 # 信息检索系统
 
-![](https://oscimg.oschina.net/oscnet/5674e7356142534e6cf99975871ed89328f.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/搜索/5674e7356142534e6cf99975871ed89328f.jpg?raw=true)
 
 
 # 倒排索引
@@ -34,10 +34,10 @@
 例如，有两个文档 doc1 和doc2，doc1 有关键字：中国、美国、韩国，doc2 有关键字：中国、美国、德国、英国
 
 正排索引
-![](https://oscimg.oschina.net/oscnet/391e5b6e2d1e4b23df790d9dc5176830944.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/搜索/391e5b6e2d1e4b23df790d9dc5176830944.jpg?raw=true)
 
 倒排索引
-![](https://oscimg.oschina.net/oscnet/3aad99ec777389f03611b7976cea8ee595e.jpg)
+![](https://github.com/windfish/img/blob/master/notes-img/搜索/3aad99ec777389f03611b7976cea8ee595e.jpg?raw=true)
 
 
 # 词频-逆文档频率 tf-idf
