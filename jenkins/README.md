@@ -67,18 +67,18 @@ bash -x start-global.sh
 在Jenkins 主页左边的菜单里，点击“New 任务”，然后输入任务名称并选择“自由风格的软件项目”，下一步可以看到任务的详细内容配置。
 
 在这里填写项目的基本信息
-![](https://github.com/windfish/img/blob/master/notes-img/jenkins/595b5ab943f320619d872eda9553890d3ad.jpg)
+![](https://raw.githubusercontent.com/windfish/img/master/notes-img/jenkins/595b5ab943f320619d872eda9553890d3ad.jpg)
 
 在这里填写具体的构建过程，我们选择“执行 Shell”。Jenkins 建议我们添加 -ex 参数来执行，那么所以的命令在执行之前就会被打印出来，方便在日志中查看Shell 的执行情况。
-![](https://github.com/windfish/img/blob/master/notes-img/jenkins/f9a294e30e4735f557caf9496cc1aabac29.jpg)
+![](https://raw.githubusercontent.com/windfish/img/master/notes-img/jenkins/f9a294e30e4735f557caf9496cc1aabac29.jpg)
 
 3. 执行构建
 
 保存配置后，点击“立即构建”就可以执行当前的构建任务了，然后可以在“Build History”中查看每次构建的日志信息
-![](https://oscimg.oschina.net/oscnet/d39bbd98d6cb9262613f7baee251d8c1886.jpg)
+![](https://raw.githubusercontent.com/windfish/img/master/notes-img/jenkins/d39bbd98d6cb9262613f7baee251d8c1886.jpg)
 
 可以看到，每一条命令在执行之前，都会先将命令打印出来
-![](https://oscimg.oschina.net/oscnet/65e1958ef9a011b8e3eda052061db42b969.jpg)
+![](https://raw.githubusercontent.com/windfish/img/master/notes-img/jenkins/65e1958ef9a011b8e3eda052061db42b969.jpg)
 
 
 # Jenkins 管理测试服
@@ -87,7 +87,7 @@ bash -x start-global.sh
 1. Publish Over SSH插件
 
 在Jenkins 的 系统管理 --> 插件管理，搜索Publish Over SSH 插件并安装。然后在系统管理中，就可以配置SSH 
-![](https://oscimg.oschina.net/oscnet/3d2a778c703a9fd3d86e676cbbba31990f5.jpg)
+![](https://raw.githubusercontent.com/windfish/img/master/notes-img/jenkins/3d2a778c703a9fd3d86e676cbbba31990f5.jpg)
 
 SSH Servers 中配置SSH Server，包含hostname、username、remote directory，在Advanced 中可以录入远程机器的用户密码
 
@@ -96,7 +96,7 @@ SSH Servers 中配置SSH Server，包含hostname、username、remote directory�
 ### 配置步骤
 
 构建步骤中选择远程shell 
-![](https://oscimg.oschina.net/oscnet/97f6bf1c6d3dcb8442918345a1954f15c63.jpg)
+![](https://raw.githubusercontent.com/windfish/img/master/notes-img/jenkins/97f6bf1c6d3dcb8442918345a1954f15c63.jpg)
 
 
 # Jenkins 管理正式服
@@ -134,10 +134,10 @@ sudo rsync --daemon
 ### 配置构建逻辑
 
 1. SSH 到测试服，打包项目，并rsync 到正式服务器
-![](https://oscimg.oschina.net/oscnet/83781b90dfb91c0c139a26b4324289bf8f8.jpg)
+![](https://raw.githubusercontent.com/windfish/img/master/notes-img/jenkins/83781b90dfb91c0c139a26b4324289bf8f8.jpg)
 
 2. SSH 到正式服，重启服务
-![](https://oscimg.oschina.net/oscnet/68704998e37916242a42fa742ef834f0428.jpg)
+![](https://raw.githubusercontent.com/windfish/img/master/notes-img/jenkins/68704998e37916242a42fa742ef834f0428.jpg)
 
 
 
@@ -158,7 +158,7 @@ jenkins ALL=NOPASSWD:ALL
 
 #### Shell 脚本中需要#!/bin/bash -il，否则会出现无法读取环境变量的问题。
 -i 交互式Shell；-l 登录式Shell
-![](https://oscimg.oschina.net/oscnet/f67984763ed5daec02c59dc5966533ef28f.jpg)
+![](https://raw.githubusercontent.com/windfish/img/master/notes-img/jenkins/f67984763ed5daec02c59dc5966533ef28f.jpg)
 
 #### 远程执行shell 时，提示 sudo: sorry, you must have a tty to run sudo
 
