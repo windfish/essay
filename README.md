@@ -38,6 +38,9 @@ Elasticsearch 和相关插件安装与配置
     * [ES for Hadoop](https://github.com/windfish/essay/tree/master/src/com/demon/lucene/book/chapter11)
     * [IK 分词器](https://github.com/windfish/essay/tree/master/src/com/demon/lucene/book/ik)
 
+* [分布式理论](https://github.com/windfish/essay/blob/master/src/com/demon/distributed/zookeeper/zookeeper%20%E7%90%86%E8%AE%BA.md)
+分布式理论+zookeeper 核心架构和工作机制
+
 * [Java 7 并发编程实战手册学习](https://github.com/windfish/essay/tree/master/src/com/demon/concurrency)
 Java 7 并发编程实战手册的阅读笔记，包含书中的例子程序以及详细的注释与笔记
 
